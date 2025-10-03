@@ -94,9 +94,7 @@
       "legit4.eml",
       "phish5.eml",
       "legit5.eml",
-      "legit3.eml",
-      "phish.eml",
-      "legit.eml"
+      "legit3.eml"
 ];
     // ✅ Answer key
     const answerKey = {
@@ -109,11 +107,8 @@
       "legit2.eml": "legit",
       "legit3.eml": "legit",
       "legit4.eml": "legit",
-      "legit5.eml": "legit",
-      "phish.eml": "phish",
-      "legit.eml": "legit"
+      "legit5.eml": "legit"
 };
-
     // --- Helpers ---
     function decodeQuotedPrintable(input) {
       let text = input.replace(/=\r?\n/g, "");
@@ -185,9 +180,20 @@
       subject = decodeMimeWords(subject);
 
       const fromMatch = headerSection.match(/^From:\s*(.*)$/mi);
-      let from = fromMatch ? decodeMimeWords(fromMatch[1].trim()) : "(No From)";
+      let from = "(No From)";
+      if (fromMatch) {
+        const rawFrom = decodeMimeWords(fromMatch[1].trim());
+        const emailMatch = rawFrom.match(/(.*)<(.+?)>/);
+        if (emailMatch) {
+          const fromName = emailMatch[1].trim().replace(/\"/g, "");
+          const fromEmail = emailMatch[2].trim();
+          from = `${fromName} <${fromEmail}>`;
+        } else {
+          from = rawFrom;
+        }
+      }
 
-      // Extract HTML body only up to the next boundary
+      // Extract HTML body (up to boundary)
       let html = "";
       const htmlMatch = content.match(/Content-Type:\s*text\/html[\s\S]*?(?:\r?\n){2}([\s\S]*?)(?:\r?\n--|$)/i);
       if (htmlMatch) {
@@ -244,7 +250,7 @@
         document.getElementById("game").innerHTML += `
           <div style="background:#ffe; color:#333; padding:10px; margin-top:20px; border:1px solid #cc0;">
             ⚠️ No emails could be loaded. Please check that your <code>/emails</code> folder
-            exists in the repo and contains <code>phish.eml</code> and <code>legit.eml</code>.
+            exists in the repo and contains the files listed in <code>emailFiles</code>.
           </div>
         `;
       }
@@ -284,7 +290,7 @@
       const iframe = document.getElementById(iframeId);
       const doc = iframe.contentDocument || iframe.contentWindow.document;
       doc.open();
-      doc.write(email.body);
+      doc.write(email.body);  // external <img src="https://..."> will render
       doc.close();
     }
 
