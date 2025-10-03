@@ -32,14 +32,8 @@
       cursor: pointer;
       font-size: 16px;
     }
-    .phish {
-      background: #e63946;
-      color: white;
-    }
-    .legit {
-      background: #2a9d8f;
-      color: white;
-    }
+    .phish { background: #e63946; color: white; }
+    .legit { background: #2a9d8f; color: white; }
     .feedback {
       margin: 15px;
       font-weight: bold;
@@ -66,9 +60,7 @@
       font-weight: bold;
       margin-right: 10px;
     }
-    .meta {
-      font-size: 14px;
-    }
+    .meta { font-size: 14px; }
     .subject-line {
       font-size: 18px;
       font-weight: bold;
@@ -128,12 +120,12 @@
       parts.forEach(part => {
         const cidMatch = part.match(/Content-ID: <([^>]+)>/i);
         const typeMatch = part.match(/Content-Type: (image\/[^;]+)/i);
-        const dataMatch = part.match(/base64([\\s\\S]*)/i);
+        const dataMatch = part.match(/base64([\s\S]*)/i);
 
         if (cidMatch && typeMatch && dataMatch) {
           const cid = cidMatch[1];
           const type = typeMatch[1];
-          const base64Data = dataMatch[1].replace(/\\s+/g, "");
+          const base64Data = dataMatch[1].replace(/\s+/g, "");
           attachments[cid] = `data:${type};base64,${base64Data}`;
         }
       });
@@ -152,7 +144,7 @@
       // Extract HTML body if present
       let html = "";
       if (content.includes("Content-Type: text/html")) {
-        const match = content.match(/Content-Type: text\\/html[\\s\\S]*?(?:\\r?\\n){2}([\\s\\S]*)/i);
+        const match = content.match(/Content-Type: text\/html[\s\S]*?(?:\r?\n){2}([\s\S]*)/i);
         if (match) {
           html = decodeQuotedPrintable(match[1]);
           html = replaceCidImages(html, attachments);
@@ -162,8 +154,8 @@
       // Fallback plain text
       let body = "";
       if (!html) {
-        const parts = content.split(/\\r?\\n\\r?\\n/);
-        body = decodeQuotedPrintable(parts.slice(1).join("\\n\\n"));
+        const parts = content.split(/\r?\n\r?\n/);
+        body = decodeQuotedPrintable(parts.slice(1).join("\n\n"));
       }
 
       return {
@@ -178,16 +170,37 @@
     }
 
     async function loadEmails() {
+      let loaded = 0;
+
       for (let filename of emailFiles) {
         try {
           const response = await fetch(`emails/${filename}`);
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+          }
           const content = await response.text();
           emails.push(parseEml(content, filename));
+          loaded++;
         } catch (err) {
           console.error("Failed to load", filename, err);
+          document.getElementById("game").innerHTML += `
+            <div style="background:#fee; color:#900; padding:10px; margin-bottom:10px; border:1px solid #c00;">
+              ❌ Could not load <strong>${filename}</strong>: ${err.message}
+            </div>
+          `;
         }
       }
-      showEmail();
+
+      if (loaded > 0) {
+        showEmail();
+      } else {
+        document.getElementById("game").innerHTML += `
+          <div style="background:#ffe; color:#333; padding:10px; margin-top:20px; border:1px solid #cc0;">
+            ⚠️ No emails could be loaded. Please check that your <code>/emails</code> folder
+            exists in the repo and contains <code>phish.eml</code> and <code>legit.eml</code>.
+          </div>
+        `;
+      }
     }
 
     function showEmail() {
