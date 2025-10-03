@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spot the Phish Game</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f9; color: #333; }
+    .card { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    h1 { color: #0074cc; }
+    .buttons { margin-top: 15px; }
+    button { margin: 5px; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; }
+    .phish { background: #e63946; color: white; }
+    .legit { background: #2a9d8f; color: white; }
+    .feedback { margin-top: 15px; font-weight: bold; }
+    #score { margin-top: 25px; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <h1>Spot the Phish 🐟</h1>
+  <div id="game"></div>
+  <div id="score"></div>
+
+  <script>
+    const emails = [
+      {
+        subject: "Re: Completion Required",
+        from: "zopa.com-DoNotReply=Onedrivecloud-com@Zopa <support@feelmoroccotours.com>",
+        body: "You have a document to view and sign. Please complete with your electronic signature by following the link.",
+        type: "phish",
+        explanation: "⚠️ This is a phishing email: suspicious sender domain, odd reply-to address, and non-Zopa Cloudfront link."
+      },
+      {
+        subject: "Document Signature Request from Zopa Bank",
+        from: "Zopa Bank <noreply@zopa.com>",
+        body: "You have a document requiring your electronic signature. Please review securely at https://zopa.com/secure-documents.",
+        type: "legit",
+        explanation: "✅ This is legitimate: real sender domain, professional tone, secure link, and customer support contact info."
+      }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function showEmail() {
+      if (current >= emails.length) {
+        document.getElementById("game").innerHTML = "<h2>Game Over!</h2>";
+        document.getElementById("score").innerText = `Your final score: ${score}/${emails.length}`;
+        return;
+      }
+
+      const email = emails[current];
+      document.getElementById("game").innerHTML = `
+        <div class='card'>
+          <p><strong>Subject:</strong> ${email.subject}</p>
+          <p><strong>From:</strong> ${email.from}</p>
+          <p>${email.body}</p>
+          <div class='buttons'>
+            <button class='phish' onclick="guess('phish')">Phish 🐟</button>
+            <button class='legit' onclick="guess('legit')">Legit ✅</button>
+          </div>
+          <div id='feedback'></div>
+        </div>
+      `;
+    }
+
+    function guess(choice) {
+      const email = emails[current];
+      const feedback = document.getElementById("feedback");
+      if (choice === email.type) {
+        score++;
+        feedback.innerHTML = `<p style='color:green;'>Correct! ${email.explanation}</p>`;
+      } else {
+        feedback.innerHTML = `<p style='color:red;'>Incorrect. ${email.explanation}</p>`;
+      }
+      current++;
+      setTimeout(showEmail, 2500);
+      document.getElementById("score").innerText = `Score: ${score}/${emails.length}`;
+    }
+
+    showEmail();
+  </script>
+</body>
+</html>
