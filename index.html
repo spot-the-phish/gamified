@@ -147,36 +147,45 @@
       });
     }
 
-    function parseEml(content, filename) {
-      const attachments = extractAttachments(content);
+  function parseEml(content, filename) {
+    const attachments = extractAttachments(content);
 
-      // Extract HTML body if present
-      let html = "";
-      if (content.includes("Content-Type: text/html")) {
-        const match = content.match(/Content-Type: text\/html[\s\S]*?(?:\r?\n){2}([\s\S]*)/i);
-        if (match) {
-          html = decodeQuotedPrintable(match[1]);
-          html = replaceCidImages(html, attachments);
-        }
+  // Get headers
+    const headerSection = content.split(/\r?\n\r?\n/)[0];
+    const subjectMatch = headerSection.match(/^Subject:\s*(.*)$/mi);
+    let subject = subjectMatch ? subjectMatch[1].trim() : "(No Subject)";
+    subject = decodeQuotedPrintable(subject);
+
+    const fromMatch = headerSection.match(/^From:\s*(.*)$/mi);
+    let from = fromMatch ? decodeQuotedPrintable(fromMatch[1].trim()) : "(No From)";
+
+  // Extract HTML body
+    let html = "";
+    if (content.includes("Content-Type: text/html")) {
+      const match = content.match(/Content-Type: text\/html[\s\S]*?(?:\r?\n){2}([\s\S]*)/i);
+      if (match) {
+        html = decodeQuotedPrintable(match[1]);
+        html = replaceCidImages(html, attachments);
       }
-
-      // Fallback plain text
-      let body = "";
-      if (!html) {
-        const parts = content.split(/\r?\n\r?\n/);
-        body = decodeQuotedPrintable(parts.slice(1).join("\n\n"));
-      }
-
-      return {
-        subject: filename,
-        from: "(Loaded from .eml)",
-        body: html || `<pre>${body}</pre>`,
-        filename,
-        type: answerKey[filename] || "phish",
-        explanation: `This email (${filename}) was marked as ${answerKey[filename] || "phish"}.`,
-        isHtml: !!html
-      };
     }
+
+  // Fallback plain text
+    let body = "";
+    if (!html) {
+      const parts = content.split(/\r?\n\r?\n/);
+      body = decodeQuotedPrintable(parts.slice(1).join("\n\n"));
+    }
+
+    return {
+      subject,
+      from,
+      body: html || `<pre>${body}</pre>`,
+      filename,
+      type: answerKey[filename] || "phish",
+      explanation: `This email (${filename}) was marked as ${answerKey[filename] || "phish"}.`,
+      isHtml: !!html
+    };
+  }
 
     async function loadEmails() {
       let loaded = 0;
@@ -214,41 +223,41 @@
 
     function showEmail() {
       if (current >= emails.length) {
-        document.getElementById("game").innerHTML = "<h2>Game Over!</h2>";
-        document.getElementById("score").innerText =
-          `Your final score: ${score}/${emails.length}`;
-        return;
-      }
-
-      const email = emails[current];
-      const iframeId = "emailFrame";
-
-      document.getElementById("game").innerHTML = `
-        <div class="card email-wrapper">
-          <div class="email-header">
-            <div class="avatar">SC</div>
-            <div class="meta">
-              <div class="from-line"><strong>${email.from}</strong></div>
-              <div class="to-line">To: You</div>
-            </div>
-          </div>
-          <div class="subject-line">${email.subject}</div>
-          <div class="banner">⚠️ This message originates from outside our organisation. Consider carefully whether you should click on any links, open any attachments or reply.</div>
-          <iframe id="${iframeId}" class="email-body-frame"></iframe>
-          <div class='buttons'>
-            <button class='phish' onclick="guess('phish')">Phish 🐟</button>
-            <button class='legit' onclick="guess('legit')">Legit ✅</button>
-          </div>
-          <div id='feedback'></div>
-        </div>
-      `;
-
-      const iframe = document.getElementById(iframeId);
-      const doc = iframe.contentDocument || iframe.contentWindow.document;
-      doc.open();
-      doc.write(email.body);
-      doc.close();
+      document.getElementById("game").innerHTML = "<h2>Game Over!</h2>";
+      document.getElementById("score").innerText =
+        `Your final score: ${score}/${emails.length}`;
+      return;
     }
+
+    const email = emails[current];
+    const iframeId = "emailFrame";
+
+    document.getElementById("game").innerHTML = `
+      <div class="card email-wrapper">
+        <div class="email-header">
+          <div class="avatar">SC</div>
+          <div class="meta">
+            <div class="from-line"><strong>${email.from}</strong></div>
+            <div class="to-line">To: You</div>
+          </div>
+        </div>
+        <div class="subject-line">${email.subject}</div>
+        <iframe id="${iframeId}" class="email-body-frame"></iframe>
+        <div class='buttons'>
+          <button class='phish' onclick="guess('phish')">Phish 🐟</button>
+          <button class='legit' onclick="guess('legit')">Legit ✅</button>
+        </div>
+        <div id='feedback'></div>
+      </div>
+  `  ;
+
+    const iframe = document.getElementById(iframeId);
+    const doc = iframe.contentDocument || iframe.contentWindow.document;
+    doc.open();
+    doc.write(email.body);
+    doc.close();
+  }
+
 
     function guess(choice) {
       const email = emails[current];
