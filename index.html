@@ -122,7 +122,7 @@
         });
     }
 
-    // ✅ Extract inline images from attachments
+    // ✅ Extract inline images
     function extractAttachments(content) {
       const attachments = {};
       const boundaryMatch = content.match(/boundary=\"?([^\";]+)\"?/i);
@@ -139,8 +139,8 @@
         if (cidMatch && typeMatch && encodingMatch) {
           const cid = cidMatch[1];
           const type = typeMatch[1];
-          const base64Data = part.split(/\r?\n\r?\n/).slice(1).join("").replace(/\s+/g, "");
-          attachments[cid] = `data:${type};base64,${base64Data}`;
+          const payload = part.split(/\r?\n\r?\n/).slice(1).join("").replace(/\s+/g, "");
+          attachments[cid] = `data:${type};base64,${payload}`;
         }
       });
 
@@ -153,6 +153,7 @@
       });
     }
 
+    // ✅ Parse EML
     function parseEml(content, filename) {
       const attachments = extractAttachments(content);
 
@@ -165,21 +166,21 @@
       const fromMatch = headerSection.match(/^From:\s*(.*)$/mi);
       let from = fromMatch ? decodeMimeWords(fromMatch[1].trim()) : "(No From)";
 
-      // Extract HTML body
+      // Extract HTML body only up to the next boundary
       let html = "";
-      if (content.includes("Content-Type: text/html")) {
-        const match = content.match(/Content-Type: text\/html[\s\S]*?(?:\r?\n){2}([\s\S]*)/i);
-        if (match) {
-          html = decodeQuotedPrintable(match[1]);
-          html = replaceCidImages(html, attachments);
-        }
+      const htmlMatch = content.match(/Content-Type:\s*text\/html[\s\S]*?(?:\r?\n){2}([\s\S]*?)(?:\r?\n--|$)/i);
+      if (htmlMatch) {
+        html = decodeQuotedPrintable(htmlMatch[1]);
+        html = replaceCidImages(html, attachments);
       }
 
       // Fallback plain text
       let body = "";
       if (!html) {
-        const parts = content.split(/\r?\n\r?\n/);
-        body = decodeQuotedPrintable(parts.slice(1).join("\n\n"));
+        const textMatch = content.match(/Content-Type:\s*text\/plain[\s\S]*?(?:\r?\n){2}([\s\S]*?)(?:\r?\n--|$)/i);
+        if (textMatch) {
+          body = decodeQuotedPrintable(textMatch[1]);
+        }
       }
 
       return {
@@ -193,6 +194,7 @@
       };
     }
 
+    // ✅ Load emails
     async function loadEmails() {
       let loaded = 0;
 
@@ -227,6 +229,7 @@
       }
     }
 
+    // ✅ Show email
     function showEmail() {
       if (current >= emails.length) {
         document.getElementById("game").innerHTML = "<h2>Game Over!</h2>";
