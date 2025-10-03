@@ -83,7 +83,7 @@ function showEmail() {
     <div class='card'>
       <p><strong>Subject:</strong> ${email.subject}</p>
       <p><strong>From:</strong> ${email.from}</p>
-      <pre>${email.body}</pre>
+      <pre style="white-space: pre-wrap; font-size: 14px;">${email.body}</pre>
       <div class='buttons'>
         <button class='phish' onclick="guess('phish')">Phish 🐟</button>
         <button class='legit' onclick="guess('legit')">Legit ✅</button>
