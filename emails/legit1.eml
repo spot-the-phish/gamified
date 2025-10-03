@@ -1,0 +1,406 @@
+Received: from DU0PR08MB8811.eurprd08.prod.outlook.com
+ (2603:10a6:10:478::12) by PAXPR08MB6861.eurprd08.prod.outlook.com with
+ HTTPS; Thu, 10 Oct 2024 09:26:52 +0000
+Received: from DUZPR01CA0045.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:468::20) by DU0PR08MB8811.eurprd08.prod.outlook.com
+ (2603:10a6:10:478::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.23; Thu, 10
+ Oct 2024 09:26:50 +0000
+Received: from DB1PEPF000509E7.eurprd03.prod.outlook.com
+ (2603:10a6:10:468:cafe::72) by DUZPR01CA0045.outlook.office365.com
+ (2603:10a6:10:468::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.18 via
+ Frontend Transport; Thu, 10 Oct 2024 09:26:50 +0000
+Received: from eu-smtp-inbound-delivery-1.mimecast.com (195.130.217.221) by
+ DB1PEPF000509E7.mail.protection.outlook.com (10.167.242.57) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id
+ 15.20.8048.13 via Frontend Transport; Thu, 10 Oct 2024 09:26:49 +0000
+Received: from a7-12.smtp-out.eu-west-1.amazonses.com
+ (a7-12.smtp-out.eu-west-1.amazonses.com [54.240.7.12]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id uk-mta-14-aKz9gIceMvOhHba0gR5vkQ-1; Thu,
+ 10 Oct 2024 10:26:47 +0100
+Arc-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=SfMUMKF9hdx+EOAf0r0OjAKvqvLcts9FFVeygr81fLnEZUDsamlQeGBpGFV/QMqxleEvZdI31Z0qASG5p4N09BPt5i96AUkGb0LEiiv2nDBYDcO5Cdq95y4YPZU2YQVL/IDcs2qHHKYU90uy7/BVkfx2o1TN8M2gmzPyvI7fr0xANMUvPLURSJY4Dwnw7cMoIi2IUKnp54Vjxa4DLe3SVpKcUJjzLjZPUJXMQnvtQjHAY0NtRF3VhOW8IVU+0HPe4QIMexHdpn1pToeVc3aNxowCIfvPGjJ8T1yadlX+Grp41GgTIyXtwCBYmPifjNDXlX8W2LlVGn2mAHu6ALG22Q==
+Arc-Seal: i=1; s=201903; d=dkim.mimecast.com; t=1728552409; a=rsa-sha256;
+	cv=none;
+	b=ZEy9rpujhRbtycQDqEtwL3nziIvIZeFPtM+YuEyTsCKhvZTx8ofekw49Ka+mwLGt4b4uJ2
+	RNWIuD9XM4tCWYKG5xKoxFtcKGMzfZlXAGSkU87o6DM288B5JsXe+OTm2XBC5nFcFPiMBD
+	rk1L0fueZuYFyU2gccUuQzkgYQfPMCWeJk1Y4ohYyxLmWKv8waFX59WGbBbLxzzyHctNGo
+	Ev1mG6ogQ8w4fdMk6L4dyJT9Ep+FtkTTeQrSXE7ZY4BpI5NeBQ5KoG7y8lW1sF294tcCxL
+	vcS1XsnKJg+B6f0Q2Ks4xd8aDURb2NsdcFWhUXGk6uWbfd3jmF18Mjz2LDHKdQ==
+Arc-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=microsoft.com; s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3U4GjjJYtFZ5Mpl4ZFm6pLps8/AImAz3gpxEaTGIrr0=;
+ b=hukWII5d+okf6+ZzkE7spbxvDN9Hk6LEt8O0XTsWjlIEY5eKBS4J2QCEDdP/msgwRPsC5QOX4VwecebLp6+rwPMd+A6AxKOu0uuY3nKrZqWGIYVWONUSxbgHFHje6UdTaTvIz5CGUgfFSbvf4HXs+tD1yGjbvxQ2YxJJWzWudn6YbC0ChQpRSLUDXO9Mguxs+wItlln+Jimtlyp3Oua9cbDqeVoA0u/Jstfa49YthWQg7zDul2pjdTwNj9Rxz3TIZtr3V7AhavDxGla8XuXXdrhm0ZM0H8nKkIydhzL9dKYCZ4lQZnhWR94reI0nkd633iv1ShQaLD7YmBABpY3SEQ==
+Arc-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=dkim.mimecast.com; s=201903; t=1728552409;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 dkim-signature; bh=3U4GjjJYtFZ5Mpl4ZFm6pLps8/AImAz3gpxEaTGIrr0=;
+	b=Mk4UGKvI5mvdRpnoc8Xx94pwnGoR3uUN+V5alkkdOgzIL7u4CNS+1mEAdT2QytGzF2aOYE
+	8wfmc4FZ07NRgwgGc7MS4KtCqodcOTXh/QKgqebc6xmyH7IREOC8r/Ykl4ljJnwHFTVAoB
+	O+S2KGyfQCylJbrhwl6/wquPTZQlPSGW6qNJfphDN6y7Uayg30Xy4RVXK9R602Jx5QBPep
+	fF5kYYyH7k/tA5GXNwAkXBlHwFObjOrNZjtM+POLcp1zlpHbi2oeqiLD8bvEPdqRc2ED8C
+	fNltwm3kIg+wHrQdM3U/LCMXCZhbybJnp9xeT79M/mlULW2Dsr/7gzRD86tbFA==
+Arc-Authentication-Results: i=2; mx.microsoft.com 1; spf=fail (sender ip is
+ 195.130.217.221) smtp.rcpttodomain=zopa.com
+ smtp.mailfrom=eu-west-1.amazonses.com; dmarc=temperror action=none
+ header.from=evaluagent.com; dkim=fail (body hash did not verify)
+ header.d=evaluagent.com; dkim=fail (body hash did not verify)
+ header.d=amazonses.com; arc=pass (0 oda=0 ltdi=0 93)
+Arc-Authentication-Results: i=1;	relay.mimecast.com;	dkim=pass
+ header.d=evaluagent.com header.s=e4qsijlf7ug4hk3rzkfnpmmf4tstm6hh
+ header.b=BIfYnviA;	dkim=pass header.d=amazonses.com
+ header.s=uku4taia5b5tsbglxyj6zym32efj7xqv header.b=eZGxZktk;	dmarc=pass
+ (policy=reject) header.from=evaluagent.com;	spf=pass (relay.mimecast.com:
+ domain of
+ 0102019275c0917b-2d3b7f31-d4d6-4493-8bfc-0d69ed327b13-000000@eu-west-1.amazonses.com
+ designates 54.240.7.12 as permitted sender)
+ smtp.mailfrom=0102019275c0917b-2d3b7f31-d4d6-4493-8bfc-0d69ed327b13-000000@eu-west-1.amazonses.com
+Authentication-Results: spf=fail (sender IP is 195.130.217.221)
+ smtp.mailfrom=eu-west-1.amazonses.com; dkim=fail (body hash did not
+ verify) header.d=evaluagent.com;dmarc=temperror action=none
+ header.from=evaluagent.com;compauth=softpass reason=202
+Received-Spf: Fail (protection.outlook.com: domain of
+ eu-west-1.amazonses.com does not designate 195.130.217.221 as permitted
+ sender) receiver=protection.outlook.com; client-ip=195.130.217.221;
+ helo=eu-smtp-inbound-delivery-1.mimecast.com;
+Authentication-Results-Original: relay.mimecast.com;	dkim=pass
+ header.d=evaluagent.com header.s=e4qsijlf7ug4hk3rzkfnpmmf4tstm6hh
+ header.b=BIfYnviA;	dkim=pass header.d=amazonses.com
+ header.s=uku4taia5b5tsbglxyj6zym32efj7xqv header.b=eZGxZktk;	dmarc=pass
+ (policy=reject) header.from=evaluagent.com;	spf=pass (relay.mimecast.com:
+ domain of
+ 0102019275c0917b-2d3b7f31-d4d6-4493-8bfc-0d69ed327b13-000000@eu-west-1.amazonses.com
+ designates 54.240.7.12 as permitted sender)
+ smtp.mailfrom=0102019275c0917b-2d3b7f31-d4d6-4493-8bfc-0d69ed327b13-000000@eu-west-1.amazonses.com
+X-Mc-Unique: aKz9gIceMvOhHba0gR5vkQ-1
+Dkim-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=e4qsijlf7ug4hk3rzkfnpmmf4tstm6hh; d=evaluagent.com; t=1728552407;
+	h=From:To:Subject:Message-ID:MIME-Version:Date:Content-Type;
+	bh=nyusHacKNwzWRa5pjS/JGHoOmZxIsub4+/DNdsRRoD0=;
+	b=BIfYnviAWcPW24L14fAyiFi2rP5d4/TeW0K6uWJspQsC/5raiT74Lgz70npJboVb
+	W5lQw8KO7SQsccz+oFpNsE11AEM9m9iQU3iJtRIrmCJHtaRf+30Q3TfgFScSGMr11NH
+	G7jgRY8qNeoGGS8+OaWhffTLEq7dUq9A5bCL8TE0=
+Dkim-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1728552407;
+	h=From:To:Subject:Message-ID:MIME-Version:Date:Content-Type:Feedback-ID;
+	bh=nyusHacKNwzWRa5pjS/JGHoOmZxIsub4+/DNdsRRoD0=;
+	b=eZGxZktkdWwDICw19yynzzl8mqhl+ZEAZBprcrI4j2RPk1d64ZSGDH085yAiarbe
+	gl4m84S2N++qKIMh5KPy1n720Bd+HAm+KZagfC6ra58EmVEJTYr5Ir1vvO8K7DwLuvL
+	6OWc4JGFF0uysY2kyLF4ptlZZEWsZqeC3rhB0VGo=
+From: Team evaluagent <no-reply@evaluagent.com>
+To: Harjeet Matharu <harjeet.matharu@zopa.com>
+Subject: =?UTF-8?B?WW91IGhhdmUgYW4gZXZhbHVhdGlvbg==?=
+Message-Id:
+ <0102019275c0917b-2d3b7f31-d4d6-4493-8bfc-0d69ed327b13-000000@eu-west-1.amazonses.com>
+MIME-Version: 1.0
+Date: Thu, 10 Oct 2024 09:26:47 +0000
+Feedback-Id:
+ ::1.eu-west-1.4Ic+XUjlgCJPCvw2m3ozlyUT31Lbs/HUQe+V/gxyIY8=:AmazonSES
+X-Ses-Outgoing: 2024.10.10-54.240.7.12
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Impersonation-Protect: Policy=New Impersonation Protection
+ Definition - VIP;Similar Internal Domain=false;Similar Monitored External
+ Domain=false;Custom External Domain=false;Mimecast External
+ Domain=false;Newly Observed Domain=false;Internal User Name=false;Custom
+ Display Name List=false;Reply-to Address Mismatch=false;Targeted Threat
+ Dictionary=false;Mimecast Threat Dictionary=false;Custom Threat
+ Dictionary=false
+X-Mimecast-Impersonation-Protect: Policy=New Impersonation Protection
+ Definition - Default;Similar Internal Domain=false;Similar Monitored
+ External Domain=false;Custom External Domain=false;Mimecast External
+ Domain=false;Newly Observed Domain=false;Internal User Name=false;Custom
+ Display Name List=false;Reply-to Address Mismatch=false;Targeted Threat
+ Dictionary=false;Mimecast Threat Dictionary=false;Custom Threat
+ Dictionary=false
+Content-Type: multipart/mixed;
+ boundary="----sinikael-?=_1-17285529059640.7027560536434261"
+Return-Path:
+ 0102019275c0917b-2d3b7f31-d4d6-4493-8bfc-0d69ed327b13-000000@eu-west-1.amazonses.com
+X-Ms-Exchange-Organization-Expirationstarttime: 10 Oct 2024 09:26:50.0265
+ (UTC)
+X-Ms-Exchange-Organization-Expirationstarttimereason: OriginalSubmit
+X-Ms-Exchange-Organization-Expirationinterval: 1:00:00:00.0000000
+X-Ms-Exchange-Organization-Expirationintervalreason: OriginalSubmit
+X-Ms-Exchange-Organization-Network-Message-Id:
+ 35da223c-73bf-4347-3442-08dce90dab76
+X-Eopattributedmessage: 0
+X-Eoptenantattributedmessage: 68cae5ad-853d-473f-98cd-43df5b6b7c5d:0
+X-Ms-Exchange-Organization-Messagedirectionality: Incoming
+X-Ms-Publictraffictype: Email
+X-Ms-Traffictypediagnostic:
+ DB1PEPF000509E7:EE_|DU0PR08MB8811:EE_|PAXPR08MB6861:EE_
+X-Ms-Exchange-Organization-Authsource:
+ DB1PEPF000509E7.eurprd03.prod.outlook.com
+X-Ms-Exchange-Organization-Authas: Anonymous
+X-Ms-Office365-Filtering-Correlation-Id:
+ 35da223c-73bf-4347-3442-08dce90dab76
+X-Ms-Exchange-Organization-Scl: -1
+X-Microsoft-Antispam:
+ BCL:4;ARA:13230040|32142699015|82310400026|31092699021|69100299015|12012899012|2092899012|5062899012|3092899012|3072899012;
+X-Forefront-Antispam-Report:
+ CIP:195.130.217.221;CTRY:GB;LANG:en;SCL:-1;SRV:;IPV:CAL;SFV:SKN;H:eu-smtp-inbound-delivery-1.mimecast.com;PTR:eu-smtp-inbound-delivery-1.mimecast.com;CAT:NONE;SFS:(13230040)(32142699015)(82310400026)(31092699021)(69100299015)(12012899012)(2092899012)(5062899012)(3092899012)(3072899012);DIR:INB;
+X-Ms-Exchange-Crosstenant-Originalarrivaltime: 10 Oct 2024 09:26:49.9327
+ (UTC)
+X-Ms-Exchange-Crosstenant-Network-Message-Id:
+ 35da223c-73bf-4347-3442-08dce90dab76
+X-Ms-Exchange-Crosstenant-Id: 68cae5ad-853d-473f-98cd-43df5b6b7c5d
+X-Ms-Exchange-Crosstenant-Authsource:
+ DB1PEPF000509E7.eurprd03.prod.outlook.com
+X-Ms-Exchange-Crosstenant-Authas: Anonymous
+X-Ms-Exchange-Crosstenant-Fromentityheader: Internet
+X-Ms-Exchange-Transport-Crosstenantheadersstamped: DU0PR08MB8811
+X-Ms-Exchange-Transport-Endtoendlatency: 00:00:02.6554799
+X-Ms-Exchange-Processed-By-Bccfoldering: 15.20.8048.010
+X-Microsoft-Antispam-Mailbox-Delivery:
+ ucf:0;jmr:0;auth:0;dest:I;ENG:(910001)(944506478)(944626604)(920097)(930097)(140003);
+X-Microsoft-Antispam-Message-Info:
+ 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
+Content-Transfer-Encoding: 7bit
+
+------sinikael-?=_1-17285529059640.7027560536434261
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dutf-8"><meta name=3D"viewport" content=3D"width=3Ddevice-width"><=
+title>evaluagent - You have an evaluation</title><style>
+        /* -------------------------------------
+            RESPONSIVE AND MOBILE FRIENDLY STYLES
+        ------------------------------------- */
+        @media only screen and (max-width: 620px) {
+            table[class=3Dbody] h1 {
+                font-size: 28px !important;
+                margin-bottom: 10px !important;
+            }
+            table[class=3Dbody] p,
+            table[class=3Dbody] ul,
+            table[class=3Dbody] ol,
+            table[class=3Dbody] td,
+            table[class=3Dbody] span,
+            table[class=3Dbody] a {
+                font-size: 16px !important;
+            }
+            table[class=3Dbody] .wrapper,
+            table[class=3Dbody] .article {
+                padding: 10px !important;
+                background-color: #FFF !important;
+            }
+            table[class=3Dbody] .content {
+                padding: 0 !important;
+            }
+            table[class=3Dbody] .container {
+                padding: 0 !important;
+                width: 100% !important;
+            }
+            table[class=3Dbody] .main {
+                border-left-width: 0 !important;
+                border-radius: 0 !important;
+                border-right-width: 0 !important;
+            }
+            table[class=3Dbody] .btn table {
+                width: 100% !important;
+            }
+            table[class=3Dbody] .btn a {
+                width: 100% !important;
+            }
+            table[class=3Dbody] .img-responsive {
+                height: auto !important;
+                max-width: 100% !important;
+                width: auto !important;
+            }
+        }
+
+        /* -------------------------------------
+            PRESERVE THESE STYLES IN THE HEAD
+        ------------------------------------- */
+        @media all {
+            .ExternalClass {
+                width: 100%;
+            }
+            .ExternalClass,
+            .ExternalClass p,
+            .ExternalClass span,
+            .ExternalClass font,
+            .ExternalClass td,
+            .ExternalClass div {
+                line-height: 100%;
+            }
+            .apple-link a {
+                color: inherit !important;
+                font-family: inherit !important;
+                font-size: inherit !important;
+                font-weight: inherit !important;
+                line-height: inherit !important;
+                text-decoration: none !important;
+            }
+            .btn-primary table td:hover {
+                background-color: #18509F !important;
+            }
+            .btn-primary a:hover {
+                background-color: #18509F !important;
+                border-color: #18509F !important;
+            }
+        }
+    </style></head><body class=3D"" style=3D"box-sizing: border-box; =
+position: relative; color: #718096; height: 100%; width: 100% !important; =
+background-color: #f6f6f6; font-family: sans-serif; -webkit-font-smoothing:=
+ antialiased; font-size: 14px; line-height: 1.4; margin: 0; padding: 0; =
+-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;"><p =
+style=3D"font-family: Verdana; font-size:8pt; color:#666666;">This message =
+originates from outside our organisation. Consider carefully whether you =
+should click on any links, open any attachments or reply. <br><br><table =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"body" =
+style=3D"box-sizing: border-box; font-family: -apple-system, =
+BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, =
+'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: =
+relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; =
+-premailer-width: 100%; border-bottom: 1px solid #edf2f7; border-top: 1px =
+solid #edf2f7; margin: 0; padding: 0; border-collapse: separate; =
+mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; =
+background-color: #f6f6f6;"><tbody><tr><td style=3D"box-sizing: border-box;=
+ position: relative; font-family: sans-serif; font-size: 14px; =
+vertical-align: top;">&nbsp;</td><td class=3D"container" =
+style=3D"box-sizing: border-box; position: relative; font-family: =
+sans-serif; font-size: 14px; vertical-align: top; display: block; Margin: 0=
+ auto; max-width: 580px; padding: 10px; width: 580px;"><div =
+class=3D"content" style=3D"font-family: -apple-system, BlinkMacSystemFont, =
+'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', =
+'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; =
+-premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: =
+100%; margin: 0; width: 100%; box-sizing: border-box; display: block; =
+Margin: 0 auto; max-width: 580px; padding: 10px;"><!-- START CENTERED WHITE=
+ CONTAINER --><table class=3D"main" style=3D"box-sizing: border-box; =
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, =
+Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe=
+ UI Symbol'; position: relative; border-collapse: separate; =
+mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: =
+#ffffff; border-radius: 3px;"><!-- START MAIN CONTENT AREA =
+--><tbody><tr><td class=3D"wrapper" style=3D"position: relative; =
+-premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: =
+100%; margin: 0; width: 100%; font-family: sans-serif; font-size: 14px; =
+vertical-align: top; box-sizing: border-box; padding: 20px; =
+background-color: #FFF !important;"><table border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" style=3D"box-sizing: border-box; font-family: =
+-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, =
+sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; =
+position: relative; border-collapse: separate; mso-table-lspace: 0pt; =
+mso-table-rspace: 0pt; width: 100%;"><tbody><tr><td style=3D"box-sizing: =
+border-box; position: relative; font-family: sans-serif; font-size: 14px; =
+vertical-align: top;"><div style=3D"box-sizing: border-box; font-family: =
+-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, =
+sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; =
+position: relative; text-align: center;"><img src=3D"https://assets.app.=
+evaluagent.com/logos/90d5de83-3955-4c06-9f0c-c78c88f2780d/GU65WrZBVeUMw7foE=
+nbjZrRLMISyckwbzbzA0FK7.png" style=3D"box-sizing: border-box; font-family: =
+-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, =
+sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; =
+position: relative; height: 50px; display: block; margin-left: auto; =
+margin-right: auto; max-width: 250px;"> </div><br><br><h4 =
+style=3D"box-sizing: border-box; font-family: -apple-system, =
+BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, =
+'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: =
+relative;">You have an evaluation</h4><p style=3D"box-sizing: border-box; =
+position: relative; line-height: 1.5em; margin-top: 0; text-align: left; =
+font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; =
+margin-bottom: 15px;">Hi Harjeet, </p><p style=3D"box-sizing: border-box; =
+position: relative; line-height: 1.5em; margin-top: 0; text-align: left; =
+font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; =
+margin-bottom: 15px; hyphens: none;">I've just evaluated one of your =
+contacts in EvaluAgent. Please click on the button to view your evaluation.=
+ </p><br><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+class=3D"btn btn-primary" style=3D"font-family: -apple-system, =
+BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, =
+'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: =
+relative; border-collapse: separate; mso-table-lspace: 0pt; =
+mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;"><tbody =
+style=3D"box-sizing: border-box; font-family: -apple-system, =
+BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, =
+'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: =
+relative;"><tr><td align=3D"left" style=3D"box-sizing: border-box; =
+position: relative; font-family: sans-serif; font-size: 14px; =
+vertical-align: top; padding-bottom: 15px;"><table border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0" style=3D"box-sizing: border-box; =
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, =
+Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe=
+ UI Symbol'; position: relative; border-collapse: separate; =
+mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;"><tbody =
+style=3D"box-sizing: border-box; font-family: -apple-system, =
+BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, =
+'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: =
+relative;"><tr><td style=3D"box-sizing: border-box; position: relative; =
+font-family: sans-serif; font-size: 14px; vertical-align: top; =
+background-color: #0082FF; border-radius: 5px; text-align: center;"><a =
+href=3D"https://app.evaluagent.com/profile/notifications/0e1cee8f-bc86-49de=
+-9c5f-424ff7b68946/redirect" target=3D"_blank" style=3D"font-family: =
+-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, =
+sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; =
+position: relative; width: 100%; display: inline-block; color: #ffffff; =
+background-color: #0082FF; border: solid 1px #0082FF; border-radius: 5px; =
+box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: =
+14px; font-weight: bold; margin: 0; padding: 12px 25px; border-color: =
+#0082FF;">View evaluation </a></td></tr></tbody></table></td></tr></tbody><=
+/table><br><br><p style=3D"box-sizing: border-box; position: relative; =
+line-height: 1.5em; margin-top: 0; text-align: left; font-family: =
+sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom:=
+ 15px;">Kind Regards, <br>Amy Gray </p></td></tr></tbody></table></td></tr>=
+<!-- END MAIN CONTENT AREA --></tbody></table><!-- START FOOTER --><div =
+class=3D"footer" style=3D"box-sizing: border-box; font-family: =
+-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, =
+sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; =
+position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; =
+-premailer-width: 570px; margin: 0 auto; padding: 0; clear: both; =
+Margin-top: 0px; text-align: center; width: 100%;"><table border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0" style=3D"box-sizing: border-box; =
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, =
+Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe=
+ UI Symbol'; position: relative; border-collapse: separate; =
+mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;"><tbody><tr><td =
+class=3D"content-block" style=3D"box-sizing: border-box; position: =
+relative; font-family: sans-serif; vertical-align: top; padding-bottom: =
+10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: =
+center;"><span class=3D"apple-link" style=3D"box-sizing: border-box; =
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, =
+Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe=
+ UI Symbol'; position: relative; color: #999999; font-size: 12px; =
+text-align: center;"><table class=3D"subcopy" width=3D"100%" =
+cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" =
+style=3D"box-sizing: border-box; font-family: -apple-system, =
+BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, =
+'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: =
+relative; border-top: 1px solid #e8e5ef; margin-top: 25px; padding-top: =
+25px;"><tbody><tr><td style=3D"box-sizing: border-box; font-family: =
+-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, =
+sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; =
+position: relative;"><p style=3D"box-sizing: border-box; font-family: =
+-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, =
+sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; =
+position: relative; line-height: 1.5em; margin-top: 0; color: #b0adc5; =
+font-size: 12px; text-align: center;">If you=E2=80=99re having trouble =
+clicking the &quot;View evaluation&quot; button, copy and paste the URL =
+below into your web browser: <a href=3D"https://app.evaluagent.=
+com/profile/notifications/0e1cee8f-bc86-49de-9c5f-424ff7b68946/redirect" =
+style=3D"box-sizing: border-box; font-family: -apple-system, =
+BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, =
+'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: =
+relative; color: #b0adc5; text-decoration: underline;">https://app.=
+evaluagent.com/profile/notifications/0e1cee8f-bc86-49de-9c5f-424ff7b68946/r=
+edirect</a></p></td></tr></tbody></table></span><br>Powered by <a =
+href=3D"www.evaluagent.com" style=3D"box-sizing: border-box; font-family: =
+-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, =
+sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; =
+position: relative; color: #999999; font-size: 12px; text-align: center; =
+text-decoration: none;">evaluagent</a>. </td></tr><tr><td =
+class=3D"content-block powered-by" style=3D"box-sizing: border-box; =
+position: relative; font-family: sans-serif; vertical-align: top; =
+padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; =
+text-align: center;">Digital City, Bridge Street West, The Boho Zone, =
+Middlesbrough, TS2 1AE </td></tr></tbody></table></div><!-- END FOOTER --><=
+!-- END CENTERED WHITE CONTAINER --></div></td><td style=3D"box-sizing: =
+border-box; position: relative; font-family: sans-serif; font-size: 14px; =
+vertical-align: top;">&nbsp; </td></tr></tbody></table></p></body></html>
+------sinikael-?=_1-17285529059640.7027560536434261--

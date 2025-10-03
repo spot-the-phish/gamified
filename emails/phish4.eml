@@ -1,0 +1,178 @@
+Received: from PAWPR08MB9995.eurprd08.prod.outlook.com
+ (2603:10a6:102:35d::17) by PR3PR08MB5643.eurprd08.prod.outlook.com with
+ HTTPS; Fri, 4 Oct 2024 08:00:27 +0000
+Received: from DUZPR01CA0131.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4bc::16) by PAWPR08MB9995.eurprd08.prod.outlook.com
+ (2603:10a6:102:35d::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.16; Fri, 4 Oct
+ 2024 08:00:24 +0000
+Received: from DB1PEPF000509F2.eurprd02.prod.outlook.com
+ (2603:10a6:10:4bc:cafe::bb) by DUZPR01CA0131.outlook.office365.com
+ (2603:10a6:10:4bc::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.18 via
+ Frontend Transport; Fri, 4 Oct 2024 08:00:24 +0000
+Received: from eu-smtp-inbound-delivery-1.mimecast.com (91.220.42.227) by
+ DB1PEPF000509F2.mail.protection.outlook.com (10.167.242.148) with
+ Microsoft SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id
+ 15.20.8026.11 via Frontend Transport; Fri, 4 Oct 2024 08:00:24 +0000
+Received: from smtp-0862403827c274a4c.core1.sfdc-vwfla6.mta.salesforce.com
+ (smtp-0862403827c274a4c.core1.sfdc-vwfla6.mta.salesforce.com
+ [3.24.228.238]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ uk-mta-75-05V-A_qJNkikF-ucGmtYGw-1; Fri, 04 Oct 2024 09:00:21 +0100
+Received: from [127.0.0.1] ([127.0.0.1:42236]
+ helo=eaas-2.eaas.emailinfra.svc.cluster.local)	by
+ mx1.core1.sfdc-vwfla6.mta.salesforce.com (envelope-from
+ <ashley.carter=softwarefinder-hr.live__sv04yzrwr4vx8i2x@a1gpk87qhrqd9aax.bv1bj0754qif0r74.jdo9.ir-7zdl2am.aus74.bnc.salesforce.com>)
+	(ecelerity 4.7.0.20111 r(msys-ecelerity:tags/4.7.0-ga^0)) with ESMTP	id
+ 01/2A-00547-290AFF66; Fri, 04 Oct 2024 08:00:18 +0000
+Received: from 127.0.0.1 (localhost. [127.0.0.1]) by eaas-2 (EaaS) id
+  <1bjn8000000000000000000000000000000000000000000000SKTNKF002TyaEXCwTZaQO_L5ahSqmA@sfdc.net>
+  for <"olivia.martin@zopa.com" <olivia.martin@zopa.com>> Fri, 4 Oct 2024
+  08:00:18 GMT (GMT)
+Arc-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=aVmP+5bEyqA0NizntA0/YHno7OvEac/SgCSqeah2ysdi9Fqytk9J8po3O+LzkdYZH7tqK/rQBtj3m5913/1CpaeaORHYqGOSIu97ofsbcwBoh7Rz96ltKBgJ4LEA392vuAEcmQj/NpL0zAdCrau0K8Mn4K02PTEq0xgtFVWokC4NFVZhhrHSorxmbiBykliKsNogy+xGvY009AiwxmDDLCQUKiZSGJOF6sRFett9oSBM6o7LO4IkutcRMtbXfg1RmGsBEhKkPfBt1SxfX46hV06SgmuM0BHK9/v7Uy5cZk+fhBs/yU7DvNStSPxxFMWLipMoqE/48UOG2Risa3+0PA==
+Arc-Seal: i=1; s=201903; d=dkim.mimecast.com; t=1728028824; a=rsa-sha256;
+	cv=none;
+	b=GXv3/4n2Y2NPbSw/iwvdrT2XKQCqj8WJWRFMMQcaw/b1CpzZMd5ddP2I+KLQxDIJz40Lhs
+	edmdwz9aEn98skpE8TGu9EWEG8XkfjWWwCUojgTQvLRrQXM6/H5evSXxUuOZQ8u+BnXaVI
+	H6+sZIHC9fMGzw4yQOSl/YsIwV0I8sGCBWQTumrvByW3A8qE6j40Bh7pfYGb0trFCrlmNX
+	/V3v2aH3yGTi8Q5s3MJGrqZOj2zxM7LdTW6fS9Gt7FwGadMBZqIdCig4dijBYNCMHrHK9c
+	kdcg4/AsZay9+0RxgRJizI3p8ZiXIoK7liEsURcS37LMWbsi7BCOh2RDs+aXig==
+Arc-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=microsoft.com; s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ncS26uUt+LoD2SxvC0kiM/FGL/U128MsR1x44OKwNM8=;
+ b=BWKJoT6UaoiSbotV0zdzNG82jC087kC+9RcCfAV5aWBwCWkPsi2lYALBz//2gmAkIE698JsY9JQ0aO8ODUvAQbPiIs44hGYS8HBfKifDmWaP+7t13SyujO5VZOWxD6pV1vMXdDiOhV5S1m+oYTmea4ZnfX3zmD/qJ9SBlmtAdIgHshvninpDfhXOxFISW9kydabOrB3mLJdfmozRxJ9LmXN4ueTxPeDDpEwjSM8vD+0O7F4UVgVvtzer+z/7BNcyvLFC3AmkhNiIcxZg2J/IXneLV0FqP9JT1YFdmUKFyvJ6PsPq29QUa0JgdBXh+kYssyNB6wNVYAZU+NSMexFWsw==
+Arc-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=dkim.mimecast.com; s=201903; t=1728028824;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type;
+	bh=ncS26uUt+LoD2SxvC0kiM/FGL/U128MsR1x44OKwNM8=;
+	b=m4emvoxkUcOuTdQY/KjzrO/CjWj+4ZNYX+Y0eTzmeiIeTUyctgOLuzuE8CxM6jwo+PlujO
+	PV84xFaXfkphGMdtuDVquqF9gKEzbbQhLsJXudtddA9ePqNodnhQTrJ9Ssa2axyX+0Ry4c
+	QQtARNkBolag7vtgEBf9jopT84vnNuJEcakzsNNd8dU+xBDVj+NZZyIuhbI6WjCtYiO6Jf
+	LsymHg9G5yKbnwDr/zB3miOSDkls7JPRCv32wUyhmCHQmianpX3D7TmYo0LqJ5MLXV/kuy
+	KxiJLG/e0w/5qVRm7lqNQwbEKsdb3D2j4K7uEzJPz58cMoceh0IzfmcynzBVtw==
+Arc-Authentication-Results: i=2; mx.microsoft.com 1; spf=softfail (sender
+ ip is 91.220.42.227) smtp.rcpttodomain=zopa.com
+ smtp.mailfrom=a1gpk87qhrqd9aax.bv1bj0754qif0r74.jdo9.ir-7zdl2am.aus74.bnc.salesforce.com;
+ dmarc=none action=none header.from=softwarefinder-hr.live; dkim=none
+ (message not signed); arc=pass (0 oda=0 ltdi=0 93)
+Arc-Authentication-Results: i=1;	relay.mimecast.com;	dkim=none;	dmarc=none;
+	spf=pass (relay.mimecast.com: domain of
+ "ashley.carter=softwarefinder-hr.live__sv04yzrwr4vx8i2x@a1gpk87qhrqd9aax.bv1bj0754qif0r74.jdo9.ir-7zdl2am.aus74.bnc.salesforce.com"
+ designates 3.24.228.238 as permitted sender)
+ smtp.mailfrom="ashley.carter=softwarefinder-hr.live__sv04yzrwr4vx8i2x@a1gpk87qhrqd9aax.bv1bj0754qif0r74.jdo9.ir-7zdl2am.aus74.bnc.salesforce.com"
+Authentication-Results: spf=softfail (sender IP is 91.220.42.227)
+ smtp.mailfrom=a1gpk87qhrqd9aax.bv1bj0754qif0r74.jdo9.ir-7zdl2am.aus74.bnc.salesforce.com;
+ dkim=none (message not signed) header.d=none;dmarc=none action=none
+ header.from=softwarefinder-hr.live;compauth=none reason=405
+Received-Spf: SoftFail (protection.outlook.com: domain of transitioning
+ a1gpk87qhrqd9aax.bv1bj0754qif0r74.jdo9.ir-7zdl2am.aus74.bnc.salesforce.com
+ discourages use of 91.220.42.227 as permitted sender)
+Authentication-Results-Original: relay.mimecast.com;	dkim=none;	dmarc=none;
+	spf=pass (relay.mimecast.com: domain of
+ "ashley.carter=softwarefinder-hr.live__sv04yzrwr4vx8i2x@a1gpk87qhrqd9aax.bv1bj0754qif0r74.jdo9.ir-7zdl2am.aus74.bnc.salesforce.com"
+ designates 3.24.228.238 as permitted sender)
+ smtp.mailfrom="ashley.carter=softwarefinder-hr.live__sv04yzrwr4vx8i2x@a1gpk87qhrqd9aax.bv1bj0754qif0r74.jdo9.ir-7zdl2am.aus74.bnc.salesforce.com"
+X-Mc-Unique: 05V-A_qJNkikF-ucGmtYGw-1
+Return-Path:
+ ashley.carter=softwarefinder-hr.live__sv04yzrwr4vx8i2x@a1gpk87qhrqd9aax.bv1bj0754qif0r74.jdo9.ir-7zdl2am.aus74.bnc.salesforce.com
+Date: Fri, 4 Oct 2024 08:00:18 +0000
+From: Ashley Carter <ashley.carter@softwarefinder-hr.live>
+To: Olivia Martin <olivia.martin@zopa.com>
+Message-Id:
+ <1bjn8000000000000000000000000000000000000000000000SKTNKF002TyaEXCwTZaQO_L5ahSqmA@sfdc.net>
+Subject: =?UTF-8?B?MTUgbWlucyAtIG5leHQgd2Vlaz8=?=
+MIME-Version: 1.0
+X-Priority: 3
+X-Sfdc-Lk: 00DIR0000007ZDl
+X-Sfdc-User: 005IR00000CVM16
+X-Sender: postmaster@salesforce.com
+X-Mail_abuse_inquiries: http://www.salesforce.com/company/abuse.jsp
+X-Sfdc-Tls-Norelay: 1
+X-Sfdc-Binding: iCBT705cy8bBFz3B
+X-Sfdc-App: coreapp
+X-Sfdc-Emailcategory: apiMassMail
+X-Sfdc-Entityid: 00QIR00000YTdHO
+X-Sfdc-Interface: internal
+X-Mimecast-Spam-Score: 1
+X-Mimecast-Impersonation-Protect: Policy=New Impersonation Protection
+ Definition - VIP;Similar Internal Domain=false;Similar Monitored External
+ Domain=false;Custom External Domain=false;Mimecast External
+ Domain=false;Newly Observed Domain=false;Internal User Name=false;Custom
+ Display Name List=false;Reply-to Address Mismatch=false;Targeted Threat
+ Dictionary=false;Mimecast Threat Dictionary=false;Custom Threat
+ Dictionary=false
+X-Mimecast-Impersonation-Protect: Policy=New Impersonation Protection
+ Definition - Default;Similar Internal Domain=false;Similar Monitored
+ External Domain=false;Custom External Domain=false;Mimecast External
+ Domain=false;Newly Observed Domain=false;Internal User Name=false;Custom
+ Display Name List=false;Reply-to Address Mismatch=false;Targeted Threat
+ Dictionary=false;Mimecast Threat Dictionary=false;Custom Threat
+ Dictionary=false
+Content-Type: multipart/mixed;
+ boundary="----sinikael-?=_1-17280335286290.31328640215782366"
+X-Ms-Exchange-Organization-Expirationstarttime: 04 Oct 2024 08:00:24.7793
+ (UTC)
+X-Ms-Exchange-Organization-Expirationstarttimereason: OriginalSubmit
+X-Ms-Exchange-Organization-Expirationinterval: 1:00:00:00.0000000
+X-Ms-Exchange-Organization-Expirationintervalreason: OriginalSubmit
+X-Ms-Exchange-Organization-Network-Message-Id:
+ d9b3446c-e7fc-44f3-c833-08dce44a9a55
+X-Eopattributedmessage: 0
+X-Eoptenantattributedmessage: 68cae5ad-853d-473f-98cd-43df5b6b7c5d:0
+X-Ms-Exchange-Organization-Messagedirectionality: Incoming
+X-Ms-Publictraffictype: Email
+X-Ms-Traffictypediagnostic:
+ DB1PEPF000509F2:EE_|PAWPR08MB9995:EE_|PR3PR08MB5643:EE_
+X-Ms-Exchange-Organization-Authsource:
+ DB1PEPF000509F2.eurprd02.prod.outlook.com
+X-Ms-Exchange-Organization-Authas: Anonymous
+X-Ms-Office365-Filtering-Correlation-Id:
+ d9b3446c-e7fc-44f3-c833-08dce44a9a55
+X-Ms-Exchange-Organization-Scl: -1
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|5073199012|12012899012|29132699027|82310400026|69100299015|5062899012|3072899012|2092899012;
+X-Forefront-Antispam-Report:
+ CIP:91.220.42.227;CTRY:GB;LANG:en;SCL:-1;SRV:;IPV:CAL;SFV:SKN;H:eu-smtp-inbound-delivery-1.mimecast.com;PTR:eu-smtp-delivery-1.mimecast.com;CAT:NONE;SFS:(13230040)(5073199012)(12012899012)(29132699027)(82310400026)(69100299015)(5062899012)(3072899012)(2092899012);DIR:INB;
+X-Ms-Exchange-Crosstenant-Originalarrivaltime: 04 Oct 2024 08:00:24.7481
+ (UTC)
+X-Ms-Exchange-Crosstenant-Network-Message-Id:
+ d9b3446c-e7fc-44f3-c833-08dce44a9a55
+X-Ms-Exchange-Crosstenant-Id: 68cae5ad-853d-473f-98cd-43df5b6b7c5d
+X-Ms-Exchange-Crosstenant-Authsource:
+ DB1PEPF000509F2.eurprd02.prod.outlook.com
+X-Ms-Exchange-Crosstenant-Authas: Anonymous
+X-Ms-Exchange-Crosstenant-Fromentityheader: Internet
+X-Ms-Exchange-Transport-Crosstenantheadersstamped: PAWPR08MB9995
+X-Ms-Exchange-Transport-Endtoendlatency: 00:00:02.3241271
+X-Ms-Exchange-Processed-By-Bccfoldering: 15.20.8026.016
+X-Microsoft-Antispam-Mailbox-Delivery:
+ ucf:0;jmr:0;auth:0;dest:I;ENG:(910001)(944506478)(944626604)(920097)(930097)(140003);
+X-Microsoft-Antispam-Message-Info:
+ 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
+Content-Transfer-Encoding: 7bit
+
+------sinikael-?=_1-17280335286290.31328640215782366
+Content-Type: text/html; format=flowed
+Content-Transfer-Encoding: 7bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; 
+charset=utf-8"><title></title></head><body><p style="font-family: Verdana; 
+font-size:8pt; color:#666666;">This message originates from outside our 
+organisation. Consider carefully whether you should click on any links, 
+open any attachments or reply. <br><br>Hi Olivia,<br><br>I'm reaching out 
+to introduce if there are any HR software implementations taking place at 
+Zopa Bank. Our tool integrates employee management, payroll, and 
+performance tracking, giving you real-time insights and automating tedious 
+HR tasks.<br><br>If this sounds helpful, please reply with one of the 
+following:<br><br>1. Sure, send over a brochure and pricing for 
+review<br>2. Sure, schedule an intro call<br>3. Send me a 
+demo<br><br>Looking forward to hearing from you.<br><br>Regards,<br>Ashley 
+Carter<br>Software Finder<img 
+src="https://power-drive-4008.my.salesforce.com/servlet/servlet.ImageServer?oid=00DIR0000007ZDl&amp;esid=018Oc000007fgjs&amp;from=ext"> 
+</p></body></html>
+------sinikael-?=_1-17280335286290.31328640215782366--

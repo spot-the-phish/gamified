@@ -1,0 +1,321 @@
+Received: from GV1PR08MB8620.eurprd08.prod.outlook.com
+ (2603:10a6:150:84::14) by AM0PR08MB5444.eurprd08.prod.outlook.com with
+ HTTPS; Wed, 9 Oct 2024 06:29:51 +0000
+Received: from DU2PR04CA0245.eurprd04.prod.outlook.com
+ (2603:10a6:10:28e::10) by GV1PR08MB8620.eurprd08.prod.outlook.com
+ (2603:10a6:150:84::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.23; Wed, 9 Oct
+ 2024 06:29:46 +0000
+Received: from DU2PEPF0001E9C5.eurprd03.prod.outlook.com
+ (2603:10a6:10:28e:cafe::1c) by DU2PR04CA0245.outlook.office365.com
+ (2603:10a6:10:28e::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.23 via
+ Frontend Transport; Wed, 9 Oct 2024 06:29:46 +0000
+Received: from eu-smtp-inbound-delivery-1.mimecast.com (91.220.42.227) by
+ DU2PEPF0001E9C5.mail.protection.outlook.com (10.167.8.74) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id
+ 15.20.8048.13 via Frontend Transport; Wed, 9 Oct 2024 06:29:46 +0000
+Received: from o4.ptr9008.dhlecommerce.co.uk (o4.ptr9008.dhlecommerce.co.uk
+ [208.117.57.92]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ uk-mta-119-meAXRt6jOa633gi_2arBXg-1; Wed, 09 Oct 2024 07:29:44 +0100
+Received: by recvd-85c8d6d76f-7vpvz with SMTP id
+ recvd-85c8d6d76f-7vpvz-1-670622D6-7	2024-10-09 06:29:42.562516651 +0000
+ UTC m=+2291603.089799737
+Received: from MjA2MDM0NjQ (unknown)	by geopod-ismtpd-6 (SG) with HTTP	id
+ tidztkH0Qqa6dxEHHVidGg	Wed, 09 Oct 2024 06:29:42.549 +0000 (UTC)
+Arc-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=gtsrxznb7Ob/bAXJHBEtz0kG5dULv8T6EFhGlXz9hDaNiGR5zJtE/YRLQsgUdWIhfgHF+0iqBys6rI+rpOvo4xdCrvaTV2wGEuOKKbkX0S3FvsBjl3rU7eN+5kYkaaf5kRWn1/JB/8zRGgzHkmEgJbeAbq+bRe0+pdONA96EVsUiXHDLV9XH02KC9EwyBbhgiaUDyeVNKyf3wG/Geu0ZkAAqNs1TaJ6PZ2uhqU1M6CW6VrLySHSvzh8h1UrUdvNQOxwx00gu6ZTMa3uEAC4Y6aMO/hX9nvfJEKazK9D0Gsf23iO5HNK0vz1xDqOJVwdH6oNrIhNe1yAFNdddbw6qvw==
+Arc-Seal: i=1; s=201903; d=dkim.mimecast.com; t=1728455386; a=rsa-sha256;
+	cv=none;
+	b=XwWCkbN6i93fSdfTSFIcBb92ajJtSGE9vqymDKKg7hVkqb+GenVm4kgJXs67qvWK/2ALp5
+	cBAEcd3V708MdL7alcDOI9oRGPuv1uyzGuIFy6Ny3Js9ytkUOHtH1/C1YYrPDX3u3zT8mP
+	kV4SVDqAgVBLWDLwlbVahcAGrLsWGX+BvPVPmxsMgqgT5EtgFdNQwnp6xNhMyOdv1cFxPP
+	8cTQtJIKCqbOi+uPO/IjsBJO4iJj2vDt5d9MOr9f2Z/ogwsb25GYeusd710X3Ecjv949bZ
+	zcGHlT0WdM3E3TX64gs8a+Aqre41JMzOjiwJUJnLSypFBSL+lbYAGnf30Fy/JA==
+Arc-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=microsoft.com; s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6LeOg5reknX4U9D/vm6t6HGlUdiPRikMqq2b/nFFPr8=;
+ b=jJCDIgNh9j1MTRQ9O2C717/XxOJfdO3++sMMURAcrN04d6tl05zkBeKeX4KN+R6CI7p1vlfITkAFjf8Jh5Bb89McROiUhNVd2/3TqEiBleivtp+U1Pq570xROBzXDShGMaeXDAHxaap/gV0abIvotaxGFDt2rW++V8VBhhrJ8n4UDAxeyac0Qn33oH38NdraPI7kdQsiwVmndEqA1gH605L8d6eg5s8Og3dPNsI51tjreo4CXzesTWLsTj780j5wUyJWrIpBe2EvMlg0Bspza27aeNQGmpz/ayTBH4OQTVzCbV7mPd8/kvvo1Cb3EwJKtqQrgMNBeMCt4CeCrGqkCw==
+Arc-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=dkim.mimecast.com; s=201903; t=1728455386;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 dkim-signature; bh=6LeOg5reknX4U9D/vm6t6HGlUdiPRikMqq2b/nFFPr8=;
+	b=IccZ7z199SPplV03BlAlm43xVy991FUBFYL+t1gMmvdlwjpI7SERGTXVY/d+ACmIEZ+RIh
+	qx2LO6rrh73K2D4lYZtGAGAHYhFbPfpzgIgueNr0m0xY45i6mihgFK4GOXMg7aa+BSv2yd
+	9XnvPqiZhFW83h9Mucqg07vHCWQzc2qGaRtD5U3q9V1akny+NUEyKFkuQqQQtE01j1zV61
+	GBm4K9gtwexW5V8hcGzO/jIwLUohTSmj5714rL6endz8ZdKwTu6YBM6Y6q1FMOcV3ZuDe4
+	EP7Nl6dCs2cRa6QwcQgJgJWD9TF3mKUtmn4LF6v0m/U2R+5BtYkp1+flMSJG4w==
+Arc-Authentication-Results: i=2; mx.microsoft.com 1; spf=fail (sender ip is
+ 91.220.42.227) smtp.rcpttodomain=zopa.com
+ smtp.mailfrom=em9475.dhlecommerce.co.uk; dmarc=fail (p=none sp=none
+ pct=100) action=none header.from=dhlecommerce.co.uk; dkim=fail (body hash
+ did not verify) header.d=dhlecommerce.co.uk; arc=pass (0 oda=0 ltdi=0 93)
+Arc-Authentication-Results: i=1;	relay.mimecast.com;	dkim=pass
+ header.d=dhlecommerce.co.uk header.s=s1 header.b=aPbRI91i;	dmarc=pass
+ (policy=none) header.from=dhlecommerce.co.uk;	spf=pass
+ (relay.mimecast.com: domain of
+ "bounces+20603464-b635-tom.lewis=zopa.com@em9475.dhlecommerce.co.uk"
+ designates 208.117.57.92 as permitted sender)
+ smtp.mailfrom="bounces+20603464-b635-tom.lewis=zopa.com@em9475.dhlecommerce.co.uk"
+Authentication-Results: spf=fail (sender IP is 91.220.42.227)
+ smtp.mailfrom=em9475.dhlecommerce.co.uk; dkim=fail (body hash did not
+ verify) header.d=dhlecommerce.co.uk;dmarc=fail action=none
+ header.from=dhlecommerce.co.uk;compauth=softpass reason=202
+Received-Spf: Fail (protection.outlook.com: domain of
+ em9475.dhlecommerce.co.uk does not designate 91.220.42.227 as permitted
+ sender) receiver=protection.outlook.com; client-ip=91.220.42.227;
+ helo=eu-smtp-inbound-delivery-1.mimecast.com;
+Authentication-Results-Original: relay.mimecast.com;	dkim=pass
+ header.d=dhlecommerce.co.uk header.s=s1 header.b=aPbRI91i;	dmarc=pass
+ (policy=none) header.from=dhlecommerce.co.uk;	spf=pass
+ (relay.mimecast.com: domain of
+ "bounces+20603464-b635-tom.lewis=zopa.com@em9475.dhlecommerce.co.uk"
+ designates 208.117.57.92 as permitted sender)
+ smtp.mailfrom="bounces+20603464-b635-tom.lewis=zopa.com@em9475.dhlecommerce.co.uk"
+X-Mc-Unique: meAXRt6jOa633gi_2arBXg-1
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dhlecommerce.co.uk;
+	h=content-type:from:mime-version:subject:to:cc:content-type:from:
+	subject:to;	s=s1; bh=Jak5jgLZMHOXFPDfBm4A2f3ImsT6poascjzrA14qlqc=;
+	b=aPbRI91iiMdK4qpGwaFgjq+bjg4O9njR8uxAUAN9bEd4p7PhhqbHcNtt1dU2ZGZWFt6i
+	Z/6PgtoDM8nNAU2k5KQmIQ+RCwsmi5GTnDE1iCdKdsjV4IBiLqqUJuEiyQt4sl7wk4sV+6
+	rl041uJU9pJJAPzmUpM1RD7QLLmkbRjQRfSvVLa6tI8xVKXl6gCXWiolwuakvVXMB+SrTF
+	eU1ZW9pLrwX3sAcrPCvc0nA35AryQ+axfIQiPeuOXr0nOBipkYQmF/i5q9Nz97QcxU1fXd
+	uMuZV/EDN4hFxshFJFJdhOYZKAniyEwdkkadB5ic6cmf11exUxRZE6TzS2l/TdqQ==
+Date: Wed, 9 Oct 2024 06:29:42 +0000
+From: notifications@dhlecommerce.co.uk
+MIME-Version: 1.0
+Message-Id: <tidztkH0Qqa6dxEHHVidGg@geopod-ismtpd-6>
+Subject: =?UTF-8?B?V2UgaGF2ZSB5b3VyIHBhcmNlbCBmcm9tIERITA==?=
+X-Sg-Eid:
+ u001.yfD1ZH2CciOtWg4utUYo7CfDX5ik0kKhqlrM+/AEAMfL28BGweldD3d45cc/V0T6RQguGZVsmqHRJ828g9DyIG6TenRcUiJPmMWoG+vcIuHUh8I3eX8RCUuo4nwHN1yQikmKc4A3+g7zLJPqNydpDejSBcrYkPjI5YDB4wje5wPw88atETK1hpdgLHUjrskn6TLeBLt+VdSDe+f1NhfXkA==
+X-Sg-Id:
+ u001.SdBcvi+Evd/bQef8eZF3BpTL9BgbK5wfSJMJGMsmprDsPyUTnMagHRCjb/65Gubl8XZHOTPm6E2kBk77DwcJoDbW5Vylq6SZOmBouWcKMwIMAHxb3+IQyRg8AOkGwu5il28f4ldA+yNok9fj5Qi/j8luvv14PZd85vo1R8X689J5DDRjS3sMke1dvDVDoUgk
+To: Tom Lewis <tom.lewis@zopa.com>
+X-Entity-Id: u001.dqMycU+Q3p4S3MKhLtwmRQ==
+X-Mimecast-Spam-Score: 2
+X-Mimecast-Impersonation-Protect: Policy=New Impersonation Protection
+ Definition - VIP;Similar Internal Domain=false;Similar Monitored External
+ Domain=false;Custom External Domain=false;Mimecast External
+ Domain=false;Newly Observed Domain=false;Internal User Name=false;Custom
+ Display Name List=false;Reply-to Address Mismatch=false;Targeted Threat
+ Dictionary=false;Mimecast Threat Dictionary=false;Custom Threat
+ Dictionary=false
+X-Mimecast-Impersonation-Protect: Policy=New Impersonation Protection
+ Definition - Default;Similar Internal Domain=false;Similar Monitored
+ External Domain=false;Custom External Domain=false;Mimecast External
+ Domain=false;Newly Observed Domain=false;Internal User Name=false;Custom
+ Display Name List=false;Reply-to Address Mismatch=false;Targeted Threat
+ Dictionary=true;Mimecast Threat Dictionary=true;Custom Threat
+ Dictionary=false
+Content-Type: multipart/mixed;
+ boundary="----sinikael-?=_1-17284656687600.026879064522009832"
+Return-Path:
+ bounces+20603464-b635-tom.lewis=zopa.com@em9475.dhlecommerce.co.uk
+X-Ms-Exchange-Organization-Expirationstarttime: 09 Oct 2024 06:29:46.6113
+ (UTC)
+X-Ms-Exchange-Organization-Expirationstarttimereason: OriginalSubmit
+X-Ms-Exchange-Organization-Expirationinterval: 1:00:00:00.0000000
+X-Ms-Exchange-Organization-Expirationintervalreason: OriginalSubmit
+X-Ms-Exchange-Organization-Network-Message-Id:
+ 600ed9b2-929e-4293-f228-08dce82bc4ff
+X-Eopattributedmessage: 0
+X-Eoptenantattributedmessage: 68cae5ad-853d-473f-98cd-43df5b6b7c5d:0
+X-Ms-Exchange-Organization-Messagedirectionality: Incoming
+X-Ms-Publictraffictype: Email
+X-Ms-Traffictypediagnostic:
+ DU2PEPF0001E9C5:EE_|GV1PR08MB8620:EE_|AM0PR08MB5444:EE_
+X-Ms-Exchange-Organization-Authsource:
+ DU2PEPF0001E9C5.eurprd03.prod.outlook.com
+X-Ms-Exchange-Organization-Authas: Anonymous
+X-Ms-Office365-Filtering-Correlation-Id:
+ 600ed9b2-929e-4293-f228-08dce82bc4ff
+X-Ms-Exchange-Organization-Scl: -1
+X-Microsoft-Antispam:
+ BCL:3;ARA:13230040|29132699027|31092699021|4123199012|69100299015|13102899012|5073199012|5063199012|1032899013|3072899012|5062899012|3092899012|2092899012|12012899012|82310400026|13012899012|8110299012|220883001;
+X-Forefront-Antispam-Report:
+ CIP:91.220.42.227;CTRY:GB;LANG:en;SCL:-1;SRV:;IPV:CAL;SFV:SKN;H:eu-smtp-inbound-delivery-1.mimecast.com;PTR:eu-smtp-inbound-delivery-1.mimecast.com;CAT:NONE;SFS:(13230040)(29132699027)(31092699021)(4123199012)(69100299015)(13102899012)(5073199012)(5063199012)(1032899013)(3072899012)(5062899012)(3092899012)(2092899012)(12012899012)(82310400026)(13012899012)(8110299012)(220883001);DIR:INB;
+X-Ms-Exchange-Crosstenant-Originalarrivaltime: 09 Oct 2024 06:29:46.5644
+ (UTC)
+X-Ms-Exchange-Crosstenant-Network-Message-Id:
+ 600ed9b2-929e-4293-f228-08dce82bc4ff
+X-Ms-Exchange-Crosstenant-Id: 68cae5ad-853d-473f-98cd-43df5b6b7c5d
+X-Ms-Exchange-Crosstenant-Authsource:
+ DU2PEPF0001E9C5.eurprd03.prod.outlook.com
+X-Ms-Exchange-Crosstenant-Authas: Anonymous
+X-Ms-Exchange-Crosstenant-Fromentityheader: Internet
+X-Ms-Exchange-Transport-Crosstenantheadersstamped: GV1PR08MB8620
+X-Ms-Exchange-Transport-Endtoendlatency: 00:00:05.0180314
+X-Ms-Exchange-Processed-By-Bccfoldering: 15.20.8026.020
+X-Microsoft-Antispam-Mailbox-Delivery:
+ ucf:0;jmr:0;auth:0;dest:I;ENG:(910001)(944506478)(944626604)(920097)(930097)(140003);
+X-Microsoft-Antispam-Message-Info:
+ L0QNQ1I3a/PXhNP8bd2363moopOqOaW9KVC9uXg8sVD26iuFdCcoZ2rL0CXeR7jamWr+xRn8qcFxPAqpodrLOUG61rRs4vd/XNcKIyj9DjOnL0vMpCxupAtPoR7TlcrKUKv6VIWpcLDERu+8tAkz8936LeappQy5x3qrBKfJbJpLMOf49VHDlnovYsG8cNseTjLfO7/iIowO1L6VG9aXBTDvDWye5wkrxzSGaeuzYptzMBaniFbWwiDXSRkyf/8PMZi2B7IolrZkdcXGKlGthKXoceh+Yu3UEgzAyWidEr84U2ek8mzrZv1hfDLJcTME+VFf/IpS3/rz8ltxIiN2ClYMWwcDcdvSuW23nVHva5iP0w4S6TZccBEtmbTpEYyfvK0rVJrB4Om0ZZeQefqdQJPLcXlCAIPm+QMhNp+BpvJFghM2wS1wIJc8nUYhRJCWl3rmTbSA0YgYP9DLSsvxp8epz62BloUbTnVipfNU0E3hyLFU2tA+W5hbO+SBDnZScHHbP4ylGH5wKDGZej5+M9gmJVs3YLWnZZ9tmVjg9XYn3RYeL/jcfWNBu7kna6bYen6IIGOqk/pcrkLi8P7UiYGUkZqwhFkHXp2qVrAZ+AIiU0YuzOsqtKaI9BOxqJu/0qAYXYkXiqrDi2LhCnsXa6jKovDGSKeDDnGJAMKOnR/rB/poIDoF7bpmtMDQ5iyji/tsYisk55ryocDrW89LLTDvDdloHmcmNK54XedhPVi4PQlkGw9CUoGfp3OtXuGjHnjrUXX5PhkNWqztD8/ZTLKkvFiSlvkkLeVnonLkbgyqzd5gbsH4Ha8acaiLntu4wWXvEheY6n17O/Hb10DFhuMLbk6nvYi7Y4pf4Z6630Lmg7edIHwfTbH9HuyVd3yRf3cDoloMgHtSMPlsTn/itVzuy2QpImSRBsbANGwe0VD44gHjF3od2SuTF9ZuruGsFkjxGAWvSvYynMy/aaNrrY6v4ljEsqrKAVs6i0Kx8/jlzmdyZ0bbwZe2IO86MaxIwsZ2eMsA8TJksuQbEYuzWq6zZCJPCOOIyHrbqHkoWlcqH51hDSX/+aa5a/P3zR9zNq6BxOuBg7Y5jNGJQwjHw2I8VNLB6uG+Ziy7R9fjd5yu/V9XzmZ77iYfna8PJTMLvAXAKH9b/YeC6KitE3d7gim/nejpTdiktqXpm+q3koe/7wUrM4HuyJsfq4GlbKgO4j5k86JS6Ku7IwnO901zmlNm5M/rJvC5lwEPVSAuwhp2ur92EVgKTayeBRv8mtlh/j8HjFbXCzCCNoxdJrq9tFN6Ryqx8swQsj8S2/NFQzRpZn8/GpGx/FWYj9mwwawNEoC/2qkJSEaDwxpDZbED74XxVz1FH1u53k5onsME+oMzkhB9R1k9KN0SNO5mp0TQp17dTom8d4FIPxjHa/ql1kjeWjtcWMo2mKwCFhoAXfhHVTPI3znU2csavnjzAn9iiQN1h9W08jKQwLwN9mHR3uB0MVDYLOUsNRypuo659rV1T7EGyqFcykhkAoKZg76wVXkhpHKFNRfV8CW/YTpFZ+3+yHbqlzxb5jEK/qIiZVpYt/YallCoCxGyhkjObUer/TxtHSbv/RKkCWVaJxlGRl+CN1smy1ulbBsZBnPJEd7QNfd/OM5KvBM/1UMoTN4F6XwLIOo2CIzLC395BWOD7fNtmgSJQJKKw176RdUFmw2iYC3kBF4GXIwhggOV9ExagNTcmAkcb0LN2TJGLs4Ts1+lNlTmWvIygZbsu5Z/suNHqOeYb4fkUbAfQGwIkrxzLF/q/lnL21CSYOYgfKFuHk5sPYhSA+aaj9iEZri2RqCxDML272UevxcGHAp1Vw8fiQ4nEvibtbRZ/iRE6/9Lz4I/gKdJlVh4kqu3xptAUus5U6zFVOZU8b63hMrQRNN8vaxxu3HR9Y4GBkVdX2DTWRPYAc4MAiRYO7CNGeIIclEaeMJs3sc9r+M9OfMcuRqzsRp40uhITAbmHGkJ8spgwv1Wl4zNIFHX7d3AC9i2DbnT9/x8lNZ/TKr20n/4pm+hH6yxE8BYISn8v8lRcQothdMWruDUTRUCYXiK8j42YzzxxXHKjvKRVlwXzf3d0Yubqn3A9DJk2wTU8td279g6BBqE9FAqG4lQ5A5G7QdFrGb3fQpC7Ll8AsYNi1piMgHPP0rukNmBSeZMRm/xm4oSo88DC9Ku/yw0JcKgkrcjrdw=
+Content-Transfer-Encoding: 7bit
+
+------sinikael-?=_1-17284656687600.026879064522009832
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><!-- Define Charset -->
+<meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dutf-8"><title>Delivery Notification</title><!-- Responsive Styles=
+ and Valid Styles --><style>
+   p {
+       margin-bottom: 16px;
+   }
+   h2 {
+       margin-top: 1em;
+       margin-bottom: 1em;
+   }
+ </style></head><body style=3D"width: 100%; margin: 0; background-color: =
+#f4f4f4; padding: 0; font-family: Arial, Verdana, sans-serif;"><p =
+style=3D"font-family: Verdana; font-size:8pt; color:#666666;">This message =
+originates from outside our organisation. Consider carefully whether you =
+should click on any links, open any attachments or reply. <br><br><table =
+style=3D" font-family: Arial, Helvetica, sans-serif; border: none; width: =
+100%; background-color: #f4f4f4;"><tbody><tr><td height=3D"30"></td></tr><t=
+r><td align=3D"center" style=3D"width: 600px; margin: 0 auto; =
+vertical-align: top;  background-color: #f4f4f4 !important; "><table =
+class=3D"container" style=3D" font-family: Arial, Helvetica, sans-serif; =
+margin: 0 auto; text-align: center; width: 600px; background-color: #fff; =
+border: none; border-collapse: collapse; border-spacing:0"><tbody><tr =
+style=3D"background-color: #fc0;"><td style=3D"background-color: #fc0; =
+padding: 25px 40px;"><table style=3D"font-family: Arial, Verdana, =
+sans-serif;" class=3D"container-middle"><tbody><tr><td style=3D"text-align:=
+ center; width: 140px;"><a href=3D"http://url4908.dhlecommerce.co.=
+uk/ls/click?upn=3Du001.X2rfUT-2B51P1nILh8ZMtd4z0R2POHTbcvQDgxHRk7TqMRwb6qSh=
+X3x3ZOGvIf85g8cNZVW5MhJgHCeDxxGidWzr4W8KKusOeSAMUmari7NQk-3DxQvq_oVZemfUSV3=
+iIhNfv-2BIVl4AYJZLILjSiC5jl1R3yYaBFrQHCOXlp4mXYnPXC0LoxKTaYkVQij-2Bpxmj-2F-=
+2BZ3G8EWLxJQyl7dhYAfqT44WepfeY0X960MFchJNPtOvKR9poY-2Fb5nUbOrQ2I0IUjeduncBR=
+8CIgQ8-2FjsbZxUdDSdaTAjLXUWj163EgYpBGcPx4tR02O4x2mUgpw1WOg1ZXIxR7iC6VOoheYe=
+hyUdyjDDhVPGAQtb1O9VmrgcxzAR81dxFzeZ-2BJcTkZ-2FRbqCs97fMpSX6qNKmCg-2F9mqmtM=
+KeqCrgKmx-2FlUJOYYXbLykDgLpectDbD-2BxjzCDPNdx4LQ0jnw5J84tOds9djGi68tIH-2Fg8=
+rc-3D" style=3D"display: block; border-style: none !important; border: 0 !=
+important;"><img style=3D"width: 140px; height: 20px; display: block;" =
+src=3D"http://cdn.mcauto-images-production.sendgrid.=
+net/7062680fa695478f/cfe351a4-3344-439c-9151-6aeeab358f5b/131x28.png" =
+alt=3D"logo"> </a></td><td style=3D"width: 380px; font-size: 14px; =
+text-align: right; vertical-align: bottom;"><a style=3D"text-decoration: =
+none; color: #313131" href=3D"http://url4908.dhlecommerce.co.uk/ls/click?=
+upn=3Du001.X2rfUT-2B51P1nILh8ZMtd41heuplk4iyQ-2FigBFINwid0K60hKTK-2F5Nkj4-2=
+BwxpHaP8oDj6FjdbXN5HZa4cLDzc8D6v0tnDi8JR00rl0ZZJeRNIendNf9HHONObu1kVvWmJYNr=
+u_oVZemfUSV3iIhNfv-2BIVl4AYJZLILjSiC5jl1R3yYaBFrQHCOXlp4mXYnPXC0LoxKTaYkVQi=
+j-2Bpxmj-2F-2BZ3G8EWLxJQyl7dhYAfqT44WepfeY0X960MFchJNPtOvKR9poY-2Fb5nUbOrQ2=
+I0IUjeduncBR8CIgQ8-2FjsbZxUdDSdaTAjLXUWj163EgYpBGcPx4tR02O4x2mUgpw1WOg1ZXIx=
+R7vAxu8F24CI5ZnF-2FJDFPhMxor-2FpP0qOdAIZqoPtK-2BekpVVvQlid10-2F2to9MjKhQ4cC=
+ILS4O4mG8qo-2FzOwr4JsOBDTV74Bqtgy1L6UdW3TGeLwqFyksenuY9LCYw02N7PCOEq0Rbc3mz=
+vroknU1I1LFU-3D"><strong>FAQ</strong></a> <span class=3D"navSpac">&nbsp;&nb=
+sp;&nbsp;&nbsp;</span> <a style=3D"text-decoration: none; color: #313131" =
+href=3D"http://url4908.dhlecommerce.co.uk/ls/click?upn=3Du001.=
+X2rfUT-2B51P1nILh8ZMtd41heuplk4iyQ-2FigBFINwid0K60hKTK-2F5Nkj4-2BwxpHaP8yVY=
+dSDlcFIo3eSxztophDw-3D-3DlVO__oVZemfUSV3iIhNfv-2BIVl4AYJZLILjSiC5jl1R3yYaBF=
+rQHCOXlp4mXYnPXC0LoxKTaYkVQij-2Bpxmj-2F-2BZ3G8EWLxJQyl7dhYAfqT44WepfeY0X960=
+MFchJNPtOvKR9poY-2Fb5nUbOrQ2I0IUjeduncBR8CIgQ8-2FjsbZxUdDSdaTAjLXUWj163EgYp=
+BGcPx4tR02O4x2mUgpw1WOg1ZXIxR7sXqHupEIMawuA-2F-2F1a-2F6h4pVw-2Fv70AsQTXjCxG=
+4e2AM9CgojIuu1AjVWMIynii-2FLQ8RGL3sGJQ3Aj23yWLjmvW-2FILKFkKV4th95gssdBk53kP=
+fx-2B-2FNxBBfzU2X014lvv6BDSQ5Uu9gHu3p5T4ySULP8-3D"><strong>Help =
+Centre</strong></a> </td></tr></tbody></table></td></tr><tr><td =
+style=3D"padding:25px 40px 20px 40px"><table style=3D"width: 100%;  =
+font-family: Arial, Helvetica, sans-serif;" class=3D"container-middle"><tbo=
+dy><tr><td class=3D"main-subheader" style=3D"padding:0 0 0 0; color: =
+#323232; line-height: 20px; font-size: 14px; font-weight: normal; =
+text-align: left;"><h2 style=3D"color:#d40511; font-size: 21px; =
+font-weight: 600; margin:0">WE HAVE YOUR PARCEL</h2><p>We have your DHL =
+parcel.<br></p><p>As soon as it's out for delivery we'll let you know.=
+<br></p></td></tr><tr><td style=3D"text-align: center; display: block; =
+width: 260px; height: 50px; background-color: #d40511; color: #fff; =
+font-weight: bold;font-family:Arial"><a href=3D"http://url4908.dhlecommerce=
+.co.uk/ls/click?upn=3Du001.X2rfUT-2B51P1nILh8ZMtd4zxSiOlaeCaJtVhZupM-2F9LXv=
+z3nSz6oSIRxsRx-2BAjcZt-Nud_oVZemfUSV3iIhNfv-2BIVl4AYJZLILjSiC5jl1R3yYaBFrQH=
+COXlp4mXYnPXC0LoxKTaYkVQij-2Bpxmj-2F-2BZ3G8EWLxJQyl7dhYAfqT44WepfeY0X960MFc=
+hJNPtOvKR9poY-2Fb5nUbOrQ2I0IUjeduncBR8CIgQ8-2FjsbZxUdDSdaTAjLXUWj163EgYpBGc=
+Px4tR02O4x2mUgpw1WOg1ZXIxR7rNTjSn-2BBuMt9ecwHshcfH-2FvYlknAa5K1ALMYgI498Ns3=
+KwBxSSXDmSc3gLsZtaBmfmIVlUxScTgD1ZMyC9xEr4GQozk-2FEbQSoX-2Fw2PgeACu1Jrn3YOX=
+uaAyLoPvIMHxyrBLcs1VNKunOmwb8CYrfwk-3D" style=3D"font-size:14px; =
+font-weight: 600; text-decoration: none; width: 260px; line-height:48px; =
+color: #fff;">Track &amp; divert your parcel</a></td></tr><tr><td =
+class=3D"main-subheader" style=3D"padding: 0; border-spacing: 0"><table =
+style=3D"padding:0 0 0 0; color: #323232; line-height: 20px; font-size: =
+14px; font-weight: normal; text-align: left; font-family: Arial, Helvetica,=
+ sans-serif;"><tbody><tr><td style=3D"text-align: left; font-size: 14px; =
+font-weight: normal;"><p>Shipment number: 31503631983031<br></p><img =
+src=3D"http://cdn.mcauto-images-production.sendgrid.=
+net/7062680fa695478f/b5ff5e1b-6b03-4369-bd73-369b1b2db2f8/515x151.jpg" =
+usemap=3D"#image-map"> <map name=3D"image-map"><area target=3D"" =
+alt=3D"Search &quot;DHL eCommerce UK&quot; In The App Stores" =
+title=3D"Search &quot;DHL eCommerce UK&quot; In The App Stores" =
+href=3D"http://url4908.dhlecommerce.co.uk/ls/click?upn=3Du001.=
+X2rfUT-2B51P1nILh8ZMtd41heuplk4iyQ-2FigBFINwid0K60hKTK-2F5Nkj4-2BwxpHaP8tYj=
+XjeGTlBDzVXitGcV2iopUv8dm26sKBezoEfRw7vqkKAJP5EvkRtLT0x7VVJfYiBxw_oVZemfUSV=
+3iIhNfv-2BIVl4AYJZLILjSiC5jl1R3yYaBFrQHCOXlp4mXYnPXC0LoxKTaYkVQij-2Bpxmj-2F=
+-2BZ3G8EWLxJQyl7dhYAfqT44WepfeY0X960MFchJNPtOvKR9poY-2Fb5nUbOrQ2I0IUjeduncB=
+R8CIgQ8-2FjsbZxUdDSdaTAjLXUWj163EgYpBGcPx4tR02O4x2mUgpw1WOg1ZXIxR7nVl5ePjP2=
+WiPA-2By45PlV-2B3P86TccSBgtI9q47F0Gxoh63n-2Fln-2FU8GdYGHS8mUgTkzTPIaOMI1xCO=
+0x0nk-2BwUzuxKQWfOh5wfUT7wHBR5nWgtKnSyrDskhQ5jLrm62FqMuX7LCXxEgUolJIBh9TIsi=
+I-3D" coords=3D"0,0,511,1,512,149,184,151,99,151,186,134,185,111,25,111,29,=
+136,178,135,100,151,1,151,-1,32,-1,16,0,11,-1,8,1,36,0,22,-1,13" =
+shape=3D"poly"><area target=3D"" alt=3D"Apple App Store" title=3D"Apple App=
+ Store" href=3D"http://url4908.dhlecommerce.co.uk/ls/click?upn=3Du001.=
+X2rfUT-2B51P1nILh8ZMtd47NttZAlDd-2FEMZkz2YbYCmyrJOQZ8RK-2F1mngd8LDPnGNuateB=
+zD-2B6toOfhrEmNRXVhB8-2B06D3N2E8bKyFVU6AGs-3Dj4H-_oVZemfUSV3iIhNfv-2BIVl4AY=
+JZLILjSiC5jl1R3yYaBFrQHCOXlp4mXYnPXC0LoxKTaYkVQij-2Bpxmj-2F-2BZ3G8EWLxJQyl7=
+dhYAfqT44WepfeY0X960MFchJNPtOvKR9poY-2Fb5nUbOrQ2I0IUjeduncBR8CIgQ8-2FjsbZxU=
+dDSdaTAjLXUWj163EgYpBGcPx4tR02O4x2mUgpw1WOg1ZXIxR7t-2Bo655dSZdcp1vzmBSZ5vKR=
+hMwHCAtU-2B6M9XcFeUi8Bz6duioIVmxbbTrvHF1ONzxQUh0szhJKOg0MpUxcMJjOQRp9o0naEj=
+KqgteLtNupXF6iGd0hZ4PSpG3rV-2BYbizquRNGgmWhWS5e7B05VeAbo-3D" coords=3D"26,=
+113,101,132" shape=3D"rect"><area target=3D"" alt=3D"Google Play Store" =
+title=3D"Google Play Store" href=3D"http://url4908.dhlecommerce.co.=
+uk/ls/click?upn=3Du001.X2rfUT-2B51P1nILh8ZMtd426-2Besw9kmoaAZNlVtnpIkn4it-2=
+Bmos3jkF5spCPHz6-2BDPhlc1NMjt5kQRll87mR3gm2MGvqWh0m67h7-2FtFRXafLmCblk8izgN=
+Y6q7uCZXXcWK8nU_oVZemfUSV3iIhNfv-2BIVl4AYJZLILjSiC5jl1R3yYaBFrQHCOXlp4mXYnP=
+XC0LoxKTaYkVQij-2Bpxmj-2F-2BZ3G8EWLxJQyl7dhYAfqT44WepfeY0X960MFchJNPtOvKR9p=
+oY-2Fb5nUbOrQ2I0IUjeduncBR8CIgQ8-2FjsbZxUdDSdaTAjLXUWj163EgYpBGcPx4tR02O4x2=
+mUgpw1WOg1ZXIxR7kaIMLat2-2BLgzJIV4oSvP9EFicvdHkD-2B8FUX-2FZ6EXkIwastGDA5XO-=
+2FImVxAZxmgSkUJWs1hL20N1pEQa0swr2vSkaILY4M4p0-2BOFtp1OmYrTnqN8HJAn6YRHmRkV9=
+IWi41b-2FGatZ8kzg6-2BUq606Ie0g-3D" coords=3D"110,113,186,135" =
+shape=3D"rect"></map><img src=3D"http://cdn.mcauto-images-production.=
+sendgrid.net/7062680fa695478f/d12e1bd0-fb25-4411-9078-b649a50355f0/515x151.=
+jpg"> <map name=3D"image-map"><area target=3D"" alt=3D"" title=3D"" =
+href=3D"http://url4908.dhlecommerce.co.uk/ls/click?upn=3Du001.=
+X2rfUT-2B51P1nILh8ZMtd44UcjXL9JQlRtTsbLEkjD2phliWDC6HpBx4fFxcy7obiT94QXLlGp=
+QuoYqH-2FFprhKBVUkiJRSgpsKqvPndfLrsnbHLO8wtal5m7-2BdmlyTGavBLN2D1oburjt3eqT=
+rdHgV47hmSSuBqYcF9oSYiADLJn1wrU8HjOWR90k6vOZ2Fk-2FZoKh_oVZemfUSV3iIhNfv-2BI=
+Vl4AYJZLILjSiC5jl1R3yYaBFrQHCOXlp4mXYnPXC0LoxKTaYkVQij-2Bpxmj-2F-2BZ3G8EWLx=
+JQyl7dhYAfqT44WepfeY0X960MFchJNPtOvKR9poY-2Fb5nUbOrQ2I0IUjeduncBR8CIgQ8-2Fj=
+sbZxUdDSdaTAjLXUWj163EgYpBGcPx4tR02O4x2mUgpw1WOg1ZXIxR7o3TDdbpdj5NMjDLup-2F=
+FIZRjqNYsadxkDUZ758OEtbXSNaCNznIhiY07qrc-2F8KGMhB2-2BcWQQF2lN02rBb9gyr-2Bhd=
+e1hdn8o-2Frt7nN80uMfBkCxgrlSpk5ocvWJ5cuXUbGetOah0BPpVpPBa-2F-2BXm7APs-3D" =
+coords=3D"1,3,511,149" shape=3D"rect"></map></td></tr></tbody></table></td>=
+</tr></tbody></table></td></tr><!--  end main section  --><!-- - footer   =
+--><tr><td style=3D"width: 100%; background-color: #e8e8e8; padding: 2px =
+40px 2px 40px;"><table style=3D"width: 100%;  font-family: Arial, Helvetica=
+, sans-serif;"><tbody><tr style=3D"height: 60px;"><td =
+style=3D"vertical-align: middle; border-bottom: 1px solid #aaa; =
+text-align:center; color: #323232; font-size: 12px; font-weight: normal; " =
+class=3D"prefooter-header">We sent you this email on behalf of DHL as =
+they've asked us to deliver a parcel to you.<br>We haven't signed you up to=
+ a mailing list and we'll only use your email address to contact you about =
+this parcel. <br>DHL eCommerce UK Ltd. Company number 00965783. Registered =
+office address 120 Buckingham Avenue, Slough, SL1 4LZ </td></tr><tr =
+style=3D"height: 60px;"><td style=3D" vertical-align: middle; =
+text-align:center; color: #323232; font-size: 12px; font-weight: normal;" =
+class=3D"prefooter-subheader">2024 =C2=A9 DHL - All rights reserved. =
+</td></tr></tbody></table></td></tr></tbody></table><!-- - end main Content=
+  --></td></tr><tr><td height=3D"30"></td></tr></tbody></table><img =
+src=3D"http://url4908.dhlecommerce.co.uk/wf/open?upn=3Du001.=
+Y5i4u0a9iZo9gKmnQeItaYwhbxx27FX3RSabXOBbL2U2MoJ79lLXTkm-2BJO-2Bh6Zr5cAmlnb8=
+N0AUHlnQIucRK1x7NzHkRlAZGI6sr-2FjOPy9-2BGXYyE4Wii9LXEze-2BZnryrWyw4G02Qmpma=
+ofAYuaMi4T5d1x0AOOjuCKa8jWCMPNSZ0aR8imiR-2B9QmHM-2B-2FgEqlMSGHEO2J4BktD37NY=
+Cxe1wma-2Bm-2FdrQ4KkGJRTPbvaZdf-2BcKbcTUebZmdvT80x6mbE-2FX8C9UDZmu8EWUsAYNR=
+lqeEAFEljeuvZ-2FbEt1SGlxFFhFY82ONOOMObXGj3IlW6SksAOVeMsCV8ZUxURrr6loQEC4ZnJ=
+V2RfQHKy0UkexI-3D" alt=3D"" width=3D"1" height=3D"1" border=3D"0" =
+style=3D"height:1px !important;width:1px !important;border-width:0 !=
+important;margin-top:0 !important;margin-bottom:0 !important;margin-right:0=
+ !important;margin-left:0 !important;padding-top:0 !=
+important;padding-bottom:0 !important;padding-right:0 !=
+important;padding-left:0 !important;"> =
+</p></body></html>
+------sinikael-?=_1-17284656687600.026879064522009832--

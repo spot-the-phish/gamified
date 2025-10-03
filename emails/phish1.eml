@@ -1,0 +1,249 @@
+Received: from AS8PR08MB6198.eurprd08.prod.outlook.com
+ (2603:10a6:20b:29f::20) by PAVPR08MB9881.eurprd08.prod.outlook.com with
+ HTTPS; Fri, 11 Oct 2024 00:44:55 +0000
+Received: from AS9PR06CA0163.eurprd06.prod.outlook.com
+ (2603:10a6:20b:45c::24) by AS8PR08MB6198.eurprd08.prod.outlook.com
+ (2603:10a6:20b:29f::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.18; Fri, 11
+ Oct 2024 00:44:54 +0000
+Received: from AMS0EPF000001A7.eurprd05.prod.outlook.com
+ (2603:10a6:20b:45c:cafe::7) by AS9PR06CA0163.outlook.office365.com
+ (2603:10a6:20b:45c::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.20 via
+ Frontend Transport; Fri, 11 Oct 2024 00:44:54 +0000
+Received: from eu-smtp-inbound-delivery-1.mimecast.com (195.130.217.221) by
+ AMS0EPF000001A7.mail.protection.outlook.com (10.167.16.234) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id
+ 15.20.7918.13 via Frontend Transport; Fri, 11 Oct 2024 00:44:54 +0000
+Received: from akz114.mta.exacttarget.com (akz114.mta.exacttarget.com
+ [128.245.247.114]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ uk-mta-304-pOOINiaQOvGkB-YEMbsMEQ-1; Fri, 11 Oct 2024 01:44:49 +0100
+Received: by akz114.mta.exacttarget.com id h11qg22fmd4b for
+ <lianne.noble@zopa.com>; Fri, 11 Oct 2024 00:44:43 +0000 (envelope-from
+ <bounce-BSSGTXNEWTEE7F4K4XLJISKBLE.130001@bounce.s13.mc.pd25.com>)
+Arc-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=H0pzSzW4JWxSHLGpefAG8NolvXKnmgt1BMClhJdk1Uku6A/6q3oAjVY8cDmoQYRgS0yJ834S1quLSi9OXJCR9lvDn3KcH40aodh1aIZxtHtIqj0lFa9X9Lm9bbtELx0Ei06H8MLHQxiqXuCfIIVwxOU9JtvbyNzLS8p5c3V9Js1myBMwXE00wI/rmOGb9hwceKhpj4h8XVw8KueQBYjxVb+wQJ8l/qKuph1qA5nmXf5IkXJvoQLZPq3rcRgej9C6e1TS2ICs/wEtSgGxYTyTBuZyysZsV+9uhs6VFe3zzWrK2WeY65ihWaTXgOOuleXYF4abzoYrgKbxVtUktUxr8g==
+Arc-Seal: i=1; s=201903; d=dkim.mimecast.com; t=1728607493; a=rsa-sha256;
+	cv=none;
+	b=S5ODDxGdyKQzQ5PV7+Ai3PEh5o/TJFNEkIK3tlc6CgSuLkmm+WOJwTIZJMpzNjPaVehU3b
+	ma8JU5Qx89wvV1C4OLhy8nC2eW09z6prUgORwEwMwxRIfUWkqg+FHia0PWXCF4WaWLiVM8
+	Y8kK1DmUSuw+a0/wGtgV2pupNf64Mo29iXdTWsU8tJXNZ18Evw29YgQ7fzYQM5oyz2JgAc
+	eKzCe2J6NLne5nLeIn+sd/DBecABYFN7YJ3C94oMdWb6BZiAoF2bVrxbvYsPuK4hzkVw6z
+	id7yUOxxHKmXMGzKeEi6S9wcVzLMWaPzaUMLaTHMtNl1t7rXJwHrJUE0Qi/trg==
+Arc-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=microsoft.com; s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cSvb+zHzHWGJlE+1t7RYSXanaaNguvHPJvIJfGQLOrI=;
+ b=FUnNQlfbJ17sMHLK6hvehgmXBxbDCfI7FPatmRHKz4vn59Pq5A53Rg4iFof+9Xgrs7rcsqe4I1S3A96PSiuenc7k5Zq7IrKr84c78u0KvWGfXJsT1c7B+fYVbJLGQawSpIhzs33QJkkqTcOwi6jqG5E9yNaAlf5rYLnqTrv43lef5EH6S+Tz6bPdHCbNxOM+MzJMFaI+fzSPHcl4062k30PTXLf0uH/bTmH6b7fk/+/yvrAQWR+IbZdXtIEo9unJhoImUmcIlWqfvYAXJtcoGhwFXLPxLANifFBId8j5ME3PxaVBYkxCE/qlkOkZFIHnbtrTIut0PWw0aBOYlPn0Yw==
+Arc-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=dkim.mimecast.com; s=201903; t=1728607493;
+	h=from:from:reply-to:reply-to:subject:subject:date:date:
+	 message-id:message-id:to:to:cc:mime-version:mime-version:
+	 content-type:content-type:list-help:list-unsubscribe:
+	 list-unsubscribe-post; bh=cSvb+zHzHWGJlE+1t7RYSXanaaNguvHPJvIJfGQLOrI=;
+	b=n7C5xAEIAU1Uwdgp8+Q5iibrPh9qWR+//mU970WfOe0lj1049TXL5tn788RW9YmlIr0ab6
+	Gve1erYIDPG2lDuhYJnALeTwDfCfAzWc9k/vr7baQGzHN6gcIARTGsZZ+pIOMKuZN+S5Qh
+	2+wqclYtaW5MYR/FF1If63eikASP9HL3ca//vbqiE2PraGefn/mViY055jIu3ppAknADny
+	ChxPDYvNKDhkwVY33OcdC7ifMwWkSe/Zr/L9N+fN8/B5RQhjgSRH1BgNo68InEiXVR1TCb
+	IUTbYomEzcmzzBXCBtqFN9Ig/EjKSISb7AMQ91DGIMyfp5SBXFT03OtteBWPPQ==
+Arc-Authentication-Results: i=2; mx.microsoft.com 1; spf=fail (sender ip is
+ 195.130.217.221) smtp.rcpttodomain=zopa.com
+ smtp.mailfrom=bounce.s13.mc.pd25.com; dmarc=none action=none
+ header.from=murraymed.com; dkim=none (message not signed); arc=pass (0
+ oda=0 ltdi=0 93)
+Arc-Authentication-Results: i=1;	relay.mimecast.com;	dkim=none;	dmarc=none;
+	spf=pass (relay.mimecast.com: domain of
+ bounce-bssgtxnewtee7f4k4xljiskble.130001@bounce.s13.mc.pd25.com designates
+ 128.245.247.114 as permitted sender)
+ smtp.mailfrom=bounce-bssgtxnewtee7f4k4xljiskble.130001@bounce.s13.mc.pd25.com
+Authentication-Results: spf=fail (sender IP is 195.130.217.221)
+ smtp.mailfrom=bounce.s13.mc.pd25.com; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none
+ header.from=murraymed.com;compauth=none reason=405
+Received-Spf: Fail (protection.outlook.com: domain of
+ bounce.s13.mc.pd25.com does not designate 195.130.217.221 as permitted
+ sender) receiver=protection.outlook.com; client-ip=195.130.217.221;
+ helo=eu-smtp-inbound-delivery-1.mimecast.com;
+Authentication-Results-Original: relay.mimecast.com;	dkim=none;	dmarc=none;
+	spf=pass (relay.mimecast.com: domain of
+ bounce-bssgtxnewtee7f4k4xljiskble.130001@bounce.s13.mc.pd25.com designates
+ 128.245.247.114 as permitted sender)
+ smtp.mailfrom=bounce-bssgtxnewtee7f4k4xljiskble.130001@bounce.s13.mc.pd25.com
+X-Mc-Unique: pOOINiaQOvGkB-YEMbsMEQ-1
+From: Mike John <mike@murraymed.com>
+To: Lianne Noble <lianne.noble@zopa.com>
+Subject: =?UTF-8?B?SW1wb3J0YW50IERvY3VtZW50IENvbnRyYWN0IEFncmVlbWVudA==?=
+Date: Thu, 10 Oct 2024 18:44:42 -0600
+List-Help:
+ <https://cl.s13.exct.net/subscription_center.aspx?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtaWQiOiI1NDYwMTEyNzUiLCJzIjoiNzMyNTg0MTMiLCJsaWQiOiI3OTQxIiwiaiI6IjIwOTE1IiwiamIiOiIzMDkyIiwiZCI6IjEzMDAwMSJ9.Ef6QI2exQDiNDRATUZFvzyh0BKTY5VAmxXxsxKToi-k>
+MIME-Version: 1.0
+X-Messagekey: 1083202-1672064463-253397163
+X-Delivery: Transactional
+X-Sfmc-Stack: 13
+X-Job: 546011275_20915
+List-Unsubscribe:
+ <https://go.murraymed.com/listUnsubscribeHeader/u/1083202/e8158e5c0d6ca8a632739968cd147c75462c262f669c10a7f799188273ab2678/1673773503>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-Report-Abuse-To: abuse@pd25.com
+Reply-To: mike@murraymed.com
+Message-Id: <d8b756d6-29fe-4a51-8897-cd63493e656e@iad4s13mta908.xt.local>
+X-Mimecast-Spam-Score: 1
+X-Mimecast-Impersonation-Protect: Policy=New Impersonation Protection
+ Definition - VIP;Similar Internal Domain=false;Similar Monitored External
+ Domain=false;Custom External Domain=false;Mimecast External
+ Domain=false;Newly Observed Domain=false;Internal User Name=false;Custom
+ Display Name List=false;Reply-to Address Mismatch=false;Targeted Threat
+ Dictionary=false;Mimecast Threat Dictionary=false;Custom Threat
+ Dictionary=false
+X-Mimecast-Impersonation-Protect: Policy=New Impersonation Protection
+ Definition - Default;Similar Internal Domain=false;Similar Monitored
+ External Domain=false;Custom External Domain=false;Mimecast External
+ Domain=false;Newly Observed Domain=false;Internal User Name=false;Custom
+ Display Name List=false;Reply-to Address Mismatch=false;Targeted Threat
+ Dictionary=false;Mimecast Threat Dictionary=false;Custom Threat
+ Dictionary=false
+Content-Type: multipart/mixed;
+ boundary="----sinikael-?=_1-17286316613330.6042539516286197"
+Return-Path:
+ bounce-bssgtxnewtee7f4k4xljiskble.130001@bounce.s13.mc.pd25.com
+X-Ms-Exchange-Organization-Expirationstarttime: 11 Oct 2024 00:44:54.2066
+ (UTC)
+X-Ms-Exchange-Organization-Expirationstarttimereason: OriginalSubmit
+X-Ms-Exchange-Organization-Expirationinterval: 1:00:00:00.0000000
+X-Ms-Exchange-Organization-Expirationintervalreason: OriginalSubmit
+X-Ms-Exchange-Organization-Network-Message-Id:
+ 6cebb050-a907-46cb-0ddf-08dce98dec31
+X-Eopattributedmessage: 0
+X-Eoptenantattributedmessage: 68cae5ad-853d-473f-98cd-43df5b6b7c5d:0
+X-Ms-Exchange-Organization-Messagedirectionality: Incoming
+X-Ms-Publictraffictype: Email
+X-Ms-Traffictypediagnostic:
+ AMS0EPF000001A7:EE_|AS8PR08MB6198:EE_|PAVPR08MB9881:EE_
+X-Ms-Exchange-Organization-Authsource:
+ AMS0EPF000001A7.eurprd05.prod.outlook.com
+X-Ms-Exchange-Organization-Authas: Anonymous
+X-Ms-Office365-Filtering-Correlation-Id:
+ 6cebb050-a907-46cb-0ddf-08dce98dec31
+X-Ms-Exchange-Organization-Scl: -1
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|69100299015|5073199012|4022899009|82310400026|31092699021;
+X-Forefront-Antispam-Report:
+ CIP:195.130.217.221;CTRY:GB;LANG:en;SCL:-1;SRV:;IPV:CAL;SFV:SKN;H:eu-smtp-inbound-delivery-1.mimecast.com;PTR:eu-smtp-delivery-1.mimecast.com;CAT:NONE;SFS:(13230040)(69100299015)(5073199012)(4022899009)(82310400026)(31092699021);DIR:INB;
+X-Ms-Exchange-Crosstenant-Originalarrivaltime: 11 Oct 2024 00:44:54.0816
+ (UTC)
+X-Ms-Exchange-Crosstenant-Network-Message-Id:
+ 6cebb050-a907-46cb-0ddf-08dce98dec31
+X-Ms-Exchange-Crosstenant-Id: 68cae5ad-853d-473f-98cd-43df5b6b7c5d
+X-Ms-Exchange-Crosstenant-Authsource:
+ AMS0EPF000001A7.eurprd05.prod.outlook.com
+X-Ms-Exchange-Crosstenant-Authas: Anonymous
+X-Ms-Exchange-Crosstenant-Fromentityheader: Internet
+X-Ms-Exchange-Transport-Crosstenantheadersstamped: AS8PR08MB6198
+X-Ms-Exchange-Transport-Endtoendlatency: 00:00:01.9052239
+X-Ms-Exchange-Processed-By-Bccfoldering: 15.20.8048.010
+X-Microsoft-Antispam-Mailbox-Delivery:
+ ucf:0;jmr:0;auth:0;dest:I;ENG:(910001)(944506478)(944626604)(920097)(930097)(140003);
+X-Microsoft-Antispam-Message-Info:
+ jGKmlkLZHdeZZ0e3BiOmlUl7PpB16SnZVCjNX6gogCORoceAkOk0Q0ZLI+pgEw36QbPCp5vZzaJEFeM0EDS6M44CBRZwR/b8eRXE8OMXqD4hd75ttz/MCYzFl43P7N0IsxS5gTGkzoo4yHm+6XD+G/Yi+QRYb7hRff1gniGZ6QdVsML2oO/RT36hWxL9q/xUoBiWvN2aOWXGaaIQvEKS7RzrpApuq+cpslDfhEbqRJ5x14KYzN0iswyMzYxovG2J58TiRSs2ihpVeIkhtGn0GDggNyA02RdS7wIkuKo5NUXdzUDFqW3IXBxpq0gc6ftX40lbpPTSRezv0rLnOLY/qu4ARGc3r1xASVBEbKXu3+VSEFoxSOYT0sr5eSuID1iEiuixT7cNQ2LTHWkOU0poYasoOW5VirdUfwwSkPrKUQvc0qErke3WG7IkX5bsVUqrxEZhVpEvJBxJ/wC0rl+/o9xSHT8BTIRwImadLaSVWckKU0+YxyiWsGYXIKdnETqG5qPOdwH0dP+MYyshdAQaTGxg0xmHc5nPgZ+z9YQT1sLXwG6uJLvRZ5kUyvTzIjFspWDCtzO4oxbyIqwjl6gVwLLaCSG6txzC8+nYEJpXZvVboN2NwjD90vHlGpLTSWa4xcW2JvymvRjfPd3Z6288+yM14Rl7gFUIVH0CF5WsD0fT+WYw5WoHDqY6bNAp/AUVvIJxycskAuj46fEweFtydFt1s2BaHl7rsxD7oqqasE0KQN93OUuQxwG0eVSrpzcrumhGRlLMgKOrGIAj1av2O9I7IkecIT+PU5YRMl8arTQoYoqtC1DLcUnmVkjJFOP/BvUJwB0bhmDifPtNLQhhtiQFGM2kxhG1TpR941dmjTi4wcJ2ddwdyAI/ucoksTJXf7lCjecxml+07LTq5BZEtlOIrvdaLjLmmRVV+61F2ioGFZ7T7FPVtsnZ17FTmJT/zrICTcgOyB1aci+evyCUy34myrUheKh6YC9kUe7KJD9JqnuD+KN1Ca9tshX9+XYyFPsYp0f0HTrzUKm67GEAMf1rSt7E6Gl9GzEZrDFqCAung28QXGZFvsldMT7Gg6TCjTTx3mDHIszsJ6vAZrYjOlEcHr/yBEtEWkitlcimIdoLnUHrrKQKgJNCOLpKOoFYw0qkJbMH6te6K54vJ4WbIDFrgU5UZ3rwNnzpLcn5xAQSCbTiNrj/R1vpmlV6Beq8tVvC/FyD621cGCh4Y9s9jVDWqDkAZHJnCOTQsufais7gGNV7AQ8ZgnaTvhi8m/3TZNaQvuhyMcRMIAQJ5qmq+PsV6IEBPEKwld62gBHl1ercfex5qBdZvgTcYiRqX0pkZg9FV/EfnaIaBHO1trRg3qyVDDhdbUcceC/7rxaZ6h4tTJBlbf8JVColwTuxEMB2PTPWGQu8s5e/5m0t827nJLnVSxe+Ip/qDLUPTZJt5gHhFSWNs3h8Eu/mYWdzDA7cHP54KCB/MGPzbwUW/irKjiRJZaAJW0aO6XjFBkldyQ1/4Bz5AqntcCoapXtKid91K/nqb8rABmvomKq9B4Bk7LpxRt6xbjztGuD/IWVQdpEl5k0rbwAvdCnd7goQKkMKcb5Wqy6YdjHuKzVEREySfoQOxrm30/Ht9iijrXiHs0hbIsgRR6OTIPp5Z9kjdF7lNIBNvRMQK8xS/4AGLG6Qg6rdn8tAVTUopZ/RYoQezX8XTmpTw0CX7XsDDTBoypUu1jDhgZ2o9TDotdsJgdF2+tw0RQUYgkIKv9J8/z+rvUpNdMyqA0+Wn/HE+yfA8DLuWu2FKi81H/kd/X1HmH1XarEKzTHicRvbNh76rzbLiRDIOTPBK/jB/SLJhk4OFfNnnKEWy58iShvzUcQhc0JztWuZ14khcYWwKQvB5MNHrypwuboJuuw1X8H0FHsqx16q2JRa3zKf21eH4eCfFYiM7IlvzOvaNbW60NCPwBSqlwgcW/0rfmNcTA4d7k4q5BRWdy+FnUGdcrQHF1LwYmvelriN2VeFPq9SmC67ycjxC7ENh4Ibm9dacS47sBG9DfOb1Zwo5EEdYd1W5UqXrmJe6pArXWPRQVQM8FONOuKuF7KljKDLWIwPwrkZu64W5dv4ovv/Wt0ISPrdoK0u0yYHQeQfSWQXJ+bKOP6AYNBqc274Pbh4kKRULD7ue1vw0h491hpgAmR+cwN81IcF6hq4PqxOz84LNvyp7wYT/lrMVE7KaGqqkyXY9MmO/mm318fVjImHmIVpDNJ22CqNBcyFaFIvaXT2gAxp9ekP78K/5sc3E916EyN6crhWZkATmoc22Vzq5OusftfiW+a1cwgAOuKoN7TYuQ9gZDiTd6whfsUKS+at4mt0qkEYs3MYbmETpltqYO+5p6SP94FvVmUNL0oJRu0jMwreXS5rJ1YhJJp4QMJJvWuRbf2ZX7rueFzZscLs5gzOG7O83Vwt7M+ZbULdRBfFw9VjL8WNUKttR7cmIFbZQ5iRFnhc0tcEFkzf9Hynp+4rVQlfXhhpQYaR+xA8Masru+FWuTLuX/54MzEIXg7OXGZnKZnuUrwJnHYPzTPXWcC6dc1Ql2kXv/Vn4BNXi/rppji3G4+3ejN2TH9z0jMthZ5IYcBPxnwi+O3i5mnkEhdIhOXYJdIKwcfapA==
+Content-Transfer-Encoding: 7bit
+
+------sinikael-?=_1-17286316613330.6042539516286197
+Content-Type: text/html; format=flowed
+Content-Transfer-Encoding: 7bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; 
+charset=utf-8"><title>Email Newsletter</title></head><body 
+style="font-family: Helvetica, Arial, sans-serif; font-size: 12px"><p 
+style="font-family: Verdana; font-size:8pt; color:#666666;">This message 
+originates from outside our organisation. Consider carefully whether you 
+should click on any links, open any attachments or reply. <br><br><meta 
+http-equiv="X-UA-Compatible" content="IE=edge"><title></title><meta 
+http-equiv="X-UA-Compatible" content="IE=edge"><title></title><meta 
+http-equiv="X-UA-Compatible" content="IE=edge"><title></title><meta 
+http-equiv="X-UA-Compatible" content="IE=edge"><title></title></p><p 
+align="center">&nbsp;</p><p align="center"><br><br><span style="color: 
+rgb(16, 110, 190); text-transform: none; text-indent: 0px; letter-spacing: 
+normal; font-family: Arial, Helvetica, sans-serif; font-size: 21pt; 
+font-style: normal; word-spacing: 0px; float: none; display: inline 
+!important; white-space: normal; orphans: 2; widows: 2; background-color: 
+rgb(255, 255, 255); font-variant-ligatures: normal; font-variant-caps: 
+normal; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; 
+text-decoration-style: initial; text-decoration-color: 
+initial;"><strong><span style="font-size: 23pt;">OneDrive via your HR 
+Portal</span></strong><br><br><font color="#000000" face="Helvetica" 
+size="2">lianne.noble@zopa.com</font><br><span style="color: rgb(16, 110, 
+190); text-transform: none; text-indent: 0px; letter-spacing: normal; 
+font-family: Arial, Helvetica, sans-serif; font-size: 18px; font-style: 
+normal; font-weight: 400; word-spacing: 0px; white-space: normal; orphans: 
+2; widows: 2; background-color: rgb(255, 255, 255); font-variant-ligatures: 
+normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; 
+text-decoration-thickness: initial; text-decoration-style: initial; 
+text-decoration-color: initial;">Here is Contract Agreement - HR shared 
+with you via Onedrive</span><br style="text-align: center; color: rgb(69, 
+69, 69); text-transform: none; text-indent: 0px; letter-spacing: normal; 
+font-family: adobe, adobe-clean, &quot;Source Sans Pro&quot;, 
+-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, 
+sans-serif; font-size: 22px; font-style: normal; font-weight: 400; 
+word-spacing: 0px;
+white-space: normal; orphans: 2; widows: 2; background-color: rgb(255, 255, 
+255); font-variant-ligatures: normal; font-variant-caps: normal; 
+-webkit-text-stroke-width: 0px; text-decoration-thickness: initial; 
+text-decoration-style: initial; text-decoration-color: initial;"><span 
+style="font: inherit; margin: 0px; padding: 0px; border: 0px currentColor; 
+border-image: none; text-align: center; color: rgb(20, 115, 230); 
+text-transform: none; text-indent: 0px; letter-spacing: normal; 
+word-spacing: 0px; vertical-align: baseline; white-space: normal; orphans: 
+2; widows: 2; font-size-adjust: inherit; font-stretch: inherit; 
+background-color: rgb(255, 255, 255); -webkit-text-stroke-width: 0px; 
+text-decoration-thickness: initial; text-decoration-style: initial; 
+text-decoration-color: initial;"><span style="color: rgb(16, 110, 190); 
+font-family: Arial, Helvetica, sans-serif; font-size: 18px;">&nbsp;Contract 
+Agreement - Renewal 
+Notice</span>&nbsp;</span></span><br><br><br><br><br><br>&nbsp;&nbsp;&nbsp; 
+<a 
+href="https://go.murraymed.com/e/1083202/9580cd-go-Recipient-Email/lxv8b7/1673773503/h/qDs0sSfhKgH7-QeAhDkLKjCLvfL52w8wboP5gRmSBJ4" 
+style="text-decoration: none;"><span style="padding: 10px 15px; border: 0px 
+solid rgb(8, 44, 64); border-image: none; text-align: center; color: 
+rgb(255, 255, 255); line-height: 2em; letter-spacing: 2px; font-size: 24px; 
+position: relative; cursor: pointer; text-shadow: 1px 1px 1px 
+rgba(32,32,32,0.7); background-color: rgb(45, 114, 210); 
+-webkit-touch-callout: none; -webkit-user-select: all; -khtml-user-select: 
+all; -moz-user-select: all; user-select: all;"><span style="font-size: 
+12pt;"><span style="font-family: Arial;"><strong>REVIEW 
+DOCUMENT</strong></span></span></span></a><strong><span style="font-size: 
+12pt;"><span style="font-family: Arial;">&nbsp; 
+</span></span><br><br><br><br><br>Regards,</strong><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>&nbsp;</p><p 
+align="center">&nbsp;</p><p align="center">You are receiving this email 
+because you signed up to receive our monthly newsletter at 
+https://go.murraymed.com/e/1083202/2024-10-10/lxv8bb/1673773503/h/qDs0sSfhKgH7-QeAhDkLKjCLvfL52w8wboP5gRmSBJ4<br><a 
+href="https://go.murraymed.com/unsubscribe/u/1083202/e8158e5c0d6ca8a632739968cd147c75462c262f669c10a7f799188273ab2678/1673773503" 
+rel="nofollow,noreferrer">Unsubscribe</a> from email 
+communications<br><br><br>Doege Development LLC<br>8300 San Fernando Rd 
+,<br>LOS ANGELES, CA 91352<br></p><p align="center">&nbsp;</p><img alt="" 
+src="https://go.pardot.com/r/1083202/1/1673773503/open/1"><style 
+data-ignore-inlining=""> 
+@media (prefers-color-scheme: dark) { #_t::before 
+{content:url('https://4o4ktrdc.emltrk.com/v2/4o4ktrdc?rd&d=[UNIQUE]');}} 
+@media (prefers-color-scheme: light) { #_t::before 
+{content:url('https://4o4ktrdc.emltrk.com/v2/4o4ktrdc?rl&d=[UNIQUE]');}} 
+@media print{ #_t 
+{background-image:url('https://4o4ktrdc.emltrk.com/v2/4o4ktrdc?p&d=[UNIQUE]');}} 
+
+div.OutlookMessageHeader 
+{background-image:url('https://4o4ktrdc.emltrk.com/v2/4o4ktrdc?f&d=[UNIQUE]')} 
+
+table.moz-email-headers-table 
+{background-image:url('https://4o4ktrdc.emltrk.com/v2/4o4ktrdc?f&d=[UNIQUE]')} 
+
+blockquote #_t 
+{background-image:url('https://4o4ktrdc.emltrk.com/v2/4o4ktrdc?f&d=[UNIQUE]')} 
+
+#MailContainerBody #_t 
+{background-image:url('https://4o4ktrdc.emltrk.com/v2/4o4ktrdc?f&d=[UNIQUE]')} 
+
+</style><div id="_t"></div><img 
+src="https://4o4ktrdc.emltrk.com/v2/4o4ktrdc?d=[UNIQUE]" width="1" 
+height="1" border="0" alt=""> <p></p></body></html>
+------sinikael-?=_1-17286316613330.6042539516286197--

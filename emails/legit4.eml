@@ -1,0 +1,335 @@
+Received: from DU0PR08MB7835.eurprd08.prod.outlook.com
+ (2603:10a6:10:3b4::18) by DU0PR08MB9052.eurprd08.prod.outlook.com with
+ HTTPS; Wed, 2 Oct 2024 16:44:20 +0000
+Received: from DB7PR02CA0018.eurprd02.prod.outlook.com
+ (2603:10a6:10:52::31) by DU0PR08MB7835.eurprd08.prod.outlook.com
+ (2603:10a6:10:3b4::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.16; Wed, 2 Oct
+ 2024 16:44:18 +0000
+Received: from DB1PEPF000509FF.eurprd03.prod.outlook.com
+ (2603:10a6:10:52:cafe::1) by DB7PR02CA0018.outlook.office365.com
+ (2603:10a6:10:52::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.30 via
+ Frontend Transport; Wed, 2 Oct 2024 16:44:18 +0000
+Received: from eu-smtp-inbound-delivery-1.mimecast.com (91.220.42.227) by
+ DB1PEPF000509FF.mail.protection.outlook.com (10.167.242.41) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id
+ 15.20.8026.11 via Frontend Transport; Wed, 2 Oct 2024 16:44:17 +0000
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com
+ (mail-db8eur05on2111.outbound.protection.outlook.com [40.107.20.111]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ uk-mta-55-b4AIFKyUMm2o6pIgebtrdQ-1; Wed, 02 Oct 2024 17:44:16 +0100
+Received: from substrate.office.com (2603:10a6:208:188::23) by
+ AM0PR09MB3777.eurprd09.prod.outlook.com with HTTP via
+ VI1PR0902CA0028.EURPRD09.PROD.OUTLOOK.COM; Wed, 2 Oct 2024 16:44:15 +0000
+Arc-Seal: i=3; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=v44DURFpzRg1CzvQROvcFBmWkZ/INbUy7hgZH0EuQlE4Ty3Io8/vyJHcI3+uF5iGWVS973X384xRdbuprMGAjfR85Su1XHhF40w5sj6jHOPHh1L34peZ0uKnplIlTROqeMhq7qxVhS8hxgdU/Eps4m/mjTj8fzv7c01IQTEijQP2sL+hIhe75vvsUL4acBu0Pf7M2gtlPK38BeLo8JawmS6PcuhfriAE7Ly5ECQjUw7mgkxd3dgytgdpSVFtbiN+HoyfZCHvmG7cW8TSIS/Q7sdiFjdk3fTlBUgz2jR528GhV46MR7Jgf389I6IUNLUPF1YxJL7gL+JPVsmeI0DvKA==
+Arc-Seal: i=2; s=201903; d=dkim.mimecast.com; t=1727887457; a=rsa-sha256;
+	cv=pass;
+	b=LjCxTf799uIdCeBzQYIWGlsxfsvb3PUHzLH2TbK8L1H8CjVd4wcE1d42YK9g/j+PrFzFi4
+	THdgh1nUsAVVDc5K6YqteCQvcwlWT/Cx+Fowzz3U8crns1TdgSjVMw7L5xbOfE4rOqUpI8
+	kM7QAdy7kDUE8v3orZxsxXeJ3To5zw1mmFvM62Br780S2IZ8k6c/lokKiaAYH7InJRI73b
+	lehARZJ8BftrA3QWvgzgOMj6tM/yoRYE2vBvSNOPEV4EH/RGbnsodrZJlgPmGOCF7Y8419
+	09cqE/k/I476f2tMayQey1TaNLP6yESKmB9OpvtC3ARVFrwYyH1zreNFSay+wg==
+Arc-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Xg/c1CSNHl98iFndvQ+JU77PQmCaNNFEqaMqT1rESqO9CEaoT0OKJKe5r5Njg7csOwUuh/tOoWZ4N/i6esvxspOo/wYJn2/OGX/lbmYLr6/AyAeWpLajQz2ZoyxJu0E8xB/zlNy+ZqjQ44/h6sAkHvlUyEky86N68rFt6E3ZNKsUKQtK5Em+vuFFSYztq86Zoq7V1r9nVXE3Lpy+oDW506C5wq8muh/qakUCbyb3RXs9eZjfe2FvAxbFN3QDP1GN6PdaBkx/IQjdeuNqIYtrUES5TLf8jbq7X3XDLn/fdIy+7lytqYA1bBxJrj29d8bZdFSKb7WAO5hONMXtrPabhg==
+Arc-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed;
+ d=microsoft.com; s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=289AH8hoyAfvGrLgz/gwn8HNQebvOqMUl39el1KxyPo=;
+ b=rNk4IpYtTr6PHfykzqqTuUrtDqPA/7tBdpHB8F+o+Xlqf/ZkQVe1KjPV/uGPpj/vwlXu1W5l+wvLSsllQ60j5FxZPV19CEGHNbb3xtt2ZYT9bqakKaEsi/RvtLOFbM1jXBEeeVQgg7w4VuSaxwwYocG6KnfJEzeE2fpamKJjJVDJ/UZHn6EmqjQHEdfEOnTHYTyvaoU3S9JTUXDsodDMG8aaP82OMbu0LOIGut8csTxex8EHE1/9cwY+AqWonydv9zNmaitJeJ2vi9GLUCg7SoYKGfnZ6t8113wk5MRT8Y+GjWv4nqgFRmW6ifeED2omUCQAfYiWzW55CugnM0mHzQ==
+Arc-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+	d=dkim.mimecast.com; s=201903; t=1727887457;
+	h=from:from:sender:sender:reply-to:subject:subject:date:date:
+	 message-id:message-id:to:to:cc:mime-version:mime-version:
+	 content-type:content-type:dkim-signature;
+	bh=289AH8hoyAfvGrLgz/gwn8HNQebvOqMUl39el1KxyPo=;
+	b=BYGODY9IT8kr0Y0NDwaLfdvgpvPH7P4XvQvXre81lrz+XcBAfJHdcqfPz4m5PxzSlKemrq
+	BRe7GuNrntEISYitKcP0IQLoZE2erWuS8Wkh1lk4xVRpv2KCvH2t8UohQ1jKLQC4aCGK0v
+	289wy631SQFKlc7TbfRoTIpah7ELtgJM4baxKOe4zJDvdXmssKFXSU+K04GumgwB+bZjNJ
+	+hKnuxs1L+9Cw8YJuASdRztNX8S9JXQxd6K6UM9JE1aJwXXxmr65luz+HlpDDEFoKMQ4Mq
+	BodhRjuKO3PfOtjviWQ4SGqVAIX6/05O2j3NHFpe2mXmN3Y+5dUcSdw2Z2uZNw==
+Arc-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microsoft.com; s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IamiS5+DFYUnvfcYnRtmsWq4vSP6Hvmls5EQTdVSYTg=;
+ b=BYgUhPbyt/Rg64QZwjjpeQIPCVzJv+5iHMAECoa4PzDoJm7GSpXS3EgrarR4Hc1jtuHrYlqXA1UdUeGgkMIWIShXDIiK4122ntcTmI5RPnQxtvxxHhG9dMDo4xw7aaTvZuYATjiG8d5pgoExI1859fb3D9FNhHLzcRY72CgcGqygM2DgzxECz+gl8Tfig74dcKmF0WV1asQ/k1Hs7eLqUO2QBOHqAnIbHlqz0FXB7b3n0cEaqxBvNU6YmRnsirR4ozcd9aMFFG4m01KMz3cSpVhpwoDKBAShgUp1iEhs7hJgQJgaT9NLPAM32vaqrB+0Q5Re639bSYIvjkD+NoNmZA==
+Arc-Authentication-Results: i=3; mx.microsoft.com 1; spf=fail (sender ip is
+ 91.220.42.227) smtp.rcpttodomain=zopa.com
+ smtp.mailfrom=sharepointonline.com; dmarc=fail (p=reject sp=reject
+ pct=100) action=oreject header.from=sharepointonline.com; dkim=fail
+ (signature did not verify) header.d=spoemeaeop.onmicrosoft.com; dkim=fail
+ (signature did not verify) header.d=sharepointonline.com; arc=pass (0
+ oda=0 ltdi=0 93)
+Arc-Authentication-Results: i=2;	relay.mimecast.com;	dkim=pass
+ header.d=spoemeaeop.onmicrosoft.com
+ header.s=selector1-spoemeaeop-onmicrosoft-com header.b=ROyAMJvD;	dkim=pass
+ header.d=sharepointonline.com header.s=selector1 header.b="IP6K/kIQ";
+	arc=pass ("microsoft.com:s=arcselector10001:i=1");	dmarc=pass
+ (policy=reject) header.from=sharepointonline.com;	spf=pass
+ (relay.mimecast.com: domain of no-reply@sharepointonline.com designates
+ 40.107.20.111 as permitted sender)
+ smtp.mailfrom=no-reply@sharepointonline.com
+Arc-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Authentication-Results: spf=fail (sender IP is 91.220.42.227)
+ smtp.mailfrom=sharepointonline.com; dkim=fail (signature did not verify)
+ header.d=spoemeaeop.onmicrosoft.com;dmarc=fail action=oreject
+ header.from=sharepointonline.com;compauth=none reason=451
+Received-Spf: Fail (protection.outlook.com: domain of sharepointonline.com
+ does not designate 91.220.42.227 as permitted sender)
+ receiver=protection.outlook.com; client-ip=91.220.42.227;
+ helo=eu-smtp-inbound-delivery-1.mimecast.com;
+Authentication-Results-Original: relay.mimecast.com;	dkim=pass
+ header.d=spoemeaeop.onmicrosoft.com
+ header.s=selector1-spoemeaeop-onmicrosoft-com header.b=ROyAMJvD;	dkim=pass
+ header.d=sharepointonline.com header.s=selector1 header.b="IP6K/kIQ";
+	arc=pass ("microsoft.com:s=arcselector10001:i=1");	dmarc=pass
+ (policy=reject) header.from=sharepointonline.com;	spf=pass
+ (relay.mimecast.com: domain of no-reply@sharepointonline.com designates
+ 40.107.20.111 as permitted sender)
+ smtp.mailfrom=no-reply@sharepointonline.com
+X-Mc-Unique: b4AIFKyUMm2o6pIgebtrdQ-1
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=spoemeaeop.onmicrosoft.com; s=selector1-spoemeaeop-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IamiS5+DFYUnvfcYnRtmsWq4vSP6Hvmls5EQTdVSYTg=;
+ b=ROyAMJvD0N4JKbTQlKZ3dal/jczZrtSl91m2GqqjlIkI6YhXcI76srHBSWEmH1WM4tQleGYoQeecpvSMDSiMNma6sAtcwbXmTLGrvmquJXzY5sahbPWYHV6r94u/0cEg8Es4QbMdT+z+3SRcJVvn9P9tDVj7GVcI+/DMcoojKLg=
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=sharepointonline.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IamiS5+DFYUnvfcYnRtmsWq4vSP6Hvmls5EQTdVSYTg=;
+ b=IP6K/kIQ6bm2En3Woji9+3NMj4GNjissKqVy+OeJjkx4j+OEe2kU720+/UYSMdkXc4BgFAWO5AcfCA2O/bIms0uUxZJkHfSAGbvJS+Q93+6r1Ah4a9V0iUOlrpYWp8dEvDLDE6JXT/5Dwyzl0oG4QSp3yCkFzYpNvSIN5Jd0lol81jHEkAZ1MTDrM+mQjXRP4N67gx+Wt6Tmn9BARVsVHXx2KdbQJmpB8TefgN9cFcSx50DlCZ0NnCI54tgI+HYnyyaZ3D8eWReRmTJqhMoL+KmhK2bqeMIVmGmL+tHxQWeR2fTnrzCfTpiFpdld8e7oFA4kRhw8Ef79/xlWoSVCWw==
+Date: Wed, 2 Oct 2024 16:44:15 +0000
+Subject: =?UTF-8?B?QWRtaW5pc3RyYXRvciBoYXMgcmVzcG9uZGVkIHRvIHlvdXIgcmVx?=
+ =?UTF-8?B?dWVzdCBmb3IgJ0NvbnRlbnQgUmV2aWV3IENvbGxlY3Rpb25zIExp?=
+ =?UTF-8?B?bmtlZCBKb3VybmV5cyAyMDIzJw==?=
+Sender: SharePoint Online <no-reply@sharepointonline.com>
+To: Thomas Storvik <thomas.storvik@zopa.com>
+X-Crid:
+ b00456a1-c076-9000-e034-b0aaa2171cd1,b00456a1-c076-9000-e034-b0aaa2171cd1-b1570c7d-34ee-4439-b027-fbac90992fb9-509e3d4a-435a-46b1-9fde-b522360365ef-r0-SendEmail
+X-Tnid: 68cae5ad-853d-473f-98cd-43df5b6b7c5d
+Return-Path: no-reply@sharepointonline.com
+From: SharePoint Online <no-reply@sharepointonline.com>
+MIME-Version: 1.0
+Request-Id: 56e4d7ee-8b96-29b1-db9a-cdddf2c33701
+X-Ms-Traffictypediagnostic:
+ AM0PR09MB3777:EE_ODSPNotificationServiceNonSystemEmails|DB1PEPF000509FF:EE_|DU0PR08MB7835:EE_|DU0PR08MB9052:EE_
+X-Ms-Exchange-Antispam-Relay: 0
+X-Microsoft-Antispam-Untrusted:
+ BCL:0;ARA:13230040|69100299015|61400799027|376014
+X-Microsoft-Antispam-Message-Info-Original:
+ J6ng34d6uCndy8UefvjDCboIGDZmlW4EtMIBzNFZuD07m3x++eT0Fon7xegHCHKEYyKA/PGmsZ0oZvDqYsZR2FnGGWptKXrLkclTSew5WZdz5kRhNzbL6aDVdXqHREG8I3YWlkaSHchxapX6EceUQDJuKYKdK0RR0YJ5r8qtHooAEnPKmVbOhRzriCAvb1WMb2nlXQRDBqAZ/dKdYxrBY1dJl8BZUV3gs0hc7CZ3mbZ6kNCBoyuSM8ZEZftkHCp7DvnPRpimp3jAxJay0efdETxOoeSj4ZTqhj2+9DIrd7zo61xeOetkkgPFRhdjK+kXmpQ/N+nDDAvGzZ6F8Felm9oAWikH+wLzYTiDaM+m8KdhKrAc6BIj8OcAa0aTrI1zvVuNUoGewg0jGQbTRJ76HCXlSmjbtk8zsPEmpyeJmNYocOToJDpP/NzzyivMdzkjyiHfYXm2ttWz/Lxy9eerYy6nd4iBzLYRN0Ab32GHd1pfQbmooS3ufRV/pFmsWPvI3QAX4m1A7e+HiZlUeT/fNFLg0q3htaOCDCFaD2zyjlG+lt+h5BO4prFkC0Y4PhwhIeDhUKIIrD0zrdO1ZKbq9q+2dbQuCRV1yKnX4Ns5kN53tnR9oPyFtehTE4jdknA9wtDfRmx1vCfFudEKk4YgtJORvDAtkoWfsBbQCgUYgaGFDfeRifnaGnudBM7ajSjXG6+3z1UNYzJPia/xaLRTgjZceCxwqEqeeeiQC302lYTc8Ue5R+pRC7eV9CIkRp/IlrvIgKTNMEF655RZHu/Ktpzutx0QL1x5AqTtfY5V1b6s7WZv7Ipc88AOBYGC1HTJqnz9uwJTfblo8Me0RaJgtePR0ePh7eMPgc4l1s6y/+S63l5/NR4hho3NTP1ofRr2xT52ejrz/SlvEyCa8+PrpdK2pNrgtLDfs2W7lxd90HRaRO59D9HVF1pWCSqBknRhIhe0sVbKEymn3gc2LqTlUItBpU14NBUXdqVEx0Ts0WAC+rhlYN+IdpjfqgXv9LR4kxIPZbiph0oQ82qiYCVr/hvsJmz1/KJcHq/53JJlCZQy/lS4qRgLglNKypIF05OYr6FwGBn95HennL0bdP6KZXTMYnn9BpTdiZn1uU7fwOcv1jCV0yUHndbj6fokdime115FYjqapilUvQHo6PMXE6/ZCDg5t5EeUDwUIpsxX0pWsYxbQ/vWz+wogNrGFx1no9SUBJMCVZv0vMJGu6uzre9sMwvYOFAEWwoNmowsxnc=
+X-Forefront-Antispam-Report-Untrusted:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:;PTR:;CAT:NONE;SFS:(13230040)(69100299015)(61400799027)(376014);DIR:OUT;SFP:1102
+X-Ms-Exchange-Transport-Crosstenantheadersstamped: AM0PR09MB3777
+X-Ms-Exchange-Transport-Crosstenantheadersstamped: DU0PR08MB7835
+Message-Id: <72097.124100217441600371@uk-mta-55.uk.mimecast.lan>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Impersonation-Protect: Policy=New Impersonation Protection
+ Definition - VIP;Similar Internal Domain=false;Similar Monitored External
+ Domain=false;Custom External Domain=false;Mimecast External
+ Domain=false;Newly Observed Domain=false;Internal User Name=false;Custom
+ Display Name List=false;Reply-to Address Mismatch=false;Targeted Threat
+ Dictionary=false;Mimecast Threat Dictionary=false;Custom Threat
+ Dictionary=false
+X-Mimecast-Impersonation-Protect: Policy=New Impersonation Protection
+ Definition - Default;Similar Internal Domain=false;Similar Monitored
+ External Domain=false;Custom External Domain=false;Mimecast External
+ Domain=false;Newly Observed Domain=false;Internal User Name=false;Custom
+ Display Name List=false;Reply-to Address Mismatch=false;Targeted Threat
+ Dictionary=true;Mimecast Threat Dictionary=true;Custom Threat
+ Dictionary=false
+Content-Type: multipart/mixed;
+ boundary="----sinikael-?=_1-17279528178110.4683295029363528"
+X-Ms-Exchange-Organization-Expirationstarttime: 02 Oct 2024 16:44:18.0152
+ (UTC)
+X-Ms-Exchange-Organization-Expirationstarttimereason: OriginalSubmit
+X-Ms-Exchange-Organization-Expirationinterval: 1:00:00:00.0000000
+X-Ms-Exchange-Organization-Expirationintervalreason: OriginalSubmit
+X-Ms-Exchange-Organization-Network-Message-Id:
+ 40db262c-5c6c-4432-701a-08dce301752d
+X-Eopattributedmessage: 0
+X-Eoptenantattributedmessage: 68cae5ad-853d-473f-98cd-43df5b6b7c5d:0
+X-Ms-Exchange-Organization-Messagedirectionality: Incoming
+X-Ms-Exchange-Transport-Crosstenantheadersstripped:
+ DB1PEPF000509FF.eurprd03.prod.outlook.com
+X-Ms-Publictraffictype: Email
+X-Ms-Exchange-Organization-Authsource:
+ DB1PEPF000509FF.eurprd03.prod.outlook.com
+X-Ms-Exchange-Organization-Authas: Anonymous
+X-Ms-Office365-Filtering-Correlation-Id:
+ 40db262c-5c6c-4432-701a-08dce301752d
+X-Ms-Exchange-Organization-Scl: -1
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|31092699021|69100299015|5062899012|6062899009|5082899009|2092899012|4092899012|3092899012|3072899012|82310400026|13012899012|12012899012|13102899012;
+X-Forefront-Antispam-Report:
+ CIP:91.220.42.227;CTRY:GB;LANG:en;SCL:-1;SRV:;IPV:CAL;SFV:SKN;H:eu-smtp-inbound-delivery-1.mimecast.com;PTR:eu-smtp-inbound-delivery-1.mimecast.com;CAT:NONE;SFS:(13230040)(31092699021)(69100299015)(5062899012)(6062899009)(5082899009)(2092899012)(4092899012)(3092899012)(3072899012)(82310400026)(13012899012)(12012899012)(13102899012);DIR:INB;
+X-Ms-Exchange-Crosstenant-Originalarrivaltime: 02 Oct 2024 16:44:17.9683
+ (UTC)
+X-Ms-Exchange-Crosstenant-Network-Message-Id:
+ 40db262c-5c6c-4432-701a-08dce301752d
+X-Ms-Exchange-Crosstenant-Id: 68cae5ad-853d-473f-98cd-43df5b6b7c5d
+X-Ms-Exchange-Crosstenant-Authsource:
+ DB1PEPF000509FF.eurprd03.prod.outlook.com
+X-Ms-Exchange-Crosstenant-Authas: Anonymous
+X-Ms-Exchange-Crosstenant-Fromentityheader: Internet
+X-Ms-Exchange-Transport-Endtoendlatency: 00:00:02.2328301
+X-Ms-Exchange-Processed-By-Bccfoldering: 15.20.8026.016
+X-Microsoft-Antispam-Mailbox-Delivery:
+ ucf:0;jmr:0;auth:0;dest:I;ENG:(910001)(944506478)(944626604)(920097)(930097)(140003);
+X-Microsoft-Antispam-Message-Info:
+ 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
+Content-Transfer-Encoding: 7bit
+
+------sinikael-?=_1-17279528178110.4683295029363528
+Content-Type: text/html; format=flowed
+Content-Transfer-Encoding: 7bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><style 
+type="text/css">
+     .headerBackgroundMsoTable {
+         border-spacing: 0px;
+         width: 100%;
+     }
+</style></head><body style="margin: 0px"><p style="font-family: Verdana; 
+font-size:8pt; color:#666666;">This message originates from outside our 
+organisation. Consider carefully whether you should click on any links, 
+open any attachments or reply. <br><br></p><div 
+stlye="background-color:;"><table height="100%" width="100%" 
+cellpadding="0" cellspacing="0" border="0" style="border-spacing: 
+0px"><tbody><tr><td valign="top" align="center"><table align="center" 
+style="border-spacing: 0px;width: 600px;margin-right: auto;margin-left: 
+auto"><tbody><tr><td align="left" style="padding: 0px;margin: 0px"><!-- 
+Start Standard Header --><table cellpadding="0" cellspacing="0" border="0" 
+style="border-spacing: 0px;width: 100%"><tbody><tr><td 
+align="center"><!--[if !mso]>--><div><!--<![endif]--><!--[if mso]>
+                 <table class="headerBackgroundMsoTable"  cellpadding="0" 
+cellspacing="0" border="0">
+                     <tbody>
+                         <tr class="headerBackgroundMsoRow">
+                             <td class="headerBackgroundMsoContainer">
+                 <![endif]--><table cellpadding="0" cellspacing="0" 
+border="0" style="border-spacing: 0px;width: 100%"></table><!--[if mso]>
+                             </td>
+                         </tr>
+                     </tbody>
+                 </table>
+                 <![endif]--><!--[if 
+!mso]>--></div><!--<![endif]--></td></tr></tbody></table><!-- End Standard 
+Header --></td></tr><tr><td align="left" style="padding: 0px;margin: 
+0px"><table border="0" cellspacing="0" cellpadding="8" style="width:100%" 
+dir="ltr"><tbody><tr><td align="left" valign="top"><div style="font-family: 
+'Segoe UI Semilight', 'Segoe UI', Verdana, sans-serif; color: 
+#444444;"><!--customMessageHtml--><div style="margin-bottom: 21px; 
+font-size: 18px;">Good news. You now have access to 'Content Review 
+Collections Linked Journeys 2023'. </div><!--DescriptionHtml--><div 
+style="font-size: 14px;"><div style="margin-bottom: 8px; font-size: 28px; 
+font-family: 'Segoe UI Light', 'Segoe UI', Verdana, sans-seri; color: 
+#444444;"><!--body--><a 
+href="https://zopao365.sharepoint.com/sites/CustomerLifecycleTeam/Shared%20Documents/Salesforce%20Marketing%20Cloud/01-%20Content%20Review/01-%20Collections/2023/Content%20Review%20Collections%20Linked%20Journeys%202023.xlsx?d=we0505828337c499dbf5b83eef5d3705d&amp;web=1" 
+style="color: #0072bc;text-decoration: none">Go to the item 
+</a></div></div></div></td></tr></tbody></table></td></tr><tr><td 
+align="left" style="padding: 0px;margin: 0px"><!-- Start Standard Footer 
+--><table cellpadding="0" cellspacing="0" border="0" align="center" 
+style="border-spacing: 0px;width: 100%"><tbody><tr><td align="left" 
+style="font-size: 12px;line-height: 16px;padding: 0px 8px;background-color: 
+#f2f2f2"><div><table cellpadding="0" cellspacing="0" border="0" 
+style="border-spacing: 0px;width: 100%"><tbody><tr><td align="left" 
+style="padding-top: 5px;text-align: left"><img alt="" title="" height="22" 
+width="90" style="margin: 0px;height: 22px;width: 90px" 
+src="cid:8248a0bb-a9fc-4f66-9c33-0c39995890c2"> </td></tr><tr><td 
+align="left" style="padding-top: 5px;text-align: left"><table 
+cellpadding="0" cellspacing="0" border="0" style="border-spacing: 
+0px;width: 100%"><tbody><tr><td align="left" style="padding: 0 4px 0 
+0;white-space: nowrap"><p style="padding: 0px;margin: 0px;font-family: 
+'Segoe UI Semilight', 'Segoe UI', Verdana, sans-serif"><a 
+href="https://go.microsoft.com/fwlink/?LinkId=521839" target="_blank" 
+title="" style="color: #0072bc;text-decoration: none;padding: 0px;margin: 
+0px;font-family: 'Segoe UI Semilight', 'Segoe UI', Verdana, 
+sans-serif">Privacy&nbsp;Statement</a> 
+</p></td></tr></tbody></table></td></tr><tr><td align="left" 
+style="padding-top: 5px;text-align: left"><table cellpadding="0" 
+cellspacing="0" border="0" style="border-spacing: 0px;width: 
+100%"><tbody><tr><td align="left"><p style="margin: 0px;font-family: 'Segoe 
+UI Semilight', 'Segoe UI', Verdana, sans-serif">This email is generated 
+through Zopa Bank LTD's use of Microsoft 365 and may contain content that 
+is controlled by Zopa Bank 
+LTD.</p></td></tr></tbody></table></td></tr></tbody></table></div></td></tr></tbody></table><!-- 
+End Footer 
+--></td></tr></tbody></table></td></tr></tbody></table></div><img 
+src="https://uksouthr-notifyp.svc.ms:443/api/v2/tracking/method/View?mi=gPvl66QTf0ubjsMszyDy2Q" 
+aria-hidden="true" role="presentation" height="1" width="1" 
+istrackingpixel="true"> <p></p></body></html>
+------sinikael-?=_1-17279528178110.4683295029363528
+Content-Type: image/png
+X-Attachment-Id: 8248a0bb-a9fc-4f66-9c33-0c39995890c2
+Content-Id: <8248a0bb-a9fc-4f66-9c33-0c39995890c2>
+Content-Disposition: inline; filename=8248a0bb-a9fc-4f66-9c33-0c39995890c2
+Content-Transfer-Encoding: base64
+
+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
+HjwfHl6ingAAAABJRU5ErkJggg==
+------sinikael-?=_1-17279528178110.4683295029363528--

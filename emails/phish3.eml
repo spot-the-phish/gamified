@@ -1,0 +1,232 @@
+Received: from AM9PR08MB6145.eurprd08.prod.outlook.com
+ (2603:10a6:20b:2dd::5) by DB9PR08MB8290.eurprd08.prod.outlook.com with
+ HTTPS; Mon, 7 Oct 2024 10:37:48 +0000
+Received: from DU2PR04CA0040.eurprd04.prod.outlook.com
+ (2603:10a6:10:234::15) by AM9PR08MB6145.eurprd08.prod.outlook.com
+ (2603:10a6:20b:2dd::5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.16; Mon, 7 Oct
+ 2024 10:37:46 +0000
+Received: from DU6PEPF0000A7E3.eurprd02.prod.outlook.com
+ (2603:10a6:10:234:cafe::dc) by DU2PR04CA0040.outlook.office365.com
+ (2603:10a6:10:234::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.21 via
+ Frontend Transport; Mon, 7 Oct 2024 10:37:46 +0000
+Received: from eu-smtp-inbound-delivery-1.mimecast.com (91.220.42.227) by
+ DU6PEPF0000A7E3.mail.protection.outlook.com (10.167.8.41) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id
+ 15.20.8048.13 via Frontend Transport; Mon, 7 Oct 2024 10:37:46 +0000
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com
+ [209.85.217.47]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ uk-mta-99-xf2vr1twOp-sxueQNjeOlA-1; Mon, 07 Oct 2024 11:37:44 +0100
+Received: by mail-vs1-f47.google.com with SMTP id
+ ada2fe7eead31-4a3baeb9f3fso1418902137.0        for
+ <murshedur.rahman@zopa.com>; Mon, 07 Oct 2024 03:37:43 -0700 (PDT)
+Received: from 908782597638 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 7 Oct 2024 10:37:42 +0000
+Arc-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=xqG9MhJ3jM50nBFcIOt/dSp/nML70J+IyMb9CcldKNTMZzUh1zXgJof0B+LzbCPxbUbezibfO5MaS2aPC59stHhOnAFY0t1y0v77nfSc3Zv/+0G3M0iMPrZwCXJTKDjwyosd57/WMu3+/LfOKcDBtXoP1FbLPfVhgsHdxZaiDYrEBNHnt4E8XM48xtzze4Z0pEuTV+23UeyME1pDod1oYWnslCPekq0FfxQUumZl3pnvE+i2qm4FB0xnqixhGBpISH4Pv64Vjxr08uHHOuEQdBbWbx/h9kJ7CjslvdAPxb7Kil6w4ZBzjR5oMtYB5Q4HcQzDTpIXYlWlYsYqIWk2TA==
+Arc-Seal: i=1; s=201903; d=dkim.mimecast.com; t=1728297465; a=rsa-sha256;
+	cv=none;
+	b=QX9K3LO9n5ehhKvF3+e2COhMr89+B59VAu/fNxKm9UbOthKkgipdMJs+dfLLfkeZeA5aHV
+	j/lxRzsM5ZX3aFoMdye8xvou0JHW+0yjad+av5jp2YDBufU80JCU10KXLzt9nHam5aKkM8
+	Z/mzwgsFHuyKEfaxIgfPeDChUBfGmrPdjnDs6yLxIKcQFmbifvhaDypUGYfQCNj/nr/raG
+	xg91hCkKh10XqBUocer3ptj2Q8d9eZxTEE34BrpbTYL/Fn2nS9vp5Tb4IZ0RyX6lOWcp8d
+	mMvtNb1KGu8zsPqSYMnNdsCp6vVEKRgWubhzfuUjyGjRBYPAGhjHHdgPgjc4Pg==
+Arc-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=microsoft.com; s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zmjfc0G5aQk1DSpOILAYRWmRmXGotWHTp/Pi2JPdnlQ=;
+ b=FIoEC2ao04s6Qu4dCdmkg1j+6WEoDDZ3cM7mv8nXjfnpDaHWJj9NEfUcnJHAoSMCx5MemPxCY2U/V8kXWeQwJ/95KOsgPyHmFlmkMgty26nA4vNcexUt+HzBQu+F3QKnYxRXHjuDzifXr+NY+H0FPoZzm9mXT9WjWHwIiFxCFUi0EXBZirt7bRVFK15+TOk4PlZ0CNptZGfD298LIkUhCR3gRZGpjVOTAi0yTZQaRHw47ybWKTAjyQwum3DHQMLkC3RhxzEw4MAC4rhWLfgGMM9lATXtJammje+hHUcngzWMInEVSCggOw0o9kinEUR4omBGv7XlWUBglemo5QmfVw==
+Arc-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=dkim.mimecast.com; s=201903; t=1728297465;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 list-unsubscribe:list-unsubscribe-post:dkim-signature;
+	bh=zmjfc0G5aQk1DSpOILAYRWmRmXGotWHTp/Pi2JPdnlQ=;
+	b=IynKrNmbCVDC5AgmPj2s9imqjtssE84hOjYGsVOqcWD9VvAmX2tepPiCm18xVLHiUOLXYQ
+	F+NqzaLdSXW5/FjrokwOC3xWblInC/oEviTMzaMt7tBaOjWEA2AXSCU7Qac6SlJ0k2CuvJ
+	MY5g4hr1CvKI2dvtrpodHoPrWHxgNRHwmafiSZ7HLWoHUtFSpYVlEfMK644+BTSzKAmSgr
+	D0z5uBkGqkDq0m1kvAZYWqLkqJKVIAQiviB9S/TYyDo7xNNqKgEt+0JFyY75mr/bsOcuiI
+	7GjT7LDiRYLdL/oGNny44JOOKGs79H3BmVp4uum5oWk/mn1z6JnjmXJukimVhw==
+Arc-Authentication-Results: i=2; mx.microsoft.com 1; spf=fail (sender ip is
+ 91.220.42.227) smtp.rcpttodomain=zopa.com
+ smtp.mailfrom=febrileunbalance.xyz; dmarc=fail (p=none sp=none pct=100)
+ action=none header.from=febrileunbalance.xyz; dkim=fail (body hash did not
+ verify) header.d=febrileunbalance.xyz; arc=pass (0 oda=0 ltdi=0 93)
+Arc-Authentication-Results: i=1;	relay.mimecast.com;	dkim=pass
+ header.d=febrileunbalance.xyz header.s=google header.b=msGumzYJ;
+	dmarc=pass (policy=none) header.from=febrileunbalance.xyz;	spf=pass
+ (relay.mimecast.com: domain of payagency@febrileunbalance.xyz designates
+ 209.85.217.47 as permitted sender)
+ smtp.mailfrom=payagency@febrileunbalance.xyz
+Authentication-Results: spf=fail (sender IP is 91.220.42.227)
+ smtp.mailfrom=febrileunbalance.xyz; dkim=fail (body hash did not verify)
+ header.d=febrileunbalance.xyz;dmarc=fail action=none
+ header.from=febrileunbalance.xyz;compauth=none reason=405
+Received-Spf: Fail (protection.outlook.com: domain of febrileunbalance.xyz
+ does not designate 91.220.42.227 as permitted sender)
+ receiver=protection.outlook.com; client-ip=91.220.42.227;
+ helo=eu-smtp-inbound-delivery-1.mimecast.com;
+Authentication-Results-Original: relay.mimecast.com;	dkim=pass
+ header.d=febrileunbalance.xyz header.s=google header.b=msGumzYJ;
+	dmarc=pass (policy=none) header.from=febrileunbalance.xyz;	spf=pass
+ (relay.mimecast.com: domain of payagency@febrileunbalance.xyz designates
+ 209.85.217.47 as permitted sender)
+ smtp.mailfrom=payagency@febrileunbalance.xyz
+X-Mc-Unique: xf2vr1twOp-sxueQNjeOlA-1
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=febrileunbalance.xyz; s=google; t=1728297462; x=1728902262;
+ darn=zopa.com;
+        h=to:subject:message-id:date:list-unsubscribe:list-unsubscribe-post
+         :domain:from-name:mime-version:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=32UIIPf42OcL5myZPYsrSXRUNqGL1DMbWv+CVbXGdnU=;
+        b=msGumzYJ59gU9ZmkCzyclAhjAmT+ohX8mU/rZKO5VZIlzqtDt7Abw8x+cgksOghyLd
+         B941qbBvRB6F9Ph5/Q+5fMB59ZSxIINCq62P2IUrJbNTUzhMeIAZddCFIAUWvoIXusrD
+         XTqBBLORZW9ty70ar8r9r2uBA+LSobq14ExsVoPCDiDFYB2kMUQZvgtKDQ+fqVMFAWbX
+         SBN9eVc3SeX4EKGRhaJuNSGpDP22v5HIWo5jt4zdIIsJc/nv+WQ8fq6L3tlGVA+Xhjbe
+         9WoM3A3cuR5Mb/2mrc8/bLEzz9ueqyToqJrPiqZZe4H8gF1SzAGY/WU245qPGrd/8oeA
+         6FMQ==
+X-Google-Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728297462; x=1728902262;
+        h=to:subject:message-id:date:list-unsubscribe:list-unsubscribe-post
+         :domain:from-name:mime-version:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=32UIIPf42OcL5myZPYsrSXRUNqGL1DMbWv+CVbXGdnU=;
+        b=t78JYpaWXP9bRhJvlwCAfSW/eezHqW8RbGDc3hAIbMErQpgDDqpooG5D7z1BeITixR
+         vIUJmZTWvb4myqfQElEEQZOsg0e8MSoTJIOngn+l2fcnaHcpbG5qHIRwY4rkLVFTYqNG
+         ctJ0toJ1k4la/ue8LULpjKPNlfzvo0gImnJeYhosvYUyzt8cE3qgdLJs3mMk60a4IfSb
+         xzTumGuN7aseFpXm+jn18CFOH7ciIKV2cmYYqfm3+/0g5Y0TgwadwcmkzI1wW2le0O6x
+         BWFIpV6TS6h2SGDWxnYjmPisNVZETNCdMJyxkiIO0C1e0koR/z1L0KDQaa1gg66GyOSo
+         Prog==
+X-Gm-Message-State:
+ AOJu0YyIwg5azR9huYr71XG3u42NuWSyS6fN5FSWQ0mQJ2t6bDYgTCPT
+	JvH6xtnIM/qypWHvhWPhFzOYj6rfHRRDo5ZvlDOC6P5jPFpo9NLRmULSQ1tto0/1KZ/x2y86m4E
+	dvCdbo5uikUx0p5na4/1HI9bmWQ6ZI+rozslj9juvPhkmibZW
+X-Google-Smtp-Source:
+ AGHT+IEj6kHh9znArxw+CEFkTKhdurj9j9aRQc2nKKvcTLKx8ag0shOVP9+CUSuPr83110+hB7z8VNbJw5J6DL+yNy4=
+X-Received: by 2002:a05:6102:3a08:b0:4a3:afd8:534 with SMTP id
+ ada2fe7eead31-4a4058dbc57mr5547004137.19.1728297462565; Mon, 07 Oct 2024
+ 03:37:42 -0700 (PDT)
+From: Ilana <payagency@febrileunbalance.xyz>
+MIME-Version: 1.0
+From-Name: Ilana
+Domain: febrileunbalance.xyz
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Unsubscribe:
+ <https://kriya.ai/invitations/private/17569/-27lUHEYzNg/unsubscribe>,
+ <mailto:payagency@febrileunbalance.xyz?subject=unsubscribe&body=unsubscribe=0A=0Ahttps://kriya.ai/invitations/private/17569/-27lUHEYzNg/unsubscribe>
+Date: Mon, 7 Oct 2024 10:37:42 +0000
+Message-Id:
+ <CAMgJY2AyEQakPq3AjS3m=-MFrZ+ihndL2jN1cbRuAT+j9zMtXA@mail.gmail.com>
+Subject: =?UTF-8?B?Wm9wYSBCYW5rIOKAlCBQYXkgQWdlbmN5?=
+To: Murshedur Rahman <murshedur.rahman@zopa.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Impersonation-Protect: Policy=New Impersonation Protection
+ Definition - VIP;Similar Internal Domain=false;Similar Monitored External
+ Domain=false;Custom External Domain=false;Mimecast External
+ Domain=false;Newly Observed Domain=false;Internal User Name=false;Custom
+ Display Name List=false;Reply-to Address Mismatch=false;Targeted Threat
+ Dictionary=false;Mimecast Threat Dictionary=false;Custom Threat
+ Dictionary=false
+X-Mimecast-Impersonation-Protect: Policy=New Impersonation Protection
+ Definition - Default;Similar Internal Domain=false;Similar Monitored
+ External Domain=false;Custom External Domain=false;Mimecast External
+ Domain=false;Newly Observed Domain=false;Internal User Name=false;Custom
+ Display Name List=false;Reply-to Address Mismatch=false;Targeted Threat
+ Dictionary=true;Mimecast Threat Dictionary=true;Custom Threat
+ Dictionary=false
+Content-Type: multipart/mixed;
+ boundary="----sinikael-?=_1-17282988414160.0026723851402317145"
+Return-Path: payagency@febrileunbalance.xyz
+X-Ms-Exchange-Organization-Expirationstarttime: 07 Oct 2024 10:37:46.0553
+ (UTC)
+X-Ms-Exchange-Organization-Expirationstarttimereason: OriginalSubmit
+X-Ms-Exchange-Organization-Expirationinterval: 1:00:00:00.0000000
+X-Ms-Exchange-Organization-Expirationintervalreason: OriginalSubmit
+X-Ms-Exchange-Organization-Network-Message-Id:
+ b32bcc2f-a4ac-4a3a-6b56-08dce6bc1503
+X-Eopattributedmessage: 0
+X-Eoptenantattributedmessage: 68cae5ad-853d-473f-98cd-43df5b6b7c5d:0
+X-Ms-Exchange-Organization-Messagedirectionality: Incoming
+X-Ms-Publictraffictype: Email
+X-Ms-Traffictypediagnostic:
+ DU6PEPF0000A7E3:EE_|AM9PR08MB6145:EE_|DB9PR08MB8290:EE_
+X-Ms-Exchange-Organization-Authsource:
+ DU6PEPF0000A7E3.eurprd02.prod.outlook.com
+X-Ms-Exchange-Organization-Authas: Anonymous
+X-Ms-Office365-Filtering-Correlation-Id:
+ b32bcc2f-a4ac-4a3a-6b56-08dce6bc1503
+X-Ms-Exchange-Organization-Scl: -1
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|82310400026|43022699015|31092699021|4022899009;
+X-Forefront-Antispam-Report:
+ CIP:91.220.42.227;CTRY:GB;LANG:en;SCL:-1;SRV:;IPV:CAL;SFV:SKN;H:eu-smtp-inbound-delivery-1.mimecast.com;PTR:eu-smtp-inbound-delivery-1.mimecast.com;CAT:NONE;SFS:(13230040)(82310400026)(43022699015)(31092699021)(4022899009);DIR:INB;
+X-Ms-Exchange-Crosstenant-Originalarrivaltime: 07 Oct 2024 10:37:46.0084
+ (UTC)
+X-Ms-Exchange-Crosstenant-Network-Message-Id:
+ b32bcc2f-a4ac-4a3a-6b56-08dce6bc1503
+X-Ms-Exchange-Crosstenant-Id: 68cae5ad-853d-473f-98cd-43df5b6b7c5d
+X-Ms-Exchange-Crosstenant-Authsource:
+ DU6PEPF0000A7E3.eurprd02.prod.outlook.com
+X-Ms-Exchange-Crosstenant-Authas: Anonymous
+X-Ms-Exchange-Crosstenant-Fromentityheader: Internet
+X-Ms-Exchange-Transport-Crosstenantheadersstamped: AM9PR08MB6145
+X-Ms-Exchange-Transport-Endtoendlatency: 00:00:02.7160533
+X-Ms-Exchange-Processed-By-Bccfoldering: 15.20.8026.019
+X-Microsoft-Antispam-Mailbox-Delivery:
+ ucf:0;jmr:0;auth:0;dest:I;ENG:(910001)(944506478)(944626604)(920097)(930097)(140003);
+X-Microsoft-Antispam-Message-Info:
+ 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
+Content-Transfer-Encoding: 7bit
+
+------sinikael-?=_1-17282988414160.0026723851402317145
+Content-Type: text/html; format=flowed
+Content-Transfer-Encoding: 7bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; 
+charset=utf-8"></head><body><p style="font-family: Verdana; font-size:8pt; 
+color:#666666;">This message originates from outside our organisation. 
+Consider carefully whether you should click on any links, open any 
+attachments or reply. <br><br></p><p></p><p class=""></p><p>Hi 
+<b>Murshedur</b>,</p><p>I hope this message finds you well. As a fellow 
+financial crime specialist, I'd like to acknowledge your impressive 
+background in customer service and financial expertise, showcased through 
+your work history and achievements. I came across <b>Zopa Bank</b>'s recent 
+expansion into current accounts and investments, and I'm excited to learn 
+more about your company's growth strategies.</p><p>At <b><b>Pay 
+Agency</b></b>, we offer customized, secure payment processing solutions 
+for high-risk industries like e-commerce and gaming. Our tailored payment 
+solutions, advanced fraud prevention technologies, and regulatory 
+compliance management ensure seamless transactions and minimize risk. Our 
+services are designed to enhance operational efficiency, reduce fraud, 
+foster business growth, and build lasting customer trust.</p><p>I'd love to 
+learn more about your current payment processing needs and how we can 
+specifically benefit your business. Please take a moment to review our 
+proposal deck, which outlines how our solutions can support your company. 
+You can <b>initiate a chat</b> with us by clicking this link 
+<b>[Attachment] Zopa Bank invitation</b>.</p><p>We're excited about the 
+possibility of working together and look forward to the opportunity to 
+support your 
+business.</p><p></p><p></p><p></p><p></p><p>______________________ 
+<br>Ilana<br>Director of AI Business Development<br>Pay Agency<br>1853-1771 
+Robson St Vancouver BC V6G 3B7 , 
+Canada.<br><br></p><p></p><p></p><br><p><span style="color:gray"><b>Powered 
+by KalendarAI</b><br><br>Pay Agency have written &amp; sent this email as 
+it's relevant to you. If you no longer wish to receive these emails, reply 
+'stop' or opt-out of our campaigns here, to never hear from us again. The 
+AI content generation may have mistakes, please feel free to share your 
+feedback by responding to this email. We only process publicly available 
+information limited to Name (first and last) and company information 
+(location, the domain, website metadata such as technology, and any 
+relevant keywords). We DO NOT track or store any of your personal 
+information. Please visit our TLDR privacy if you want to understand more 
+about how we process data. Our mission is to help businesses create 
+opportunities, particularly helping small businesses to thrive with the 
+help of AI-driven stories. We strictly comply with CCPA, GDPR, and CAN-SPAM 
+laws. You can opt-out of our data processing anytime. We are Kalendar Inc, 
+located at 450 Lexington Ave. New York, NY 
+10017.</span></p><p></p></body></html>
+------sinikael-?=_1-17282988414160.0026723851402317145--

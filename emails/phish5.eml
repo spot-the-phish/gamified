@@ -1,0 +1,193 @@
+Received: from GV2PR08MB9949.eurprd08.prod.outlook.com
+ (2603:10a6:150:ba::9) by AM7PR08MB5480.eurprd08.prod.outlook.com with
+ HTTPS; Tue, 1 Oct 2024 13:24:04 +0000
+Received: from AS9PR06CA0605.eurprd06.prod.outlook.com
+ (2603:10a6:20b:46e::8) by GV2PR08MB9949.eurprd08.prod.outlook.com
+ (2603:10a6:150:ba::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.15; Tue, 1 Oct
+ 2024 13:24:01 +0000
+Received: from AM4PEPF00027A68.eurprd04.prod.outlook.com
+ (2603:10a6:20b:46e:cafe::47) by AS9PR06CA0605.outlook.office365.com
+ (2603:10a6:20b:46e::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.26 via
+ Frontend Transport; Tue, 1 Oct 2024 13:24:01 +0000
+Received: from eu-smtp-inbound-delivery-1.mimecast.com (195.130.217.221) by
+ AM4PEPF00027A68.mail.protection.outlook.com (10.167.16.85) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id
+ 15.20.8026.11 via Frontend Transport; Tue, 1 Oct 2024 13:24:01 +0000
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
+ [209.85.218.41]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ uk-mta-4-M5M9fpCWM--49-GDdypEtg-1; Tue, 01 Oct 2024 12:34:36 +0100
+Received: by mail-ej1-f41.google.com with SMTP id
+ a640c23a62f3a-a8a897bd4f1so816660066b.3        for
+ <joseph@dividebuy.co.uk>; Tue, 01 Oct 2024 04:34:36 -0700 (PDT)
+Arc-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=raukGAALWXuwApjqKZGX8XKVfKGvMVvUWT0JSj2oDQfkLX+2ycMXiNVU2mlqGu/PU9WQ7MkiTNaaUm/qrObwVOlLbBrFkqsEksrPcjU0+NxWVdjYdfVwWJd8ejyopLZqiK/BgNm2NpQRozrqS3yzn3oDhGOD+arGtr3dNkFD5AbRoHDarN0kt+TE2mrwXv+J9WeDGfSjZYRTDv71rWtXoxnZdWgz8izwQ9BtUoFu98jkAIDYGzMbQH8VxisX+DXXAvYJKPbEC1UPyonbQHBG9CeMOeSScv9WoD6SYX+b9a7kETN2qCm3LlzjKLFTfj/sDZ+2vG+eFJEc9icFQPHL/w==
+Arc-Seal: i=1; s=201903; d=dkim.mimecast.com; t=1727789040; a=rsa-sha256;
+	cv=none;
+	b=Wo/yxzXJbRmcNtYD3K9OdSdTcgVYO22uCvnN01bk5WgIF1wTsie7+EswxLUS+mdRSIteV0
+	jfuoZhoi0K8Hza3fzyVuA1xYK3SYITm9oAeLhPPw5EfxknC8MpXF5SUm++t8ULJc1RAkFK
+	ulR6wCQDErTHhAJMQ4vIH9/c5LwuyEWE665bCuzjaOZhC2pfkMQX+wHy8dKtxUlZhpI6/A
+	2jRSsXhhXVNSmYlPCUDS4yB+4e+JDI+ETo/mbdTf3uCyhHAcRy38mlXiQi/ZlX2SckzYty
+	emcqhU8Hp2DGEcDE4gqFXW/a+VDPHpnOcFuC8EGHaCY0Iy+x+Hy80sAumJDH6Q==
+Arc-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=microsoft.com; s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uwEFvHAwHk9Enx45RErdyeI6XZFni+JUeXumsOTurkg=;
+ b=qYDY5dAZ/iNFxRHkXsh/UhixpTXpSCatMab1gmq2vbEz4IYU6JHqLyKv7AF/2pMDUBesQKuC7aIcMS09vUNQkgkv0n8UOYMDcXLX51Uit0o5cRem27jNmPANujogoSEMpk+oRJLuttNbPodJ9/Gcwf/EKlHPsJHtIKUa6tpTQi0SB8Td+3AvjTDvBMfNok2avgWpyYW1B+cPdidEle3ps6LIW0rpiNLCECKfVUXk3Vob7zB75Ig3t+anzAID/006G/Kh1a6nMbc6DdawDhkJsHGN8AZXGHdf1HOt7uZ6+iIPmBFPqDfobhxRIwSkJARLyOGex7515eBc1+UmHJNrig==
+Arc-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=dkim.mimecast.com; s=201903; t=1727789040;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 dkim-signature; bh=uwEFvHAwHk9Enx45RErdyeI6XZFni+JUeXumsOTurkg=;
+	b=miWBi772YkAerAcPXChmwUv2fr9J91ny1/deIhzxV9TOoClfzqNA+1WHqO+cz6mf+f6qlO
+	UODihvNAYbUdU2AOcObB1Mq4NRuCMSCfkDytVcpXpLhat+Llu1Pt+8lWYQiE5vCBjxFnIh
+	r7STzOVEVauK+wiLEQTYYuxSMlIUdjOsWPk/LhqOAstTrZHadqUpizwHsBHc8d4jnH0Btf
+	AbHvTXzb9yBAbs8U+2th0qHOoFyKgEBQcckUHPfl7IHEn9u2xLOlaGN/JDIapbeCfrQKGi
+	SvG7thn8NuvRQwoTu/cYhxGkvcBQrrtJ+WZEYRgUGiAQYqNn9S6lu6InMZpFiQ==
+Arc-Authentication-Results: i=2; mx.microsoft.com 1; spf=softfail (sender
+ ip is 195.130.217.221) smtp.rcpttodomain=zopa.com smtp.mailfrom=gmail.com;
+ dmarc=fail (p=none sp=quarantine pct=100) action=none
+ header.from=gmail.com; dkim=fail (body hash did not verify)
+ header.d=gmail.com; arc=pass (0 oda=0 ltdi=0 93)
+Arc-Authentication-Results: i=1;	relay.mimecast.com;	dkim=pass
+ header.d=gmail.com header.s=20230601 header.b=dj1dWD3k;	dmarc=pass
+ (policy=none) header.from=gmail.com;	spf=pass (relay.mimecast.com: domain
+ of choprajatin804@gmail.com designates 209.85.218.41 as permitted sender)
+ smtp.mailfrom=choprajatin804@gmail.com
+Authentication-Results: spf=softfail (sender IP is 195.130.217.221)
+ smtp.mailfrom=gmail.com; dkim=fail (body hash did not verify)
+ header.d=gmail.com;dmarc=fail action=none
+ header.from=gmail.com;compauth=none reason=405
+Received-Spf: SoftFail (protection.outlook.com: domain of transitioning
+ gmail.com discourages use of 195.130.217.221 as permitted sender)
+Authentication-Results-Original: relay.mimecast.com;	dkim=pass
+ header.d=gmail.com header.s=20230601 header.b=dj1dWD3k;	dmarc=pass
+ (policy=none) header.from=gmail.com;	spf=pass (relay.mimecast.com: domain
+ of choprajatin804@gmail.com designates 209.85.218.41 as permitted sender)
+ smtp.mailfrom=choprajatin804@gmail.com
+X-Mc-Unique: M5M9fpCWM--49-GDdypEtg-1
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;        d=gmail.com;
+ s=20230601; t=1727782476; x=1728387276; darn=dividebuy.co.uk;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=hvWYzK0Ld4B4trEUvuGNhgtt72ymczPkDhnedr2iGNw=;
+        b=dj1dWD3k4Aj8kuyHx3t1O1dR5OxFnz7tNZKe+6xbM4PwhmF7MVpdFDd/40wX0g7eOU
+         y6IXm2XmzBY6NcmgJV1MZMGzkDxTx0RbgvrxAeo2Sf9lZZD4XRwisX7x4XuLC4t375fO
+         w6sydd/k7nCUlnSX2HK4D3/Lgm4dnxZQlIRfSAxTMAImJ03UpVuvlhLkhYPy8hN1sdpE
+         Wkm0UD5/v7oHV9+pbps4JLR8dBXGRwx+LUmznYoT8ji/2NhDZsH3ODzlMEXYzWLxKrdp
+         EIw+NSucd7Er8O7/CbdXm1KLxiWaJQ145wCBEzVfWDfoj9pJX0zxeCExFEFnk5Dcj7Vw
+         XU5w==
+X-Google-Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727782476; x=1728387276;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hvWYzK0Ld4B4trEUvuGNhgtt72ymczPkDhnedr2iGNw=;
+        b=XwDL1LA7ypEJAmdJ5xPdoj4530gyxcFTYu+yVPF3gGUbtOfjFLf1FqIVehFlm9jjzD
+         71hFafvoNGnAgEOqU3s1XFouz+27ArAqhEeRPJ24qejnqv/L8dRqbuzMKSJRUiY+hVmM
+         9+ZEIkCaiKFR5TwZLv2u4avMDjAVoyv/pP/i9S0CKT/rV7sCamxg7+5ukhFuzkA48xFv
+         WtOAS7WLsswSE+NBgcpnMtt/maiLBreSgM1oK9z/w2eaLzI2xeH+qWj5sMDgkBTc6SCw
+         TBksrJyMyjG7A+tpGmVso/c9wMtfQvB69nmY4rwg5n6R3QNtV7HPauc8OjBm442S/85g
+         iCHQ==
+X-Gm-Message-State:
+ AOJu0Yy44V3ZQY3jZ9GdNNpnDkU3IKPKs0eSkunezPiN4LjJc6TL6Ddh
+	I92/StxzIu3Lb9h2nq4zM6qJGAqVAzgcq0vOroWMunY52lHV3BucaAHXcgQbskxo9DN4cri6rtx
+	w0v/yck359NaCAHeojDAdp1i/bljDuCm4L1Lk1E5ve0Y=
+X-Google-Smtp-Source:
+ AGHT+IGnuR3ePbejEN571eILPgQaEn+Fi8cCac2mL+A5hC/PGNpzk5ERlFwugywK6WpucFBslLyB0OLxDFuM9F5HO2U=
+X-Received: by 2002:a17:907:60cc:b0:a86:905b:475f with SMTP id
+ a640c23a62f3a-a93c4a60d28mr1907129366b.42.1727782475637; Tue, 01 Oct 2024
+ 04:34:35 -0700 (PDT)
+MIME-Version: 1.0
+From: Robert Flowers <choprajatin804@gmail.com>
+Date: Tue, 1 Oct 2024 04:34:25 -0700
+Message-Id:
+ <CALyGa4mifrk4W3h+gGopAr82hQ-nMSraWkcb1pqn6ycg3JNgEA@mail.gmail.com>
+Subject: =?UTF-8?B?Sm9l?=
+To: Joseph Peever <joseph@dividebuy.co.uk>
+X-Mimecast-Spam-Score: 9
+X-Mimecast-Impersonation-Protect: Policy=New Impersonation Protection
+ Definition - VIP;Similar Internal Domain=false;Similar Monitored External
+ Domain=false;Custom External Domain=false;Mimecast External
+ Domain=false;Newly Observed Domain=false;Internal User Name=false;Custom
+ Display Name List=false;Reply-to Address Mismatch=false;Targeted Threat
+ Dictionary=false;Mimecast Threat Dictionary=false;Custom Threat
+ Dictionary=false
+X-Mimecast-Impersonation-Protect: suspicious; Policy=New Impersonation
+ Protection Definition - Default;Similar Internal Domain=false;Similar
+ Monitored External Domain=false;Custom External Domain=false;Mimecast
+ External Domain=false;Newly Observed Domain=false;Internal User
+ Name=true;Custom Display Name List=false;Reply-to Address
+ Mismatch=false;Targeted Threat Dictionary=true;Mimecast Threat
+ Dictionary=true;Custom Threat Dictionary=false
+Content-Type: multipart/mixed;
+ boundary="----sinikael-?=_1-17277890549600.9728982894530342"
+Return-Path: choprajatin804@gmail.com
+X-Ms-Exchange-Organization-Expirationstarttime: 01 Oct 2024 13:24:01.1503
+ (UTC)
+X-Ms-Exchange-Organization-Expirationstarttimereason: OriginalSubmit
+X-Ms-Exchange-Organization-Expirationinterval: 1:00:00:00.0000000
+X-Ms-Exchange-Organization-Expirationintervalreason: OriginalSubmit
+X-Ms-Exchange-Organization-Network-Message-Id:
+ e04c23a6-6890-4e28-9fa8-08dce21c5027
+X-Eopattributedmessage: 0
+X-Eoptenantattributedmessage: 68cae5ad-853d-473f-98cd-43df5b6b7c5d:0
+X-Ms-Exchange-Organization-Messagedirectionality: Incoming
+X-Ms-Publictraffictype: Email
+X-Ms-Traffictypediagnostic:
+ AM4PEPF00027A68:EE_|GV2PR08MB9949:EE_|AM7PR08MB5480:EE_
+X-Ms-Exchange-Organization-Authsource:
+ AM4PEPF00027A68.eurprd04.prod.outlook.com
+X-Ms-Exchange-Organization-Authas: Anonymous
+X-Ms-Office365-Filtering-Correlation-Id:
+ e04c23a6-6890-4e28-9fa8-08dce21c5027
+X-Ms-Exchange-Organization-Scl: -1
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|12012899012|82310400026|7093399012;
+X-Forefront-Antispam-Report:
+ CIP:195.130.217.221;CTRY:GB;LANG:en;SCL:-1;SRV:;IPV:CAL;SFV:SKN;H:eu-smtp-inbound-delivery-1.mimecast.com;PTR:eu-smtp-inbound-delivery-1.mimecast.com;CAT:NONE;SFS:(13230040)(12012899012)(82310400026)(7093399012);DIR:INB;
+X-Ms-Exchange-Crosstenant-Originalarrivaltime: 01 Oct 2024 13:24:01.1347
+ (UTC)
+X-Ms-Exchange-Crosstenant-Network-Message-Id:
+ e04c23a6-6890-4e28-9fa8-08dce21c5027
+X-Ms-Exchange-Crosstenant-Id: 68cae5ad-853d-473f-98cd-43df5b6b7c5d
+X-Ms-Exchange-Crosstenant-Authsource:
+ AM4PEPF00027A68.eurprd04.prod.outlook.com
+X-Ms-Exchange-Crosstenant-Authas: Anonymous
+X-Ms-Exchange-Crosstenant-Fromentityheader: Internet
+X-Ms-Exchange-Transport-Crosstenantheadersstamped: GV2PR08MB9949
+X-Ms-Exchange-Transport-Endtoendlatency: 00:00:03.8369495
+X-Ms-Exchange-Processed-By-Bccfoldering: 15.20.8026.009
+X-Microsoft-Antispam-Mailbox-Delivery:
+ ucf:0;jmr:0;auth:0;dest:I;ENG:(910001)(944506478)(944626604)(920097)(930097)(140003);
+X-Microsoft-Antispam-Message-Info:
+ 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
+Content-Transfer-Encoding: 7bit
+
+------sinikael-?=_1-17277890549600.9728982894530342
+Content-Type: text/html; format=flowed
+Content-Transfer-Encoding: 7bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; 
+charset=utf-8"></head><body><p style="font-family: Verdana; font-size:8pt; 
+color:#666666;">This message originates from outside our organisation. 
+Consider carefully whether you should click on any links, open any 
+attachments or reply. <br><br></p><div dir="ltr"><br clear="all"><div><div 
+dir="ltr" class="gmail_signature" data-smartmail="gmail_signature"><div 
+dir="ltr"><div style="color:rgb(34,34,34);font-family:&quot;Google 
+Sans&quot;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:medium">Hello&nbsp;Joe 
+</div><div style="color:rgb(34,34,34);font-family:&quot;Google 
+Sans&quot;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:medium"><br></div><div 
+style="color:rgb(34,34,34);font-family:&quot;Google 
+Sans&quot;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:medium">Are 
+you available at the moment? I need you to handle a task for me. Kindly 
+reply with your WhatsApp number and keep an eye out for my 
+message.&nbsp;</div><div 
+style="color:rgb(34,34,34);font-family:&quot;Google 
+Sans&quot;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:medium"><br></div><div 
+style="color:rgb(34,34,34);font-family:&quot;Google 
+Sans&quot;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:medium">Many 
+Thanks.</div></div></div></div></div><p></p></body></html>
+------sinikael-?=_1-17277890549600.9728982894530342--

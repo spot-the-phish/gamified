@@ -1,0 +1,255 @@
+Received: from FRZPR08MB10967.eurprd08.prod.outlook.com
+ (2603:10a6:d10:136::9) by PA4PR08MB6048.eurprd08.prod.outlook.com with
+ HTTPS; Wed, 9 Oct 2024 00:44:34 +0000
+Received: from DUZPR01CA0186.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4b3::15) by FRZPR08MB10967.eurprd08.prod.outlook.com
+ (2603:10a6:d10:136::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.16; Wed, 9 Oct
+ 2024 00:44:32 +0000
+Received: from DU6PEPF0000A7E3.eurprd02.prod.outlook.com
+ (2603:10a6:10:4b3:cafe::7f) by DUZPR01CA0186.outlook.office365.com
+ (2603:10a6:10:4b3::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.17 via
+ Frontend Transport; Wed, 9 Oct 2024 00:44:32 +0000
+Received: from eu-smtp-inbound-delivery-1.mimecast.com (195.130.217.221) by
+ DU6PEPF0000A7E3.mail.protection.outlook.com (10.167.8.41) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id
+ 15.20.8048.13 via Frontend Transport; Wed, 9 Oct 2024 00:44:32 +0000
+Received: from akz114.mta.exacttarget.com (akz114.mta.exacttarget.com
+ [128.245.247.114]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ uk-mta-320-Ytd7rx-ANbCWMM7bMWjFXw-1; Wed, 09 Oct 2024 01:44:30 +0100
+Received: by akz114.mta.exacttarget.com id h0n8us2fmd4u for
+ <courtney.brown@zopa.com>; Wed, 9 Oct 2024 00:44:19 +0000 (envelope-from
+ <bounce-OW6JESGB3UPURKAJ5ZZFH7Q7JY.130002@bounce.s13.mc.pd25.com>)
+Arc-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=Ar0mY0s/qO1Mk5gC2fxzTugSCDiBCm6x2tMXzxQhHK+p5clneMhjNS8uZrcjOJKrpk+j0zgbhM8dJmySTsdhM+gctg3UCH0VDqKmln3SoseCzS54pM6N5Y5HRWHF5QN+ysMol6DdxAIhxmJbYBSY+WKxQ7PApfLQkNuiPAd68Hcunh3rnODyVjVhUGrP6WXhzAr4YU8ssonJlEDkAbourCTwYGAAaP73w2CUJNL0wqN3yoEWhhDyWNrhxb93pgcyQep/pGOU6d6X9ONG3DiEucsDR81BQhGEn+eQYu1eZIaJbXEPvopH8wpdR+rl61EKUW58MjNjnUUQA2W6WHJgCA==
+Arc-Seal: i=1; s=201903; d=dkim.mimecast.com; t=1728434672; a=rsa-sha256;
+	cv=none;
+	b=EyrJz4p3N0UrT7pP57GF3Ho2fbEJhrtWz5ta1Z/pCnIt4dwzJJVYdv4NnvkgvNtSSnajxx
+	EE6508ydFwEfE53CW3vLY+AuxnTaO6R07PX1qD3yeTVMSuDBbs9CBzmhpZCXQQU8CanO/9
+	NWYaNoljIzKGrBTL6sRnoqdthtLN3xWwF0Jo0ul73fIkxO8WW/2ZxKV/7cNTP9RAgwNkKD
+	wHzZhoLMoGiAEPGbPMw4dztT1oabN9WrIs+x7X4BTyhNgdJDkvq9fC/8wGkwPsj792r/Y3
+	AgYwYSRwfzf6IUMa1zeMpUstrorHSf+fbijP6sDq75rC2ENZVDn/idqLEc18Tw==
+Arc-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=microsoft.com; s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oFgGOUQ3bw/kiNVvTwQXogSbkbOwnnJ7KLjlez5kWtA=;
+ b=nzILYwVg9U8YP/Va/fZz1o9/nGV2zumOa9u43ZgjQi5zwPwSNQQ/n1mc5NAtSuOUt2C5wLFtM2F/vl53cCDfo8qJdGbeYpks+cfvuegbYFmX2ZuSgV2Oa2mErVyy2vzaX9eSdr77hM9Jav2n2ZvbFX5fZXIbXaVzaCWEA0z8QYQeu+bOSV0gRNBEE5hArxHY0cJ0iOB0slNnPZF8mDLKzeFiN2UDQKe3eo7RXwJqkJaj2gUcT89XZQnqP7i3cdlglxz/Nq1+PBxTNtw/BXGhe2LWyh6ZpQq1NkpoClqhUWwTC8A6arc+OKh5LAsg1vXZe/ss+ilHXlrkCEgb1HxtqQ==
+Arc-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=dkim.mimecast.com; s=201903; t=1728434672;
+	h=from:from:reply-to:reply-to:subject:subject:date:date:
+	 message-id:message-id:to:to:cc:mime-version:mime-version:
+	 content-type:content-type:list-help:list-unsubscribe:
+	 list-unsubscribe-post; bh=oFgGOUQ3bw/kiNVvTwQXogSbkbOwnnJ7KLjlez5kWtA=;
+	b=ROlfkD9+pi60dAj82c3VEMML12mwSTp470wDOD49JwPLWg2WVOjzDs+Zx0GOgLNRchhvHO
+	FimQHljENzoS+i1MDQAeaTnVtr8dLQAUyEGVhHlQl/6baI4NqtZcRFFa1Mgw4R2eOO4ERk
+	hgNBUAwdFcmfve2zFDzv7dVAAmolxFIqjVrZb6a5CAZRQszQATRh3dygkOlA7m9SdHYwdU
+	WKbB+IJv9zokc5gFENtNhRCChqKqH/otdvOWbAKGu6ebBBwmGRsbofULmuqRr5msFofj8L
+	oHkdaawgBChqn16HtPdAk/SMBlG/vKrB308zTuhVoMwjloebv4dT5PGz7aJuwA==
+Arc-Authentication-Results: i=2; mx.microsoft.com 1; spf=fail (sender ip is
+ 195.130.217.221) smtp.rcpttodomain=zopa.com
+ smtp.mailfrom=bounce.s13.mc.pd25.com; dmarc=none action=none
+ header.from=whittington-law.com; dkim=none (message not signed); arc=pass
+ (0 oda=0 ltdi=0 93)
+Arc-Authentication-Results: i=1;	relay.mimecast.com;	dkim=none;
+	dmarc=permerror reason="Multiple policies defined in DNS"
+ header.from=whittington-law.com (policy=permerror);	spf=pass
+ (relay.mimecast.com: domain of
+ bounce-ow6jesgb3upurkaj5zzfh7q7jy.130002@bounce.s13.mc.pd25.com designates
+ 128.245.247.114 as permitted sender)
+ smtp.mailfrom=bounce-ow6jesgb3upurkaj5zzfh7q7jy.130002@bounce.s13.mc.pd25.com
+Authentication-Results: spf=fail (sender IP is 195.130.217.221)
+ smtp.mailfrom=bounce.s13.mc.pd25.com; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none
+ header.from=whittington-law.com;compauth=none reason=405
+Received-Spf: Fail (protection.outlook.com: domain of
+ bounce.s13.mc.pd25.com does not designate 195.130.217.221 as permitted
+ sender) receiver=protection.outlook.com; client-ip=195.130.217.221;
+ helo=eu-smtp-inbound-delivery-1.mimecast.com;
+Authentication-Results-Original: relay.mimecast.com;	dkim=none;
+	dmarc=permerror reason="Multiple policies defined in DNS"
+ header.from=whittington-law.com (policy=permerror);	spf=pass
+ (relay.mimecast.com: domain of
+ bounce-ow6jesgb3upurkaj5zzfh7q7jy.130002@bounce.s13.mc.pd25.com designates
+ 128.245.247.114 as permitted sender)
+ smtp.mailfrom=bounce-ow6jesgb3upurkaj5zzfh7q7jy.130002@bounce.s13.mc.pd25.com
+X-Mc-Unique: Ytd7rx-ANbCWMM7bMWjFXw-1
+From: James Martins <james@whittington-law.com>
+To: Courtney Brown <courtney.brown@zopa.com>
+Subject: =?UTF-8?B?QS5DLkggUGF5bWVudCBDb25maXJtYXRpb24gMDgvMTAvMjAyNA==?=
+Date: Tue, 8 Oct 2024 18:44:19 -0600
+List-Help:
+ <https://cl.s13.exct.net/subscription_center.aspx?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtaWQiOiI1NDYwMTExOTQiLCJzIjoiNzE3NDA2NDciLCJsaWQiOiI3ODk1IiwiaiI6IjIwNzk1IiwiamIiOiIxOTE0MSIsImQiOiIxMzAwMDIifQ.rAWzsgUqlwYLd-pTULutbKGmxADMwg_xbuX7kFYMGlk>
+MIME-Version: 1.0
+X-Messagekey: 1082943-1747724872-239957722
+X-Delivery: Transactional
+X-Sfmc-Stack: 13
+X-Job: 546011194_20795
+List-Unsubscribe:
+ <https://go.pardot.com/listUnsubscribeHeader/u/1082943/bcf8e678e8bc54ce67a52c5234aa7bcc3f484e9c930713840759ff9db5590291/1748027752>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-Report-Abuse-To: abuse@pd25.com
+Reply-To: james@whittington-law.com
+Message-Id: <56aa7eab-1f8c-40ef-8ca1-1d570348074f@iad4s13mta910.xt.local>
+X-Mimecast-Spam-Score: 1
+X-Mimecast-Impersonation-Protect: Policy=New Impersonation Protection
+ Definition - VIP;Similar Internal Domain=false;Similar Monitored External
+ Domain=false;Custom External Domain=false;Mimecast External
+ Domain=false;Newly Observed Domain=false;Internal User Name=false;Custom
+ Display Name List=false;Reply-to Address Mismatch=false;Targeted Threat
+ Dictionary=false;Mimecast Threat Dictionary=false;Custom Threat
+ Dictionary=false
+X-Mimecast-Impersonation-Protect: Policy=New Impersonation Protection
+ Definition - Default;Similar Internal Domain=false;Similar Monitored
+ External Domain=false;Custom External Domain=false;Mimecast External
+ Domain=false;Newly Observed Domain=false;Internal User Name=false;Custom
+ Display Name List=false;Reply-to Address Mismatch=false;Targeted Threat
+ Dictionary=true;Mimecast Threat Dictionary=true;Custom Threat
+ Dictionary=false
+Content-Type: multipart/mixed;
+ boundary="----sinikael-?=_1-17284700822190.6987834282155443"
+Return-Path:
+ bounce-ow6jesgb3upurkaj5zzfh7q7jy.130002@bounce.s13.mc.pd25.com
+X-Ms-Exchange-Organization-Expirationstarttime: 09 Oct 2024 00:44:32.7523
+ (UTC)
+X-Ms-Exchange-Organization-Expirationstarttimereason: OriginalSubmit
+X-Ms-Exchange-Organization-Expirationinterval: 1:00:00:00.0000000
+X-Ms-Exchange-Organization-Expirationintervalreason: OriginalSubmit
+X-Ms-Exchange-Organization-Network-Message-Id:
+ b08d5b96-ec83-4288-e2bb-08dce7fb8a93
+X-Eopattributedmessage: 0
+X-Eoptenantattributedmessage: 68cae5ad-853d-473f-98cd-43df5b6b7c5d:0
+X-Ms-Exchange-Organization-Messagedirectionality: Incoming
+X-Ms-Publictraffictype: Email
+X-Ms-Traffictypediagnostic:
+ DU6PEPF0000A7E3:EE_|FRZPR08MB10967:EE_|PA4PR08MB6048:EE_
+X-Ms-Exchange-Organization-Authsource:
+ DU6PEPF0000A7E3.eurprd02.prod.outlook.com
+X-Ms-Exchange-Organization-Authas: Anonymous
+X-Ms-Office365-Filtering-Correlation-Id:
+ b08d5b96-ec83-4288-e2bb-08dce7fb8a93
+X-Ms-Exchange-Organization-Scl: -1
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|4022899009|5073199012|69100299015|82310400026|31092699021|3613699012;
+X-Forefront-Antispam-Report:
+ CIP:195.130.217.221;CTRY:GB;LANG:en;SCL:-1;SRV:;IPV:CAL;SFV:SKN;H:eu-smtp-inbound-delivery-1.mimecast.com;PTR:eu-smtp-delivery-1.mimecast.com;CAT:NONE;SFS:(13230040)(4022899009)(5073199012)(69100299015)(82310400026)(31092699021)(3613699012);DIR:INB;
+X-Ms-Exchange-Crosstenant-Originalarrivaltime: 09 Oct 2024 00:44:32.7210
+ (UTC)
+X-Ms-Exchange-Crosstenant-Network-Message-Id:
+ b08d5b96-ec83-4288-e2bb-08dce7fb8a93
+X-Ms-Exchange-Crosstenant-Id: 68cae5ad-853d-473f-98cd-43df5b6b7c5d
+X-Ms-Exchange-Crosstenant-Authsource:
+ DU6PEPF0000A7E3.eurprd02.prod.outlook.com
+X-Ms-Exchange-Crosstenant-Authas: Anonymous
+X-Ms-Exchange-Crosstenant-Fromentityheader: Internet
+X-Ms-Exchange-Transport-Crosstenantheadersstamped: FRZPR08MB10967
+X-Ms-Exchange-Transport-Endtoendlatency: 00:00:02.2858580
+X-Ms-Exchange-Processed-By-Bccfoldering: 15.20.8026.020
+X-Microsoft-Antispam-Mailbox-Delivery:
+ ucf:0;jmr:0;auth:0;dest:I;ENG:(910001)(944506478)(944626604)(920097)(930097)(140003);
+X-Microsoft-Antispam-Message-Info:
+ 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
+Content-Transfer-Encoding: 7bit
+
+------sinikael-?=_1-17284700822190.6987834282155443
+Content-Type: text/html; format=flowed
+Content-Transfer-Encoding: 7bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; 
+charset=utf-8"><title>Email Newsletter</title></head><body 
+style="font-family: Helvetica, Arial, sans-serif; font-size: 12px"><p 
+style="font-family: Verdana; font-size:8pt; color:#666666;">This message 
+originates from outside our organisation. Consider carefully whether you 
+should click on any links, open any attachments or reply. <br><br><meta 
+http-equiv="X-UA-Compatible" content="IE=edge"><title></title><meta 
+http-equiv="X-UA-Compatible" content="IE=edge"><title></title></p><p 
+align="center"><meta http-equiv="X-UA-Compatible" 
+content="IE=edge"></p><title></title><meta http-equiv="X-UA-Compatible" 
+content="IE=edge"><title></title><p align="center">&nbsp;</p><p 
+align="center"><br><br><font color="#000000"><span style="text-transform: 
+none; text-indent: 0px; letter-spacing: normal; font-family: Arial, 
+Helvetica, sans-serif; font-size: 21pt; font-style: normal; word-spacing: 
+0px; float: none; display: inline !important; white-space: normal; orphans: 
+2; widows: 2; background-color: rgb(255, 255, 255); font-variant-ligatures: 
+normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; 
+text-decoration-thickness: initial; text-decoration-style: initial; 
+text-decoration-color: initial;"><strong><span style="font-size: 
+23pt;">A.C.H Wire Confirmation 
+Statement</span></strong></span><br><br><span style="font-size: 14pt;">The 
+Legal Law Office of Tyrone Landry 
+P.C</span></font><br><br><br><br><br><strong><span style="font-size: 
+12pt;"><span style="font-family: Arial;"><span style="font-size: 
+17.3px;">&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span><span 
+style="font-family: Arial;"><span style="font-size: 17.3px;"><a 
+href="https://go.pardot.com/e/1082943/27H68DX3SAP-0-FRecipient-Email/2c98fg8/1748027752/h/-6npTcHqGJLmEW24awRT4jpFWdSmunxyNoBpa2FpQck" 
+style="text-decoration: none;"><span style="padding: 10px 15px; border: 0px 
+solid rgb(8, 44, 64); border-image: none; text-align: center; color: 
+rgb(255, 255, 255); line-height: 2em; letter-spacing: 2px; font-size: 24px; 
+position: relative; cursor: pointer; text-shadow: 1px 1px 1px 
+rgba(32,32,32,0.7); background-color: rgb(45, 114, 210); 
+-webkit-touch-callout: none; -webkit-user-select: all; -khtml-user-select: 
+all; -moz-user-select: all; user-select: all;"><span style="font-size: 
+16pt;"><span style="font-size: 14pt;">VIEW 
+FULL&nbsp;REMITTANCE&nbsp;</span></span></span></a></span></span></strong><br><br><br><br><font 
+size="2">courtney.brown@zopa.com</font></p><p align="center">&nbsp;</p><p 
+align="center" style="margin: 0px 0px 12pt; padding: 0px; border: 0px 
+currentColor; border-image: none; text-transform: none; line-height: 12pt; 
+text-indent: 0px; letter-spacing: normal; font-family: inherit; 
+word-spacing: 0px; vertical-align: baseline; white-space: normal; orphans: 
+2; widows: 2; background-color: rgb(255, 255, 255); 
+-webkit-text-stroke-width: 0px; text-decoration-thickness: initial; 
+text-decoration-style: initial; text-decoration-color: initial;"><span 
+style="font-size: 13.3px;"><span style="font: inherit; margin: 0px; 
+padding: 0px; border: 0px currentColor; border-image: none; color: inherit; 
+vertical-align: baseline; font-size-adjust: inherit; font-stretch: 
+inherit;"><span style="margin: 0px; padding: 0px; border: 0px currentColor; 
+border-image: none; color: black; line-height: inherit; font-family: 
+&quot;Times New Roman&quot;, serif; font-size: inherit;
+font-style: inherit; font-variant: inherit; font-weight: inherit; 
+vertical-align: baseline; font-stretch: inherit;">Thank you for your 
+business - we appreciate it very much.</span></span></span></p><p 
+align="center" style="margin: 0px; padding: 0px; border: 0px currentColor; 
+border-image: none; text-transform: none; line-height: 12pt; text-indent: 
+0px; letter-spacing: normal; font-family: Calibri, sans-serif; font-size: 
+11pt; word-spacing: 0px; vertical-align: baseline; white-space: normal; 
+orphans: 2; widows: 2; background-color: rgb(255, 255, 255); 
+-webkit-text-stroke-width: 0px; text-decoration-thickness: initial; 
+text-decoration-style: initial; text-decoration-color: initial;"><span 
+style="font-size: 13.3px;"><span style="font: inherit; margin: 0px; 
+padding: 0px; border: 0px currentColor; border-image: none; color: inherit; 
+vertical-align: baseline; font-size-adjust: inherit; font-stretch: 
+inherit;"><span style="margin: 0px; padding: 0px; border: 0px currentColor; 
+border-image: none; color: black; line-height: inherit; font-family: 
+&quot;Times New Roman&quot;, serif; font-size:
+inherit; font-style: inherit; font-variant: inherit; font-weight: inherit; 
+vertical-align: baseline; font-stretch: 
+inherit;">Sincerely,</span></span></span><br>&nbsp;</p><p align="center" 
+style="margin: 0px; padding: 0px; border: 0px currentColor; border-image: 
+none; text-transform: none; text-indent: 0px; letter-spacing: normal; 
+font-family: Calibri, sans-serif; font-size: 11pt; word-spacing: 0px; 
+vertical-align: baseline; white-space: normal; orphans: 2; widows: 2; 
+background-color: rgb(255, 255, 255); -webkit-text-stroke-width: 0px; 
+text-decoration-thickness: initial; text-decoration-style: initial; 
+text-decoration-color: initial;"><span style="font-size: 13.3px;"><span 
+style="font: inherit; margin: 0px; padding: 0px; border: 0px currentColor; 
+border-image: none; color: inherit; vertical-align: baseline; 
+font-size-adjust: inherit; font-stretch: inherit;"><span style="margin: 
+0px; padding: 0px; border: 0px currentColor; border-image: none; color: 
+black; line-height: inherit; font-family: &quot;Times New Roman&quot;, 
+serif; font-size: inherit;
+font-style: inherit; font-variant: inherit; font-weight: inherit; 
+vertical-align: baseline; font-stretch: inherit;">The Law Office of Tyrone 
+Landry P.C</span></span></span></p><p 
+align="center"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>&nbsp;</p><p 
+align="center">&nbsp;</p><p align="center">You are receiving this email 
+because you signed up to receive our monthly newsletter at 
+https://go.pardot.com/e/1082943/2024-10-08/2c98fgc/1748027752/h/-6npTcHqGJLmEW24awRT4jpFWdSmunxyNoBpa2FpQck<br><a 
+href="https://go.pardot.com/unsubscribe/u/1082943/bcf8e678e8bc54ce67a52c5234aa7bcc3f484e9c930713840759ff9db5590291/1748027752" 
+rel="nofollow,noreferrer">Unsubscribe</a> from email 
+communications<br><br><br>JB James Construction, L.L.C.<br>545 Colonial 
+Drive<br>Baton Rouge, , LA 70806</p><p align="center">&nbsp;</p><img alt="" 
+src="https://go.pardot.com/r/1082943/1/1748027752/open/1"> 
+<p></p></body></html>
+------sinikael-?=_1-17284700822190.6987834282155443--
