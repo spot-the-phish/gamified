@@ -102,12 +102,21 @@
 
     // --- Helpers ---
     function decodeQuotedPrintable(input) {
-      return input
-        .replace(/=\r?\n/g, "")
-        .replace(/=([A-Fa-f0-9]{2})/g, (_, hex) =>
-          String.fromCharCode(parseInt(hex, 16))
-        );
-    }
+  // Step 1: remove soft line breaks
+  let text = input.replace(/=\r?\n/g, "");
+
+  // Step 2: replace =XX with byte values
+  let bytes = text.replace(/=([A-Fa-f0-9]{2})/g, (_, hex) =>
+    String.fromCharCode(parseInt(hex, 16))
+  );
+
+  // Step 3: interpret as UTF-8 instead of Latin-1
+  try {
+    return decodeURIComponent(escape(bytes));
+  } catch (e) {
+    return bytes;
+  }
+}
 
     function extractAttachments(content) {
       const attachments = {};
