@@ -60,17 +60,47 @@ function decodeHeader(str) {
   });
 }
 
-function parseEml(content, filename) {
-  return {
-    subject: filename, // show filename as subject
-    from: "(Original email below)",
-    body: content, // full raw eml text
-    filename,
-    type: answerKey[filename] || "phish", // expected answer
-    explanation: `This email (${filename}) was marked as ${answerKey[filename] || "phish"}.`
-  };
+function decodeQuotedPrintable(input) {
+  return input
+    .replace(/=\r?\n/g, "") // join soft line breaks
+    .replace(/=([A-Fa-f0-9]{2})/g, (_, hex) =>
+      String.fromCharCode(parseInt(hex, 16))
+    );
 }
 
+function parseEml(content, filename) {
+  // Split headers and body
+  const parts = content.split(/\r?\n\r?\n/);
+  const headerText = parts[0];
+  let body = parts.slice(1).join("\n\n");
+
+  // Try to extract HTML part
+  let html = "";
+  if (content.includes("Content-Type: text/html")) {
+    const match = content.match(
+      /Content-Type: text\/html[\\s\\S]*?(?:\r?\n){2}([\\s\\S]*)/i
+    );
+    if (match) {
+      html = decodeQuotedPrintable(match[1]);
+    }
+  }
+
+  // Fallback: decode plain text
+  if (!html) {
+    body = decodeQuotedPrintable(body);
+  }
+
+  return {
+    subject: filename,
+    from: "(Loaded from .eml)",
+    body: html || `<pre>${body}</pre>`,
+    filename,
+    type: answerKey[filename] || "phish",
+    explanation: `This email (${filename}) was marked as ${answerKey[filename] || "phish"}.`,
+    isHtml: !!html
+  };
+}
+    
 function showEmail() {
   if (current >= emails.length) {
     document.getElementById("game").innerHTML = "<h2>Game Over!</h2>";
@@ -83,7 +113,7 @@ function showEmail() {
     <div class='card'>
       <p><strong>Subject:</strong> ${email.subject}</p>
       <p><strong>From:</strong> ${email.from}</p>
-      <pre style="white-space: pre-wrap; font-size: 14px;">${email.body}</pre>
+      <div class="email-body">${email.body}</div>
       <div class='buttons'>
         <button class='phish' onclick="guess('phish')">Phish 🐟</button>
         <button class='legit' onclick="guess('legit')">Legit ✅</button>
