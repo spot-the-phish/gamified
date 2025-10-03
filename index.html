@@ -85,13 +85,30 @@
     let score = 0;
 
     // ✅ Files that will be loaded from /emails/ folder
-    const emailFiles = ["phish.eml", "legit.eml"];
-
+    const emailFiles = [
+      "phish1.eml",
+      "legit1.eml",
+      "legit2.eml"
+      "phish2.eml",
+      "phish3.eml",
+      "legit4.eml",
+      "phish5.eml",
+      "legit5.eml",
+      "legit3.eml"
+];
     // ✅ Answer key
     const answerKey = {
-      "phish.eml": "phish",
-      "legit.eml": "legit"
-    };
+      "phish1.eml": "phish",
+      "phish2.eml": "phish",
+      "phish3.eml": "phish",
+      "phish4.eml": "phish",
+      "phish5.eml": "phish",
+      "legit1.eml": "legit",
+      "legit2.eml": "legit",
+      "legit3.eml": "legit",
+      "legit4.eml": "legit",
+      "legit5.eml": "legit"
+};
 
     // --- Helpers ---
     function decodeQuotedPrintable(input) {
