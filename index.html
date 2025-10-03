@@ -24,87 +24,83 @@
 
   <script>
     let emails = [];
-    let current = 0;
-    let score = 0;
+let current = 0;
+let score = 0;
 
-    document.getElementById('fileInput').addEventListener('change', handleFiles, false);
+// ✅ List of emails to load automatically
+const emailFiles = ["phish.eml", "legit.eml"];
 
-    function handleFiles(event) {
-      const files = event.target.files;
-      emails = [];
-      current = 0;
-      score = 0;
-      document.getElementById("score").innerText = '';
+// ✅ Answer key: match filenames to correct labels
+const answerKey = {
+  "phish.eml": "phish",
+  "legit.eml": "legit"
+};
 
-      Array.from(files).forEach(file => {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const content = e.target.result;
-          emails.push(parseEml(content, file.name));
-          if (emails.length === files.length) {
-            showEmail();
-          }
-        };
-        reader.readAsText(file);
-      });
+async function loadEmails() {
+  for (let filename of emailFiles) {
+    try {
+      const response = await fetch(`emails/${filename}`);
+      const content = await response.text();
+      emails.push(parseEml(content, filename));
+    } catch (err) {
+      console.error("Failed to load", filename, err);
     }
+  }
+  showEmail();
+}
 
-    // For demo purposes, we assume you will later create an answer key (phish/legit) for the files by name.
-    // Here we'll use a simple map. You can expand this mapping.
-    const answerKey = {
-      "phish.eml": "phish",
-      "legit.eml": "legit"
-    };
+function parseEml(content, filename) {
+  const subjectMatch = content.match(/Subject: (.*)/);
+  const fromMatch = content.match(/From: (.*)/);
+  const bodyMatch = content.split("\n\n")[1];
+  return {
+    subject: subjectMatch ? subjectMatch[1] : "(No Subject)",
+    from: fromMatch ? fromMatch[1] : "(No From)",
+    body: bodyMatch ? bodyMatch.trim() : "(No Body)",
+    filename: filename,
+    type: answerKey[filename] || "phish", // default if not in answerKey
+    explanation: `This email (${filename}) was marked as ${answerKey[filename] || "phish"}.`
+  };
+}
 
-    function parseEml(content, filename) {
-      const subjectMatch = content.match(/Subject: (.*)/);
-      const fromMatch = content.match(/From: (.*)/);
-      const bodyMatch = content.split("\n\n")[1];
-      return {
-        subject: subjectMatch ? subjectMatch[1] : "(No Subject)",
-        from: fromMatch ? fromMatch[1] : "(No From)",
-        body: bodyMatch ? bodyMatch.trim() : "(No Body)",
-        filename: filename,
-        type: answerKey[filename] || "phish", // default if not found
-        explanation: `This email (${filename}) was marked as ${answerKey[filename] || "phish"}.`
-      };
-    }
+function showEmail() {
+  if (current >= emails.length) {
+    document.getElementById("game").innerHTML = "<h2>Game Over!</h2>";
+    document.getElementById("score").innerText = `Your final score: ${score}/${emails.length}`;
+    return;
+  }
 
-    function showEmail() {
-      if (current >= emails.length) {
-        document.getElementById("game").innerHTML = "<h2>Game Over!</h2>";
-        document.getElementById("score").innerText = `Your final score: ${score}/${emails.length}`;
-        return;
-      }
+  const email = emails[current];
+  document.getElementById("game").innerHTML = `
+    <div class='card'>
+      <p><strong>Subject:</strong> ${email.subject}</p>
+      <p><strong>From:</strong> ${email.from}</p>
+      <pre>${email.body}</pre>
+      <div class='buttons'>
+        <button class='phish' onclick="guess('phish')">Phish 🐟</button>
+        <button class='legit' onclick="guess('legit')">Legit ✅</button>
+      </div>
+      <div id='feedback'></div>
+    </div>
+  `;
+}
 
-      const email = emails[current];
-      document.getElementById("game").innerHTML = `
-        <div class='card'>
-          <p><strong>Subject:</strong> ${email.subject}</p>
-          <p><strong>From:</strong> ${email.from}</p>
-          <pre>${email.body}</pre>
-          <div class='buttons'>
-            <button class='phish' onclick="guess('phish')">Phish 🐟</button>
-            <button class='legit' onclick="guess('legit')">Legit ✅</button>
-          </div>
-          <div id='feedback'></div>
-        </div>
-      `;
-    }
+function guess(choice) {
+  const email = emails[current];
+  const feedback = document.getElementById("feedback");
+  if (choice === email.type) {
+    score++;
+    feedback.innerHTML = `<p style='color:green;'>Correct! ${email.explanation}</p>`;
+  } else {
+    feedback.innerHTML = `<p style='color:red;'>Incorrect. ${email.explanation}</p>`;
+  }
+  current++;
+  setTimeout(showEmail, 2500);
+  document.getElementById("score").innerText = `Score: ${score}/${emails.length}`;
+}
 
-    function guess(choice) {
-      const email = emails[current];
-      const feedback = document.getElementById("feedback");
-      if (choice === email.type) {
-        score++;
-        feedback.innerHTML = `<p style='color:green;'>Correct! ${email.explanation}</p>`;
-      } else {
-        feedback.innerHTML = `<p style='color:red;'>Incorrect. ${email.explanation}</p>`;
-      }
-      current++;
-      setTimeout(showEmail, 2500);
-      document.getElementById("score").innerText = `Score: ${score}/${emails.length}`;
-    }
+// Load emails automatically on page load
+window.onload = loadEmails;
   </script>
 </body>
 </html>
