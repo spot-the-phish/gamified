@@ -69,7 +69,7 @@
     }
     .email-body-frame {
       width: 100%;
-      height: 400px;
+      height: 500px;
       border: none;
     }
   </style>
@@ -84,7 +84,7 @@
     let current = 0;
     let score = 0;
 
-    // ✅ Files that will be loaded from /emails/ folder
+    // ✅ Files to load from /emails/
     const emailFiles = [
       "phish1.eml",
       "legit1.eml",
@@ -95,7 +95,7 @@
       "phish5.eml",
       "legit5.eml",
       "legit3.eml"
-];
+    ];
     // ✅ Answer key
     const answerKey = {
       "phish1.eml": "phish",
@@ -108,7 +108,7 @@
       "legit3.eml": "legit",
       "legit4.eml": "legit",
       "legit5.eml": "legit"
-};
+    };
     // --- Helpers ---
     function decodeQuotedPrintable(input) {
       let text = input.replace(/=\r?\n/g, "");
@@ -138,7 +138,6 @@
         });
     }
 
-    // ✅ Extract inline images
     function extractAttachments(content) {
       const attachments = {};
       const boundaryMatch = content.match(/boundary=\"?([^\";]+)\"?/i);
@@ -193,9 +192,9 @@
         }
       }
 
-      // Extract HTML body (up to boundary)
+      // Extract HTML body fully until boundary
       let html = "";
-      const htmlMatch = content.match(/Content-Type:\s*text\/html[\s\S]*?(?:\r?\n){2}([\s\S]*?)(?:\r?\n--|$)/i);
+      const htmlMatch = content.match(/Content-Type:\s*text\/html[\s\S]*?(?:\r?\n){2}([\s\S]*?)\r?\n--/i);
       if (htmlMatch) {
         html = decodeQuotedPrintable(htmlMatch[1]);
         html = replaceCidImages(html, attachments);
@@ -204,7 +203,7 @@
       // Fallback plain text
       let body = "";
       if (!html) {
-        const textMatch = content.match(/Content-Type:\s*text\/plain[\s\S]*?(?:\r?\n){2}([\s\S]*?)(?:\r?\n--|$)/i);
+        const textMatch = content.match(/Content-Type:\s*text\/plain[\s\S]*?(?:\r?\n){2}([\s\S]*?)\r?\n--/i);
         if (textMatch) {
           body = decodeQuotedPrintable(textMatch[1]);
         }
@@ -221,16 +220,13 @@
       };
     }
 
-    // ✅ Load emails
     async function loadEmails() {
       let loaded = 0;
 
       for (let filename of emailFiles) {
         try {
           const response = await fetch(`emails/${filename}`);
-          if (!response.ok) {
-            throw new Error(`HTTP ${response.status} - ${response.statusText}`);
-          }
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
           const content = await response.text();
           emails.push(parseEml(content, filename));
           loaded++;
@@ -244,9 +240,8 @@
         }
       }
 
-      if (loaded > 0) {
-        showEmail();
-      } else {
+      if (loaded > 0) showEmail();
+      else {
         document.getElementById("game").innerHTML += `
           <div style="background:#ffe; color:#333; padding:10px; margin-top:20px; border:1px solid #cc0;">
             ⚠️ No emails could be loaded. Please check that your <code>/emails</code> folder
@@ -256,12 +251,10 @@
       }
     }
 
-    // ✅ Show email
     function showEmail() {
       if (current >= emails.length) {
         document.getElementById("game").innerHTML = "<h2>Game Over!</h2>";
-        document.getElementById("score").innerText =
-          `Your final score: ${score}/${emails.length}`;
+        document.getElementById("score").innerText = `Your final score: ${score}/${emails.length}`;
         return;
       }
 
@@ -290,7 +283,7 @@
       const iframe = document.getElementById(iframeId);
       const doc = iframe.contentDocument || iframe.contentWindow.document;
       doc.open();
-      doc.write(email.body);  // external <img src="https://..."> will render
+      doc.write(email.body);
       doc.close();
     }
 
@@ -305,8 +298,7 @@
       }
       current++;
       setTimeout(showEmail, 2500);
-      document.getElementById("score").innerText =
-        `Score: ${score}/${emails.length}`;
+      document.getElementById("score").innerText = `Score: ${score}/${emails.length}`;
     }
 
     window.onload = loadEmails;
