@@ -1,0 +1,303 @@
+Received: from DU0PR08MB9608.eurprd08.prod.outlook.com
+ (2603:10a6:10:448::15) by AM9PR08MB7030.eurprd08.prod.outlook.com with
+ HTTPS; Thu, 29 Aug 2024 09:31:39 +0000
+Received: from AM0PR02CA0201.eurprd02.prod.outlook.com
+ (2603:10a6:20b:28f::8) by DU0PR08MB9608.eurprd08.prod.outlook.com
+ (2603:10a6:10:448::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.19; Thu, 29
+ Aug 2024 09:31:36 +0000
+Received: from AM3PEPF0000A78D.eurprd04.prod.outlook.com
+ (2603:10a6:20b:28f:cafe::72) by AM0PR02CA0201.outlook.office365.com
+ (2603:10a6:20b:28f::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.20 via
+ Frontend Transport; Thu, 29 Aug 2024 09:31:35 +0000
+Received: from eu-smtp-inbound-delivery-1.mimecast.com (195.130.217.221) by
+ AM3PEPF0000A78D.mail.protection.outlook.com (10.167.16.116) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id
+ 15.20.7918.13 via Frontend Transport; Thu, 29 Aug 2024 09:31:35 +0000
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
+ [209.85.214.179]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ uk-mta-96-Mt3ad1LzMFuXpwHcfuDKUQ-1; Thu, 29 Aug 2024 10:31:33 +0100
+Received: by mail-pl1-f179.google.com with SMTP id
+ d9443c01a7336-2020ac89cabso4380685ad.1        for <karl@dividebuy.co.uk>;
+ Thu, 29 Aug 2024 02:31:33 -0700 (PDT)
+Received: from ip-172-31-46-150.ap-northeast-3.compute.internal
+ (ec2-13-208-209-216.ap-northeast-3.compute.amazonaws.com.
+ [13.208.209.216])        by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-2051555a429sm7521655ad.274.2024.08.29.02.31.30        for
+ <karl@dividebuy.co.uk>        (version=TLS1_3
+ cipher=TLS_AES_256_GCM_SHA384 bits=256/256);        Thu, 29 Aug 2024
+ 02:31:30 -0700 (PDT)
+Arc-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=aNT5OL5XfYxkxzsCM4Adua1gBHUx8nqT7TtydxJWNg6ujSa5tw2r+KGHrnO0ZldZV/ecqgDPmFeOlL5LxgH9+EmLd5S4OR2KCEHA9ysPnPsuOYON4U6XzBj8N6SnsyxxZtgEi4ZVpKuAMvo5SHGCYdgAGBEbkEvEPqYzElgTbMvqytIAjch/HlhkWS4FiNgfoQJUUD79w1GrCC0zqbq0gwKgcAsCz1r17AJNxtxYmn1s7LKxMMvajhnmVmTRrAJUlZJwJgpFPLv93vAMDhuL9Nv2Ava2W+9v9JewslwfJHhKYniUYyK6xDWtWgNXygT1S9svKGJCpSZD2M9rTWdmdA==
+Arc-Seal: i=1; s=201903; d=dkim.mimecast.com; t=1724923895; a=rsa-sha256;
+	cv=none;
+	b=K8ttKMxcMusZgpcBw/qvjRy0v6UkoO4NgW0i7mm/yWmmn4uxycZgP7mQvb687fqZGU08NN
+	qNva1XqUWBhM/sE3qIm1l9KAol0e2p9B4q7zN/V3AJ/hFmODUAumQsCH8Jzg2nrJv18akP
+	rtcYbEEUa3exkutbOgzM2BtmVqT7bfapdhF6+7K+YoTavIrMpPVFUziHAvU87rSPuNYVIW
+	o+kjtiOK8fAjv9up6T5Zu0d4wFPUzZg9CHk+Cm9vuddAPyHo5jausIyqeLcZ7PbdC0KIDK
+	5uHgojGkWIAbi2bNzLznxyiPPCn/kKYU1AvAqwv016R0qVYWpkY3AYL/JM9Sqw==
+Arc-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=microsoft.com; s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pih3ATbrDJ08/ngYC2BSUKf550D+3qNRHjiOXt/IcWo=;
+ b=klPwreh6afc3rmeiOQMDGHmlpYTiTaV8HFbkA9j0ZVXODhagpVkaR3mHfyTB+egx4njGaLyguzZPWO9dTlcu1toQA2owFfQhhbVHChXCFm49ZKYT+eBuItgkALVExb1UsjEzagjdfcFKIj4zi2IjtsIXgX098hvbZ4T/RsUGRxGYOIYaRzyfIE6lNTjYnNPnzXnyEBcj2IO9axSo1583n5girdnyGq65btpRd3JXSSHcAuVoZ/mBrD8UPtMV9jMToHQeK6TU0isezyqDHzCgFX9BXIb6UgUZ+ac9x0VUihrQuWHbiC551IgHhTjyBlnJ6csUJOnuxesKd+kIf551Sg==
+Arc-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=dkim.mimecast.com; s=201903; t=1724923895;
+	h=from:from:reply-to:reply-to:subject:subject:date:date:
+	 message-id:message-id:to:to:cc:mime-version:mime-version:
+	 content-type:content-type:dkim-signature;
+	bh=pih3ATbrDJ08/ngYC2BSUKf550D+3qNRHjiOXt/IcWo=;
+	b=H0uQgbK03oKpQ8GSXWT5Feh5Cp9C+rz1hRvywCRGpqAZkv1MGigC+8BkgznUh6uph6gqm3
+	wQzyYBXfn6NHgCTIrQc4TSU/Vl+YOfkMzuiZQVmzRW/LjKhrjKunqjoKmBVPuqXgc9LFAH
+	hl9q0IBN3QCrkX/vc6raBZ6psoBXjM7aVrYvIEqw7/00S9E/3dJT4+gvTjIviyXmJ7prp2
+	G0ZhvxjueBoKhk7soMaDBSqw9fTUsuDwuPR/v4tfVWA+Ev45D5hqMO9UWZvoDBQqDQ2uKr
+	yevnqn2u8Xr2b9nXux9AMt8ioUZfmhx+QcoMw4TU/nAvh3924pVdvzhx5SeAfw==
+Arc-Authentication-Results: i=2; mx.microsoft.com 1; spf=softfail (sender
+ ip is 195.130.217.221) smtp.rcpttodomain=zopa.com
+ smtp.mailfrom=onleadsearchers.com; dmarc=fail (p=quarantine sp=quarantine
+ pct=100) action=quarantine header.from=onleadsearchers.com; dkim=fail
+ (body hash did not verify) header.d=onleadsearchers.com; arc=pass (0 oda=0
+ ltdi=0 93)
+Arc-Authentication-Results: i=1;	relay.mimecast.com;	dkim=pass
+ header.d=onleadsearchers.com header.s=google header.b=Ui4tqy1F;	dmarc=pass
+ (policy=quarantine) header.from=onleadsearchers.com;	spf=pass
+ (relay.mimecast.com: domain of seanc@onleadsearchers.com designates
+ 209.85.214.179 as permitted sender)
+ smtp.mailfrom=seanc@onleadsearchers.com
+Authentication-Results: spf=softfail (sender IP is 195.130.217.221)
+ smtp.mailfrom=onleadsearchers.com; dkim=fail (body hash did not verify)
+ header.d=onleadsearchers.com;dmarc=fail action=quarantine
+ header.from=onleadsearchers.com;compauth=none reason=451
+Received-Spf: SoftFail (protection.outlook.com: domain of transitioning
+ onleadsearchers.com discourages use of 195.130.217.221 as permitted
+ sender)
+Authentication-Results-Original: relay.mimecast.com;	dkim=pass
+ header.d=onleadsearchers.com header.s=google header.b=Ui4tqy1F;	dmarc=pass
+ (policy=quarantine) header.from=onleadsearchers.com;	spf=pass
+ (relay.mimecast.com: domain of seanc@onleadsearchers.com designates
+ 209.85.214.179 as permitted sender)
+ smtp.mailfrom=seanc@onleadsearchers.com
+X-Mc-Unique: Mt3ad1LzMFuXpwHcfuDKUQ-1
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=onleadsearchers.com; s=google; t=1724923891; x=1725528691;
+ darn=dividebuy.co.uk;
+        h=mime-version:date:message-id:subject:reply-to:to:from:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DZw5DbjSfEnK2cZguMR7mBS8UVBPiv0NbMP22pA+4rk=;
+        b=Ui4tqy1FLpxJ5RjUbqyeDUDoP8bas6bI7dQ5xnUvNfo6z91VnSBM91rilDSguIHV3c
+         LM26HgXUp9OcLUF3deRPBHPieWoP7oZ8LO3mtX3epmfA3pbrxibohRrpe//OjiFaHmzB
+         siSZ2mGHO2PVyO41hqqn9CIDtbrZ6pfKkA9u0=
+X-Google-Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724923891; x=1725528691;
+        h=mime-version:date:message-id:subject:reply-to:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DZw5DbjSfEnK2cZguMR7mBS8UVBPiv0NbMP22pA+4rk=;
+        b=ZqK3VlyzK9xBokrURp2AimnqMnJDPcK852DPNhi1wIDuFGF0McK7ihZv5P7WYC1ePt
+         W3TS8JJER9MIeSL8xA6JDhw8+yr9QOrE4k852xvg87Znbi6338wBDwzUeNrFSg+Z+Il/
+         iKypW9pi/DBfRneydOz5Re0NOJYhwqOcR0h8cMsY2pc9jB4+fDxGHMnNZZqMkbAp1PR1
+         5Rji0WB6a5lY0mxc8/79iaxiO7hBsyPqATnr8F2TnCmrcZVnYGpnA+hq0jxRZx0NXyI7
+         ZeSRDjzJdgoxnLLpmmk06qIN3MxhG1QOTRIAxbebrRhCHdPmJJzcAvclGuVlUVQgxsMV
+         lxiw==
+X-Gm-Message-State:
+ AOJu0YwVQU0Z+1Mw12toY7hWzoFoYtH5D0rv9p/mpA/iwv19b6uO7tCl
+	xTJKyRxH6O/iwWhZB1k1AoZdCK976G13smZRT7PyRMtbpaUQ7A3ldDpXeNrnR2gqXFWpTYoBJxO
+	9
+X-Google-Smtp-Source:
+ AGHT+IFI74qP2Sva6LMKfHJnvkaTFK+BwQK/v24FvZiaX+QQ+6QA7EDDesg33jAWO6YKdiI0NvAq/Q==
+X-Received: by 2002:a17:903:1109:b0:202:3a78:5d8a with SMTP id
+ d9443c01a7336-2050c2158aemr28694235ad.8.1724923890976;        Thu, 29 Aug
+ 2024 02:31:30 -0700 (PDT)
+Return-Path: seanc@onleadsearchers.com
+From: Sean Crellin <seanc@onleadsearchers.com>
+To: Karl Dobbs <karl@dividebuy.co.uk>
+Reply-To: Sean Crellin <seanc@onleadsearchers.com>
+Subject: =?UTF-8?B?Y2FsbCB3aXRoIGEgY29tcGV0aXRvcg==?=
+Message-Id: <95a7e473-5f3c-sl69-48cc-a7a4-cafc4c72552c@onleadsearchers.com>
+Date: Thu, 29 Aug 2024 09:31:28 +0000
+MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Impersonation-Protect: Policy=New Impersonation Protection
+ Definition - VIP;Similar Internal Domain=false;Similar Monitored External
+ Domain=false;Custom External Domain=false;Mimecast External
+ Domain=false;Newly Observed Domain=false;Internal User Name=false;Custom
+ Display Name List=false;Reply-to Address Mismatch=false;Targeted Threat
+ Dictionary=false;Mimecast Threat Dictionary=false;Custom Threat
+ Dictionary=false
+X-Mimecast-Impersonation-Protect: Policy=New Impersonation Protection
+ Definition - Default;Similar Internal Domain=false;Similar Monitored
+ External Domain=false;Custom External Domain=false;Mimecast External
+ Domain=false;Newly Observed Domain=false;Internal User Name=false;Custom
+ Display Name List=false;Reply-to Address Mismatch=false;Targeted Threat
+ Dictionary=false;Mimecast Threat Dictionary=false;Custom Threat
+ Dictionary=false
+Content-Type: multipart/mixed;
+ boundary="----sinikael-?=_1-17254668605840.6068997198502155"
+X-Ms-Exchange-Organization-Expirationstarttime: 29 Aug 2024 09:31:35.7911
+ (UTC)
+X-Ms-Exchange-Organization-Expirationstarttimereason: OriginalSubmit
+X-Ms-Exchange-Organization-Expirationinterval: 1:00:00:00.0000000
+X-Ms-Exchange-Organization-Expirationintervalreason: OriginalSubmit
+X-Ms-Exchange-Organization-Network-Message-Id:
+ 2deb65c0-9d9f-4884-ef27-08dcc80d6070
+X-Eopattributedmessage: 0
+X-Eoptenantattributedmessage: 68cae5ad-853d-473f-98cd-43df5b6b7c5d:0
+X-Ms-Exchange-Organization-Messagedirectionality: Incoming
+X-Ms-Publictraffictype: Email
+X-Ms-Traffictypediagnostic:
+ AM3PEPF0000A78D:EE_|DU0PR08MB9608:EE_|AM9PR08MB7030:EE_
+X-Ms-Exchange-Organization-Authsource:
+ AM3PEPF0000A78D.eurprd04.prod.outlook.com
+X-Ms-Exchange-Organization-Authas: Anonymous
+X-Ms-Office365-Filtering-Correlation-Id:
+ 2deb65c0-9d9f-4884-ef27-08dcc80d6070
+X-Ms-Exchange-Organization-Scl: -1
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|43022699015|82310400026|94036028|43540500003;
+X-Forefront-Antispam-Report:
+ CIP:195.130.217.221;CTRY:GB;LANG:en;SCL:-1;SRV:;IPV:CAL;SFV:SKN;H:eu-smtp-inbound-delivery-1.mimecast.com;PTR:eu-smtp-delivery-1.mimecast.com;CAT:NONE;SFS:(13230040)(43022699015)(82310400026)(94036028)(43540500003);DIR:INB;
+X-Ms-Exchange-Crosstenant-Originalarrivaltime: 29 Aug 2024 09:31:35.7599
+ (UTC)
+X-Ms-Exchange-Crosstenant-Network-Message-Id:
+ 2deb65c0-9d9f-4884-ef27-08dcc80d6070
+X-Ms-Exchange-Crosstenant-Id: 68cae5ad-853d-473f-98cd-43df5b6b7c5d
+X-Ms-Exchange-Crosstenant-Authsource:
+ AM3PEPF0000A78D.eurprd04.prod.outlook.com
+X-Ms-Exchange-Crosstenant-Authas: Anonymous
+X-Ms-Exchange-Crosstenant-Fromentityheader: Internet
+X-Ms-Exchange-Transport-Crosstenantheadersstamped: DU0PR08MB9608
+X-Ms-Exchange-Transport-Endtoendlatency: 00:00:03.3956760
+X-Ms-Exchange-Processed-By-Bccfoldering: 15.20.7918.018
+X-Microsoft-Antispam-Mailbox-Delivery:
+ ucf:0;jmr:0;auth:0;dest:I;ENG:(910001)(944506478)(944626604)(920097)(930097)(140003);
+X-Microsoft-Antispam-Message-Info:
+ 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
+Content-Transfer-Encoding: 7bit
+
+------sinikael-?=_1-17254668605840.6068997198502155
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dutf-8"><title>call with a competitor</title><!-- </meta> --><!-- =
+</meta> --><meta name=3D"viewport" content=3D"width=3Ddevice-width, =
+initial-scale=3D1"><!-- </meta> --></head><body><p style=3D"font-family: =
+Verdana; font-size:8pt; color:#666666;">This message originates from =
+outside our organisation. Consider carefully whether you should click on =
+any links, open any attachments or reply. <br><br></p><div =
+style=3D"-webkit-tap-highlight-color: transparent; box-sizing: inherit;" =
+fr-original-style=3D""><span style=3D"font-size: 14px; font-family: Arial, =
+Helvetica, sans-serif; color: rgb(0, 0, 0); font-weight: 400; =
+-webkit-tap-highlight-color: transparent; box-sizing: inherit;" =
+fr-original-style=3D"font-size: 14px; font-family: Arial, Helvetica, =
+sans-serif; color: rgb(0, 0, 0);">Hello Karl, just spoke a guy who may be =
+your competitor, do these challenges ring true?</span></div><ol =
+style=3D"-webkit-tap-highlight-color: transparent; box-sizing: inherit;" =
+fr-original-style=3D""><li style=3D"font-size: 14px; font-family: Arial, =
+Helvetica, sans-serif; color: rgb(0, 0, 0); font-weight: 400; =
+-webkit-tap-highlight-color: transparent; box-sizing: inherit;" =
+fr-original-style=3D"font-size: 14px; font-family: Arial, Helvetica, =
+sans-serif; color: rgb(0, 0, 0);">needs to double business size, but no =
+additional ways of lead creation</li><li style=3D"font-size: 14px; =
+font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0); =
+font-weight: 400; -webkit-tap-highlight-color: transparent; box-sizing: =
+inherit;" fr-original-style=3D"font-size: 14px; font-family: Arial, =
+Helvetica, sans-serif; color: rgb(0, 0, 0);">has large database and =
+established reputation but BDM is under-performing</li><li =
+style=3D"font-size: 14px; font-family: Arial, Helvetica, sans-serif; color:=
+ rgb(0, 0, 0); font-weight: 400; -webkit-tap-highlight-color: transparent; =
+box-sizing: inherit;" fr-original-style=3D"font-size: 14px; font-family: =
+Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);">has a lack of control =
+and ability to manipulate marketing</li><li style=3D"font-size: 14px; =
+font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0); =
+font-weight: 400; -webkit-tap-highlight-color: transparent; box-sizing: =
+inherit;" fr-original-style=3D"font-size: 14px; font-family: Arial, =
+Helvetica, sans-serif; color: rgb(0, 0, 0);">needs to target new markets =
+they aren't reaching</li></ol><div style=3D"-webkit-tap-highlight-color: =
+transparent; box-sizing: inherit;" fr-original-style=3D""><span =
+style=3D"font-size: 14px; font-family: Arial, Helvetica, sans-serif; color:=
+ rgb(0, 0, 0); font-weight: 400; -webkit-tap-highlight-color: transparent; =
+box-sizing: inherit;" fr-original-style=3D"font-size: 14px; font-family: =
+Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);">Our unique Triple 'S' =
+approach ensures that you only pay if we deliver results=E2=80=94guaranteed=
+.</span></div><div style=3D"-webkit-tap-highlight-color: transparent; =
+box-sizing: inherit;" fr-original-style=3D""><span style=3D"font-size: =
+14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0); =
+font-weight: 400; -webkit-tap-highlight-color: transparent; box-sizing: =
+inherit;" fr-original-style=3D"font-size: 14px; font-family: Arial, =
+Helvetica, sans-serif; color: rgb(0, 0, 0);"><br style=3D"-webkit-tap-highl=
+ight-color: transparent; box-sizing: inherit;" fr-original-style=3D""></spa=
+n></div><div style=3D"-webkit-tap-highlight-color: transparent; box-sizing:=
+ inherit;" fr-original-style=3D""><span style=3D"font-size: 14px; =
+font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0); =
+font-weight: 400; -webkit-tap-highlight-color: transparent; box-sizing: =
+inherit;" fr-original-style=3D"font-size: 14px; font-family: Arial, =
+Helvetica, sans-serif; color: rgb(0, 0, 0);">We help financial companies =
+demonstrate a clear ROI and overcome client skepticism through targeted =
+messaging.</span></div><div style=3D"-webkit-tap-highlight-color: =
+transparent; box-sizing: inherit;" fr-original-style=3D""><span =
+style=3D"font-size: 14px; font-family: Arial, Helvetica, sans-serif; color:=
+ rgb(0, 0, 0); font-weight: 400; -webkit-tap-highlight-color: transparent; =
+box-sizing: inherit;" fr-original-style=3D"font-size: 14px; font-family: =
+Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);"><br =
+style=3D"-webkit-tap-highlight-color: transparent; box-sizing: inherit;" =
+fr-original-style=3D""></span></div><div style=3D"-webkit-tap-highlight-col=
+or: transparent; box-sizing: inherit;" fr-original-style=3D""><span =
+style=3D"font-size: 14px; font-family: Arial, Helvetica, sans-serif; color:=
+ rgb(0, 0, 0); font-weight: 400; -webkit-tap-highlight-color: transparent; =
+box-sizing: inherit;" fr-original-style=3D"font-size: 14px; font-family: =
+Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);">Do you want a prospect =
+list with high-value contacts that are a great fit for your services?=
+</span></div><div style=3D"-webkit-tap-highlight-color: transparent; =
+box-sizing: inherit;" fr-original-style=3D""><span style=3D"font-size: =
+14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0); =
+font-weight: 400; -webkit-tap-highlight-color: transparent; box-sizing: =
+inherit;" fr-original-style=3D"font-size: 14px; font-family: Arial, =
+Helvetica, sans-serif; color: rgb(0, 0, 0);"><br style=3D"-webkit-tap-highl=
+ight-color: transparent; box-sizing: inherit;" fr-original-style=3D""></spa=
+n></div><div style=3D"-webkit-tap-highlight-color: transparent; box-sizing:=
+ inherit;" fr-original-style=3D""><span style=3D"font-size: 14px; =
+font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0); =
+font-weight: 400; -webkit-tap-highlight-color: transparent; box-sizing: =
+inherit;" fr-original-style=3D"font-size: 14px; font-family: Arial, =
+Helvetica, sans-serif; color: rgb(0, 0, 0);">Zero charge, interested?=
+</span></div><div style=3D"-webkit-tap-highlight-color: transparent; =
+box-sizing: inherit;" fr-original-style=3D""><span style=3D"font-size: =
+14px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0); =
+font-weight: 400; -webkit-tap-highlight-color: transparent; box-sizing: =
+inherit;" fr-original-style=3D"font-size: 14px; font-family: Arial, =
+Helvetica, sans-serif; color: rgb(0, 0, 0);"><br style=3D"-webkit-tap-highl=
+ight-color: transparent; box-sizing: inherit;" fr-original-style=3D""></spa=
+n></div><div style=3D"-webkit-tap-highlight-color: transparent; box-sizing:=
+ inherit;" fr-original-style=3D""><span style=3D"font-size: 14px; =
+font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0); =
+font-weight: 400; -webkit-tap-highlight-color: transparent; box-sizing: =
+inherit;" fr-original-style=3D"font-size: 14px; font-family: Arial, =
+Helvetica, sans-serif; color: rgb(0, 0, 0);">All the best,=
+</span></div><p></p><div fr-original-style=3D"" style=3D"-webkit-tap-highli=
+ght-color: transparent; box-sizing: inherit;"><span style=3D"font-size: =
+14px; font-family: Arial, Helvetica, sans-serif; font-weight: 400; =
+-webkit-tap-highlight-color: transparent; box-sizing: inherit;" =
+fr-original-style=3D"font-size: 14px; font-family: Arial, Helvetica, =
+sans-serif;">Sean Crellin</span></div><div fr-original-style=3D"" =
+style=3D"-webkit-tap-highlight-color: transparent; box-sizing: =
+inherit;"><span style=3D"font-size: 14px; font-family: Arial, Helvetica, =
+sans-serif; font-weight: 400; -webkit-tap-highlight-color: transparent; =
+box-sizing: inherit;" fr-original-style=3D"font-size: 14px; font-family: =
+Arial, Helvetica, sans-serif;">CEO &amp; Founder | LeadSearchers =
+com</span></div><div fr-original-style=3D"" style=3D"-webkit-tap-highlight-=
+color: transparent; box-sizing: inherit;"><span style=3D"font-size: 14px; =
+font-family: Arial, Helvetica, sans-serif; font-weight: 400; =
+-webkit-tap-highlight-color: transparent; box-sizing: inherit;" =
+fr-original-style=3D"font-size: 14px; font-family: Arial, Helvetica, =
+sans-serif;"><br fr-original-style=3D"" style=3D"-webkit-tap-highlight-colo=
+r: transparent; box-sizing: inherit;"></span></div><div =
+fr-original-style=3D"" style=3D"-webkit-tap-highlight-color: transparent; =
+box-sizing: inherit;"><span style=3D"font-size: 14px; font-family: Arial, =
+Helvetica, sans-serif; font-weight: 400; -webkit-tap-highlight-color: =
+transparent; box-sizing: inherit;" fr-original-style=3D"font-size: 14px; =
+font-family: Arial, Helvetica, sans-serif;">If you're not the right person =
+to contact for this, please let me know.</span></div><p></p></body></html>
+------sinikael-?=_1-17254668605840.6068997198502155--
