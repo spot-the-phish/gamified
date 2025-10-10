@@ -128,7 +128,7 @@
         body: html || `<pre>${text}</pre>` || "<p>(No content)</p>",
         filename,
         type: answerKey[filename] || "phish",
-        explanation: `This email (${filename}) was marked as ${answerKey[filename] || "phish"}.`,
+        explanation: `This email is a || "phish"}.`,
         isHtml: !!html
       };
     }
